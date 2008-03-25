@@ -1,0 +1,10 @@
+<section><title>Overview</title>
+<para>The TDreams application is a text-mode program intended for analysis of transaction lifetimes. </para>
+<para>It allows to perform queries about the lifetime of a transaction of a desired type. What defines
+a transaction type, and a transaction is the lookup tag. Only the items that have the lookup tag associated
+with them are considered by the application. If two dral items have the same value for the lookup tag they
+are considered to be part of the same transaction. The lookup tag is fixed for a session and is set in the 
+<link linkend="config-file">configuration file</link>.
+</para>
+</section>
+

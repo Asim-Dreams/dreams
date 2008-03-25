@@ -1,0 +1,308 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>FindForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>FindForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>440</width>
+            <height>210</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Find</string>
+    </property>
+    <property name="focusPolicy">
+        <enum>NoFocus</enum>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout30</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout12</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel1</cstring>
+                            </property>
+                            <property name="text">
+                                <string>TAG Name:</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>LineEdit_TAGName</cstring>
+                            </property>
+                            <property name="focusPolicy">
+                                <enum>StrongFocus</enum>
+                            </property>
+                        </widget>
+                        <widget class="QToolButton">
+                            <property name="name">
+                                <cstring>ToolButton_Search</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>22</width>
+                                    <height>22</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="iconSet">
+                                <iconset>image0</iconset>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout13</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel1_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>TAG Value:</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>LineEdit_TAGValue</cstring>
+                            </property>
+                            <property name="focusPolicy">
+                                <enum>StrongFocus</enum>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout14</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>TextLabel1_2_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Starting at cycle:</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox">
+                            <property name="name">
+                                <cstring>SpinBox_Cycle</cstring>
+                            </property>
+                            <property name="maxValue">
+                                <number>999999999</number>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Search Options:</string>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout29</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>CheckBox_CaseSensitive</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="text">
+                                <string>Case Sensitive</string>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer9</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>CheckBox_ExactMatch</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="text">
+                                <string>Exact Match</string>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer9_2</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>CheckBox_Regular</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="text">
+                                <string>Regular Expression</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout7</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer7</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>250</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>FindButton</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>75</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image1</pixmap>
+                            </property>
+                            <property name="accel">
+                                <string></string>
+                            </property>
+                            <property name="default">
+                                <bool>false</bool>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>CancelButton</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>75</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image2</pixmap>
+                            </property>
+                            <property name="accel">
+                                <string></string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="3001">789c75d5c96ee3480c00d07bbec2086fc1806ded12067388b3c7d99cdd69cc81da6c27f1ee2c7663fe7d4a454a4d1f1a8a023c90455155a5f28fbdd6f3cd656befc7ce7245ab51d6ca86b468ede51fe3f1fae7bffffcdad975c296fd735beeee5f3bbbb0dfca5a57d34961e1683c2bd08746aad3a61a7d8d8ec65823d1d55e7564a291ebb4ad022f3a72a823858e90c6a7c69b0286ba807e538cf418d4696d1d018db5c648578b75e45de34097dee8314f1a7a7a716b0e663aa2570e5c1db9d111dd0e5c6a6cbd825e12fad2d5ae357a1a57ba9a7e05f074b54c8fd173807a4d716bf36d6d8a6f5d5a2f30ea5dd55be9c85217d8dabdba1a6e8dd95ac6a186de4870a1237a53e040436f4be86ae8e985738d5b03f0122f0bc8fa8aedc721bbac1d79f6c58e2bfbe4fba1fdceb1fae4207023877c9b3f13276c6cb36327cdedf88d35b999d3b6f9193bc8a3d4bac70e83d83e0faec579ccf10376944bfddbda293ba81cba6122e36fd8519070fca87166fdc94e9c8cfb5b5993d76ec7d6f3dadc2f75d87edb4dac8fc499670d32be79fe8938179fd6967e1ed94d7fefec24c903eb63764a6568c7df558ebc30e1f9c231bb8ea39dcf283513cae3f3c6bcde0376164afe9798cad27a222ec43376eeb2a9daa4107b5e26f353b07d5fd6f38c1d05d25f879d24b23e69633bdfb860539071bf73b6793ef73765d7cf0714d7fddafd19a74d7dee2725e2f544879d8792ef8ae5fda03a8921f1fd98df0737eca6febeb89e8f137621fde0a575968705afcf21dbc4d9c3c69cff2d967e602eaeeb57e718905fc7b12baefbb5fb85b220e07ee19e1d25be63f3cfd945ddbfc49bfa6b7659f77321967cb0fb2ff53397e70f46ec267e242ec5609dd7717c10d771bb7fb3a09e1f3c653771df3a4f02ee9f166c22395f24dee4dbfa7910e50eefbf013b76c4259b0a197fc66ec687d6459d8f77ece6fd485ce7dbfd5aad86ec7fbb1f8a2275e5bc5cb2cb7abd5fc5f578fb3e65331eecf9549639f1f7414b7121e7df1bbbceefad109030c50c732cb0c4010e71f4fbe2df247cc3771ce304a738c3392e4c6429192bc9f9c04ffcc26f5c9b7b83fbe67f070fcc75c8379f8d788c27788a67786ef2ba7881977885d77883bdeae6f3d63ca56b32eef0de643ed8fb119ff019fbf8827d3ef3d141173d9be1dbeb0c030c31c2b8baf97703d0f4f10d5045812035770639147cf16f0f0cd081218caa9ee015dee0dd648c61c297cd99c20ce6d8ad724c85052c61051ff0095ff00d6bd8d89c7de8c0011cc2917dd6319cc0299cc13974e1022e25a763b2a67005d770033db8c53edcc13d3cc0a3a9f32439cfd0b7b55ea06dfa70c0050f7c08208408e2a64edf5c0921019139b633cac97c8ce6276a40431afdae43aff446ef3486314d684a339ad38296266bc575e8a3a9f369ea7c91e983d6b4a192f6a9f3a73a10d3011d9aac233adefdefef9dff01093cce54</data>
+    </image>
+    <image name="image1">
+        <data format="XPM.GZ" length="3310">789c55d6ed53f2381000f0effe158cfbcdb9d9871652e8dcdc0741c017405051f4e63e6c9b56409177119fb9fffd4276d38b53cbcc6fb2d96c9236f5d759693ce895ce7e9d6cb6b49da6a57442ebd299decde787bffff9ebf7c96910958e7fb55a293cfde3e4140ea5b4d45f7c6447d09d07f401ef3e3e7d7cf9b8f1130cfd96b98f373f6ce0b7ec7d5cfb616d1f1dbfea1f5348fc04577e9f968f4b1f151fa19fe047b6677f9c0fbfe547b6ad8f991f463ec67e367f7570ea63e263e3f7f991adebb780dfe7d50f7bf25b767e9fd40f7bf4c3fccd1afa93a36f1f0bbf8f5f01bcf82d7ed5343200454ad52a36f2b8a810514dc7a9f5fdd1b54a2d88abd67762554fac5bced23e13c7dc8e55761ca7da8e77699d444a918ddfb18bf1905d57e2aa3371fe8a3816a76c935fd9fcb6de7aa55a2ed7ad1fd84a57621bdf61d7dd7ca66297afcf8e7562eb45cd4e28e3c55bb2d3501c58ff5f4fc88e1571fddf6c525c1fde3b6bf68598a47dce4ec22cb25eb153e70f71c4e3d3f17587b8aae2d0ce8f1aec4855033bfe033b0e643dc159eadb8a6336aed94928f5a5e24ce6bb60a7596eeb215b7f9c56535e6f506c978f86629df0fab40bf3f3306053c0ed782576ebf1c936e3f3fc9b6c2deb4fbda3a94a8afbd36d61cedf1793ec67ce4e48e697b18bf595fe69a479bed76237df2feb5429996f8d1d6bd97fae27a54cea4fd845fe06dbd50f0b71c4f9f1414c32def1d487a4aab48c3762d702de6f88d849c8ef179eb38b7c7b7196e736be6eadeb013f1fd46527c4fd61c34eddfebf17e6f590fe3a92f928b1ac0fdcb233199fecfb9caac8add7905df48fc524fe66bbfed81313d78f7db11b6f5998db23761eb2c99e2fa98ee3c89e37346193aadbf38eced9dacdafc6cedcfb5e16cb78f85598c77b619bf1b8fda630afb7e4cf23b11d5fabcc9d1fcf6297ffc076fd712c96fe3812cb7ad09b755657019f7753762ce71d35d949c8e72d5d8929e27f3e02b6db0feab03357ef805dd4df10cbf8a0c5b9d8ee6716d583a06cf37db2cd81cfe36fd95ade677a6567729ec185589e7f70edeef95db18bf5cdc5aebe4cec9e97ae58ea23fb3e6799ab07ca6cb7dfa49de5f9dd14e6fe6bb13b0fda85797c6977cf0334c56eff1ec5ae1e5b7f5ecc87966217ff2476f1f6fb9ae73ae4ef35edc554b3df5b5ab15d7f6a895dfd9958f20db7084898608a1a33ccf1152738c599fd9de0ccd6f086ef3837ed1fb8c025ae708d1bdc1e5bf9b6313bfcc43d7ee101bff11c1bd8c40b6c611b3be6bec4369fed788d37d835d731aa877dbcc5010ef18e6ffe3ee2038ef0119f708ccff86262cb18982c21568e17ff4f810a2393696c5a6b5837570c088033204880f735b5d5dc80c62e6490c32b4c600a3378837773cf6dcc072c6069f28c4c4c0e2b58c306b6b0834fd8c317ec6dcc01bee11c47d030570e4db88016b4a103977005d7706363bad0833edc9ab8310c600877700f0f3082477882313cdb981728430021544ca5555010410dea10131290f938d9bd49c91c83949b5f4dafa4a149139ad28cdee89de6f4616316a625a325ad4c5c4e6bdad09676f4497b13f545071bf36df32c25626d7a6ce89c1ad4b451175eccf16a99eb18d9a60e5dd281aee89a785e2fd4a51ef5e5bea581f91d4287eee89e1e6874faef9f27ff01a26d233d</data>
+    </image>
+    <image name="image2">
+        <data format="XPM.GZ" length="1819">789c55d4c96edb301405d0bdbf420877417163598325145d649e47672ebad06cc751e224ce58f4dffbc4f7c8d096bd38e0d51549595a59f6ae4f0ebde595decb3c9b4f0aaf1867cfde72f9dab69fbffffcfadb5bf2638fbec3d41b2cfde82d21f10aefe8f1a1d2085c8c5c3cb9f8723176513b50ad3bd2b8a85c942e1e5c5cb858682b5cdcbac85ddcbb387791b998b8500e4ee7ee7aa60495977dfa6877edaa88ac1b6d3b8e4fb66fbc230e253f1627e26e5754f9dd9789258fa1b810cfd8e67c3cb207e6fc5a6cce0fc526bfa95d9113ed3771213e63077df15de72a0eccf50f8d7df6063b0cc5cfda55207d6ac20e13199f8acdf9bbd67cbd5776d4672b7dfd3ab6fbfbc1367daad4aeedfe1562b3bf39dbdc0fa5c4e67e804dfbc5d78fc566bf52b1d99f886dd73f60dbf56fb3cdfce18be90e696fb1635f7c649d6abf8b23f18d3815f7c565e06b5fb387bef8949df801e72f8d431ebf124761a67dcc4efd885f0d07e2487c224e63f68bb814afb3335fbc278ec4fbe26a986bafb2f3583c1767e235763148437e18a1e897d191a3404947a57f156a3418f3d38b09ee30a5c43d5a3cd8c4236678e20c753ce30573bc52c2f45478c33b3ef0892f7e3f50c72ad6b08e0d1a6f69bcc12625b6b08d1dce504f8e5dec611f0738d41d5de28812337cc97c26d4d452c7314e708a33dbd12546763ee7d474411d97b8c2356e6c07b5383db77a1e6794e8bb1da6c7d98f37ead8828f016546940aba83dfbc3ad12094790c1021c610092512c97cef07cf6386544129952df4540b6b093054b92a54a92adb53a99a12ef762d94521925baa3013f13b51aabc9c25a46485445893b35b5d71ad37dd991fdd03d940a54a3eecd7c544bff81d1f77ee89e80d7a433ff7ef6fe032654a473</data>
+    </image>
+</images>
+<tabstops>
+    <tabstop>LineEdit_TAGName</tabstop>
+    <tabstop>LineEdit_TAGValue</tabstop>
+    <tabstop>FindButton</tabstop>
+    <tabstop>CheckBox_CaseSensitive</tabstop>
+    <tabstop>CheckBox_ExactMatch</tabstop>
+    <tabstop>CheckBox_Regular</tabstop>
+    <tabstop>CancelButton</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

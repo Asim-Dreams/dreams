@@ -1,0 +1,4 @@
+uic ltagform.ui > ltagform.h
+uic -impl ltagform.h ltagform.ui > ltagform.cpp
+#uic -o ltagformImpl.h -subdecl ltagformImpl ltagform.h ltagform.ui
+#uic -o ltagformImpl.cpp -subimpl ltagformImpl ltagformImpl.h ltagform.ui

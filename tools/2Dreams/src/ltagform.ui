@@ -1,0 +1,101 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>LongString</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>LongString</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>347</width>
+            <height>266</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Long String Tag Value</string>
+    </property>
+    <property name="modal" stdset="0">
+        <bool>true</bool>
+    </property>
+    <property name="toolTip" stdset="0">
+        <string></string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout24</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QTextEdit">
+                    <property name="name">
+                        <cstring>textEdit1</cstring>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout23</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer2</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>240</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>AcceptPushButton</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>75</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image0</pixmap>
+                            </property>
+                            <property name="accel">
+                                <string></string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="1040">789c95d2494fc2501405e07d7f45033b62a425504b8c0be679da991817af23f3d496a1c6ff6efbce0111374a58bcefde7bdac70df99cfa3a1ea8b9bc1284229cd9aa3d157b35e744abd5f9edfde543c9e8869a7c8b2555cf3c289947d556879bb59b9e27c939ab694553d3520ec09206d649078c414307db24bb7df089dd802c8163b20c1e486697a0c9ac4f32bb2199b548666b6099c30d92dd11285cf0085a0570481a608fe4f016b439dc2105582139dc051d0e57493eb949321b91ccb64097d913c9e110f4d83d931e684b9ac936cc940e58d6c12cc9d5cdae945d4172572b30598eecae418fdc9106e8a6d435a1eb32bb07ed023895342da1cbe13968bba097b2a0095190c30bd072c1c7bbcfdf6a5921ff1bb725cb9273b673adb89ecfec74868a335f2c2fcf5bad37c9d1dfeef6c1f51d7e181d82e3e97c8cbfdf1b57c26a353cd5eab7776944cd56c5ff79bf76a7dbebdfdd79301cc5bf7ec7f8a674a94dfebf83a4f6f9ac7c01c18ad479</data>
+    </image>
+</images>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

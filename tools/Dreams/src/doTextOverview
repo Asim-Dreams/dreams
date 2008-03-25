@@ -1,0 +1,4 @@
+uic textOverview.ui > textOverview.h
+uic -impl textOverview.h textOverview.ui > textOverview.cpp
+#uic -o textOverviewImpl.h -subdecl textOverviewImpl textOverview.h textOverview.ui
+#uic -o textOverviewImpl.cpp -subimpl textOverviewImpl textOverviewImpl.h textOverview.ui

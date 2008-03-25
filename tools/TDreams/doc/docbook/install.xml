@@ -1,0 +1,38 @@
+<section><title>Installation</title>
+<para>TDreams is not currently installed in the environment, so it has to be manually compiled. 
+In order to do this, a Makefile is included (I don't know much about Makefiles so it's very simple) so it should
+be (almost) as simple as typing make in order to get the tool.</para>
+<section>
+<title>Requirements</title>
+<para>The tool uses the following libraries:
+    <itemizedlist>
+        <listitem>libasim: included in asim-core package</listitem>
+        <listitem>libdral: included in asim-core package</listitem>
+        <listitem>libz: should be found in the system</listitem>
+        <listitem>libxml2: should be found in the system</listitem>
+        <listitem>loki: not a compiled library but some of it's templates are needed. Download it from 
+            <link>http://sourceforge.net/projects/loki-lib</link>. The first line of the Makefile should be changed 
+            so that LOKIDIR points to your local copy of loki.
+        </listitem>.
+    </itemizedlist>
+</para>
+</section>
+<section>
+<title>Compiling</title>
+    <para>
+        After all the requirements are satisfied, a simple make should be enough to compile the tool (problems 
+        could arise basically related with gcc version used). If it's the first time it's compiled a maked
+	depend is also required before the actual make.
+    </para>
+</section>
+<section>
+<title>Executing</title>
+    <para>
+        In order to execute the program, it requires to have in the same directory where it's called two files:
+        <itemizedlist>
+            <listitem>config.xml: configuration parameters of the program</listitem>
+            <listitem>selectors.xml: file that contains the configuration of the selectors</listitem>
+        </itemizedlist>
+    </para>
+</section>
+</section>

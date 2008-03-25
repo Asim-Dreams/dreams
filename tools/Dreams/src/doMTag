@@ -1,0 +1,4 @@
+uic mtagform.ui > mtagform.h
+uic -impl mtagform.h mtagform.ui > mtagform.cpp
+#uic -o mtagformImpl.h -subdecl mtagformImpl mtagform.h mtagform.ui
+#uic -o mtagformImpl.cpp -subimpl mtagformImpl mtagformImpl.h mtagform.ui

@@ -1,0 +1,1125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:w="urn:schemas-microsoft-com:office:word"
+ xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=windows-1252">
+  <meta name="ProgId" content="Word.Document">
+  <meta name="Generator" content="Microsoft Word 9">
+  <meta name="Originator" content="Microsoft Word 9">
+  <link rel="File-List" href="./adf_files/filelist.xml">
+  <title>What</title>
+  <meta http-equiv="Content-Language" content="en-us">
+</head>
+<body lang="EN-GB" style="">
+<div class="Section1">
+<h1 align="center" style="text-align: center;">Architecture Definition
+File</h1>
+<h1> </h1>
+<h2>What's an ADF?</h2>
+<p>2Dreams is a general-purpose customizable viewer and therefore it
+needs some hints on when and how to show the information. To be more
+precise, 2Dreams needs to know in which <i>vertical order</i> to show
+events and which <i>colours</i> use to them. If we bear in mind the DRAL
+abstractions, we can think about edges of the DRAL-Graph been mapped
+into rows of the events window. </p>
+<p>ADF stands for <i>Architecture Definition File</i> and is used to
+inform 2Dreams about ordering and colouring rules. Each time you read an <i>Events
+File</i> (*.drl), 2Dreams reads before the specified ADF. The format of
+ADF is standard XML and the XML-Tags and grammar (DTD) are discussed in
+the following paragraphs.</p>
+<p> </p>
+<h2>ADF Sections</h2>
+<p>The ADF has two main sections: the <i>Tag Descriptor</i> section and
+the <i>Ordering </i>section. Tag Descriptor section must be at the top
+of the file and is used to describe the <i>type</i> of each DRAL-Tag.
+The Ordering section is used to specify the row vertical ordering. </p>
+<h3>Tag Descriptor Section</h3>
+<p>This section is not mandatory but if present <i>must</i> be at the
+top of the file. In this section, we can describe the type of each
+DRAL-Tag and optionally its <i>base</i>. As said in the DRAL section,
+three basic types are supported: <i>integer</i>, <i>string</i> and <i>set
+of values</i>. The type set of values is a list of one or more elements
+each one of type integer. When declaring an integer DRAL-Tag you can
+specify its base (2,8,10 or 16), the default base is ten. 2Dreams uses
+the base to better formatting values (i.e. addresses are typically
+declared as base 16 and are shown as <tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">0xfedefede</span></tt>).
+The syntax for this section is:</p>
+<span style="font-family: courier new,courier,monospace;">&lt;tagdescriptor
+tagname="the_name_of_my_tag" type="my_tag_type" base="my_tag_base"/&gt;</span>
+<p>Valid examples are:</p>
+<small style="font-family: courier new,courier,monospace;">&lt;tagdescriptor
+tagname="UID" type="integer" /&gt;</small><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><big><br>
+&lt;tagdescriptor tagname="PC" type="integer" base="16"/&gt; &lt;!--
+show address in hexadecimal --&gt;<br>
+&lt;tagdescriptor tagname="DIS" type="string" /&gt;<br>
+&lt;tagdescriptor tagname="ANCESTOR" type="setofvalues" /&gt;<br>
+&lt;tagdescriptor tagname="TYPE" type="string" base="2"/&gt; &lt;!--
+this base is ignored --&gt;</big> <br>
+<br>
+</span>
+<p>If you use a DRAL-Tag in some “If” statement you <i>must</i> declare
+it before, the “If” statements are explained in the Ordering Section. If
+you do not declare any DRAL-Tag, 2Dreams tries to deduce them from the
+Events File. In this case, all integer DRAL-Tags will have base ten.</p>
+<h3>Item Window Section</h3>
+This section (if included) <span style="font-weight: bold;">must</span>
+be just after the Tag Descriptor Section. It's intended to specify which
+information will be shown in the Item Window.<br>
+You should specify tabs to group items by a given criterion and, for
+each tab you can specify which tags to show, the sorting criterion and
+font rules. The very<br>
+basic syntax is:<br>
+<br>
+<tt> &lt;itemwindow&gt; <br>
+&lt;tab name="my_tab_name" orderby="tag_order_criterion" &gt; <br>
+&lt;show tagname="tag_to_show1" &gt; <br>
+&lt;show tagname="tag_to_show2" &gt; <br>
+&lt;show tagname="tag_to_show3" &gt; <br>
+&lt;/tab &gt;<br>
+&lt;/itemwindow&gt; <br>
+</tt> <br>
+This creates a tab and show the three specified tags (show statements)
+for any Item in the database. 2Dreams supports three different selection
+mechanisms.<br>
+<ol>
+  <li>TAG Presence<br>
+You can discard items which do NOT have a given TAG. For instance if
+you know all instructions have a tag DIS you can filter out other items <br>
+(like memory or network transactions) with <span
+ style="font-family: courier new,courier,monospace;">&lt;tab
+name="my_tab_name" <span style="font-weight: bold;">withtag</span>="DIS"&gt;</span>.<br>
+    <br>
+  </li>
+  <li>Select By TAG<br>
+You can create a TAB selecting only the items that accomplish a given
+&lt;TAG,VALUE&gt; specification. For instance if you are running a CMP
+model<br>
+and instructions are Tagged with the CPU number you can create a tab
+for each CPU:<br>
+    <br>
+    <small><span style="font-family: courier new,courier,monospace;">&lt;tab
+name="CPU0" <span style="font-weight: bold;">selecttag</span>="CPU" <span
+ style="font-weight: bold;">value</span>="0"&gt; ... &lt;/tab&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+    <span style="font-family: courier new,courier,monospace;">&lt;tab
+name="CPU1" <span style="font-weight: bold;">selecttag</span>="CPU" <span
+ style="font-weight: bold;">value</span>="1"&gt; ... &lt;/tab&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+    <span style="font-family: courier new,courier,monospace;">...</span><br
+ style="font-family: courier new,courier,monospace;">
+    <span style="font-family: courier new,courier,monospace;">&lt;tab
+name="CPUn" <span style="font-weight: bold;">selecttag</span>="CPU" <span
+ style="font-weight: bold;">value</span>="n"&gt; ... &lt;/tab&gt;</span></small><br
+ style="font-family: courier new,courier,monospace;">
+    <br>
+  </li>
+  <li>Split By TAG<br>
+You can also create tabs without knowing the values a TAG will get.
+Following the same example of CMP model,let's say the user do not know
+how many CPU the simulator is running (the n value). In this case you
+can write a <span style="font-weight: bold;">single</span> tab
+specification like this: <span
+ style="font-family: courier new,courier,monospace;">&lt;tab name="CPU" <span
+ style="font-weight: bold;">splitbytag</span>="CPU"&gt;</span> . In this
+case 2Dreams will scan the events file and will create a different tab <span
+ style="font-weight: bold;">for each</span> different found value. Items
+will be grouped in those tabs accordingly. Bear in mind that tabs will
+be created in the order that values are found in the events file so
+there is nothing that prevents you to get a sequence like
+&lt;CPU4,CPU0,CPU33,...&gt;. If you want and ordered tab sequence use <span
+ style="font-weight: bold;">selecttag</span> instead.</li>
+</ol>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">Note 1:</span> You can mix in a tab
+specification a <span style="font-weight: bold;">withtag</span> with a <span
+ style="font-weight: bold;">selecttag</span> or <span
+ style="font-weight: bold;">splitbytag</span> statement but you <span
+ style="font-weight: bold;">cannot</span> mix selecttag with splitbytag.<br>
+<ol>
+  <li>Valid examples<br>
+    <small><span style="font-family: courier new,courier,monospace;">&lt;tab
+name="tab1" withtag="DIS" splitbytag="CPU"&gt; ... &lt;/tab&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+    <span style="font-family: courier new,courier,monospace;">&lt;tab
+name="tab2" withtag="DIS" selecttag="CPU" value="0"&gt; ... &lt;/tab&gt;</span></small><br>
+    <br>
+  </li>
+  <li>Invalid examples<br>
+    <small><span style="font-family: courier new,courier,monospace;">&lt;tab
+name="tab3" selecttag="CPU" value="0" splitby="TYPE"&gt; ...
+&lt;/tab&gt;</span></small><br>
+    <br>
+  </li>
+</ol>
+You can also specify rules for the font properties used in the Item
+Window. Rules can be either global or tab specific. The syntax is the
+following:<br>
+<small><span style="font-family: courier new,courier,monospace;">&lt;itemfont
+color="color_name" italic="true/false" bold="true/false"
+underline="true/false"/&gt;</span></small><br>
+<br>
+You can wrap &lt;itemfont&gt; speficication with conditionals (see <a
+ href="#If_Statements">If Statements</a> for more details) like this:<br>
+<small><span style="font-family: courier new,courier,monospace;">&lt;if
+tagname="KILLED" value="1"&gt; &lt;itemfont ... /&gt; &lt;/if&gt;</span></small><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">Note 2:</span> If you do <span
+ style="font-weight: bold;">not</span> specify the <span
+ style="font-weight: bold;">orderby</span> attribute the TAG declated in
+the first show statement will be used to sort the items.<br>
+<br>
+In the <a href="#Complete_Example_">Complete Example</a> you can find a
+more complex combination of all those tags.<br>
+<br>
+<br>
+<h3>Ordering Section</h3>
+<p>The Ordering Section can have <i>Edge Statements</i> and <i>Node
+Statements </i>and <i>Blank Statements</i>. The Edge Statements are
+used to specify the vertical order of DRAL Edges in rows. Node
+Statements are used to specify the order of <i>Occupancy Rows</i>.
+Those rows are placed at the <i>after the last</i> Edge row and
+represent (using shade colours) the occupancy of each DRAL Node.</p>
+<p><b>The vertical order in the screen follows the declaration order in
+the ADF</b>. Edge Statements and Node Statements can be mixed in any
+order but to improve the readability of the file is better to keep a
+group of Edge Statements and a group of Node Statements.</p>
+<p>The syntax for Edge Statements is:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;edge
+name="my_edge_name" from="src_node_name" to="dst_node_name"
+draw_when="when_draw_event" /&gt;</span></tt></p>
+<p>The first three parameters are used to uniquely identify the
+DRAL-Edge (bear in mind that repeated names are allowed). The fourth
+parameter is optional and specifies <i>when</i> to draw the event. It
+can take two different values: sent (default) or received. In the first
+case, the event is shown in the same cycle it is posted. In the second
+case, the DRAL-Edge latency is added to the posting cycle. Valid
+examples are:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;edge
+name="MC_READ_RESP" from="MC" to="MRQ" /&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt>&lt;edge name="ICACHE_MISS" from="IC" to="IFU" draw_when="sent"
+/&gt;</tt><br>
+<tt>&lt;edge name="PREMAF_MAF_PORT" from="Premaf" to="Maf"
+draw_when="received" /&gt; </tt></span></p>
+<p>The syntax for Node Statements is very simple:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;node
+name="my_node_name" /&gt;</span></tt></p>
+<p>Finally, the Blank Statements are used to insert blank gaps in the
+vertical ordering (to improve visualization of related rows). The syntax
+is very simple:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;blank
+rows="num_rows" /&gt;</span></tt></p>
+<p> </p>
+<h2>Set Statements</h2>
+<p>Set statements are analogous to an assignation in a procedural
+language. The Set Statement although, can modify only the value of the
+following three predefined variables: <i>color</i>, <i>shape</i> and <i>letter</i>.
+Those three variables are used to know how to draw a given event. The
+colour can be any "True Colour" RGB combination or named colour (X11
+standard colour names), the default colour is white. The shape must be
+an element of the set {rectangle, circle, diamond, triangle}. The
+default shape is rectangle. The letter can be any valid ASCII character.
+The default is '\0'. The syntax for a Set Statements is:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;set
+color="my_event_color" letter="my_event_letter"
+shape="my_event_shape"/&gt;</span></tt></p>
+<p>Note that none of the three variables is mandatory in a Set
+Statement so the two following blocks are equivalent:</p>
+<p>a) Single statement with the three parameters:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;set
+color="red" letter="H" shape="rectangle"/&gt;</span></tt></p>
+<p>b) Multiple statements:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;set
+color="#FF0000" /&gt;  &lt;!-- "red" is &lt;255,0,0&gt; RGB combination
+--&gt; </span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt>&lt;set letter="H" /&gt;</tt><br>
+<tt>&lt;set shape="rectangle" /&gt; </tt></span></p>
+<h3>Important Note:</h3>
+<p>Set Statements have two different scopes. They can be directly in
+the Ordering Section or inside an Edge Statement. A Set Statement
+directly placed in the Ordering Section has global scope meaning that
+the set values are visible to any Edge. The Set Statements inside an
+Edge statement apply only to the corresponding Edge and override
+previous global scope values. In the following example we declare two
+edges, the first one will use red colour and circle shape, the second
+one will use blue colour and diamond shape:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;set
+color="red" shape="circle"&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt>&lt;edge name="edge1" from="node1" to="node2" /&gt;</tt><br>
+<tt>&lt;edge name="edge2" from="node2" to="node1"&gt;</tt><br>
+<tt> &lt;set color="blue" /&gt;</tt><br>
+<tt> &lt;set shape="diamond" /&gt;</tt><br>
+<tt>&lt;/edge&gt;</tt></span></p>
+<h2> </h2>
+<h2><a name="If_Statements"></a>If Statements</h2>
+<p>The If Statements are analogous to the conditionals in imperative
+languages. The <i>Boolean</i> condition is expressed in terms of
+DRAL-Tags and their values. There is not<br>
+<i>"else"</i> statement. The body of the If Statement <i>must</i> be
+made up of one or more Set Statements. If Statements can be either
+global scope or relative to a given Edge (like Set Statements discussed
+before). The syntax for If Statements is:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;if
+tagname="my_tag_name" value="tag_value"&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt> &lt;set ... /&gt;</tt><br>
+<tt> ...</tt><br>
+<tt>&lt;/if&gt;</tt></span></p>
+<p>Valid examples are:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;!--
+global scope if --&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt>&lt;if tagname="KILLED" value="1"&gt; </tt><br>
+<tt> &lt;set color="grey"/&gt;</tt><br>
+<tt>&lt;/if&gt;</tt></span></p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;!--
+edge scope if --&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt>&lt;edge name="PREMAF_MAF_PORT" from="Premaf" to="Maf"
+draw_when="received"&gt;</tt><br>
+<br>
+<tt> &lt;if tagname="ACK" value="0"&gt;</tt><br>
+<tt> &lt;set color="gray" shape="circle" /&gt;</tt><br>
+<tt> &lt;/if&gt;</tt><br>
+<br>
+<tt> &lt;if tagname="ACK" value="1"&gt;</tt><br>
+<tt> &lt;set color="green" shape="triangle" /&gt;</tt><br>
+<tt> &lt;/if&gt;</tt><br>
+<br>
+<tt>&lt;/edge&gt;</tt></span></p>
+<p> </p>
+<h2>Shade Table Statements</h2>
+<p>The Shade Table Statements are needed to express the colouring rules
+for <i>Occupancy Rows</i>. Shade Table statements define a list of two
+or more entries (at most one hundred). Each entry specifies an occupancy
+percentage and its corresponding colour. If the occupancy in a given
+cycle doesn't match any entry in the list, the two nearest entries are
+used to interpolate the colour. The syntax for Shade Table Statements is:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;shadetable&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt> &lt;shade color="color_name1" occupancy="100%"/&gt; &lt;!--
+mandatory --&gt;</tt><br>
+<tt> &lt;shade color="color_name2" occupancy="0%"  /&gt; &lt;!--
+mandatory --&gt;</tt><br>
+<br>
+<tt> &lt;!-- other optional entries --&gt;</tt><br>
+<br>
+<tt> &lt;shade color="color_name3" occupancy="porcentage_1"/&gt;</tt><br>
+<tt> &lt;shade color="color_name4" occupancy="porcentage_2"/&gt;</tt><br>
+<tt> ...</tt></span></p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;/shadetable&gt;</span></tt><br>
+</p>
+<p>Again, the Shade Table Statement can have two different scopes. A <i>global
+scope</i> Shade Table will by applied to all following Node Statements.
+A <i>DRAL-Node scope </i>Shade Table will be applied to the
+corresponding node only and will override previously declared global
+tables. Valid examples are:<br>
+<br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;!--
+global scope table --&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt>&lt;shadetable&gt;</tt><br>
+<tt> &lt;shade color="red"     occupancy="100%"/&gt;</tt><br>
+<tt> &lt;shade color="orange"  occupancy="87%" /&gt;</tt><br>
+<tt> &lt;shade color="yellow"  occupancy="75%" /&gt;</tt><br>
+<tt> &lt;shade color="green"   occupancy="63%" /&gt;</tt><br>
+<tt> &lt;shade color="cyan"    occupancy="50%" /&gt;</tt><br>
+<tt> &lt;shade color="blue"    occupancy="38%" /&gt;</tt><br>
+<tt> &lt;shade color="#4b0082" occupancy="25%" /&gt; &lt;!-- indigo blue
+--&gt;</tt><br>
+<tt> &lt;shade color="grey"    occupancy="0%"  /&gt;</tt><br>
+<tt>&lt;/shadetable&gt;</tt><br>
+<br>
+<tt>&lt;node name="IBOX"&gt;</tt><br>
+<tt> &lt;!-- IBOX has its own table --&gt;</tt><br>
+<tt> &lt;shadetable&gt;</tt><br>
+<tt> &lt;shade color="dark blue" occupancy="100%"/&gt;</tt><br>
+<tt> &lt;shade color="blue"      occupancy="50%" /&gt;</tt><br>
+<tt> &lt;shade color="cyan"      occupancy="0%"  /&gt; </tt><br>
+<tt> &lt;/shadetable&gt;</tt><br>
+<br>
+<tt>&lt;/node&gt;</tt><br>
+<tt>&lt;node name="EBOX"&gt; &lt;!-- uses global table --&gt;</tt><br>
+<tt>&lt;node name="MBOX"&gt; &lt;!-- uses global table --&gt;</tt></span></p>
+<p> </p>
+<p> </p>
+<h2>Programming Language Behaviour</h2>
+<p>The ADF is parsed as a conventional programming language what means
+the sequential order is implicit. This sequential ordering is applied to
+all supported statements (not only nodes and edges). To illustrate this
+idea lets look in the following example:</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;!--
+global scope shape/color --&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt>&lt;set shape="rectangle" color="yellow"/&gt;</tt><br>
+<br>
+<tt>&lt;edge name="edge1" from="node1" to="node2" /&gt; </tt><br>
+<tt>&lt;edge name="edge2" from="node2" to="node1" /&gt; </tt><br>
+<tt> </tt><br>
+<tt>&lt;!-- another global scope shape --&gt;</tt><br>
+<tt>&lt;set shape="circle"/&gt;</tt><br>
+<br>
+<tt>&lt;edge name="edge3" from="node3" to="node4" /&gt; </tt><br>
+<tt>&lt;edge name="edge4" from="node4" to="node3"&gt;</tt><br>
+<tt> &lt;set color="red" /&gt;</tt><br>
+<tt>&lt;/edge&gt;</tt><br>
+<br>
+<tt>&lt;!--</tt><br>
+<tt>NOTE THAT THIS RULE IS AFTER ALL THE EDGE DECLARATIONS SO</tt><br>
+<tt>IT WILL OVERRIDE ANY PREVIOUS GENERIC OR EDGE-SPECIFIC RULE.</tt><br>
+<tt>--&gt;</tt><br>
+<tt>&lt;if tagname="KILLED" value="1"&gt;</tt><br>
+<tt> &lt;set color="grey"/&gt;</tt><br>
+<tt>&lt;/if&gt;</tt></span><br>
+<br>
+As a programmer would expect, events on <tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">edge1</span></tt>
+and <tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">edge2</span></tt>
+will be drawn as yellow rectangles, events on <tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">edge3</span></tt>
+as yellow circles and finally events on <tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">edge4</span></tt>
+as red circles. In any case, if the DRAL-Tag "KILLED" is present on the
+event (and its value is 1) the colour will be grey. </p>
+<p> </p>
+<h2><a name="Complete_Example_"></a>Complete Example </h2>
+<p>In this section, we present a simple but complete ADF. Not all valid
+statements combinations are shown. If you create a configuration file by
+hand, remember to include the standard XML headings and wrap the
+sections with the dreams2-adf tag.</p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;?xml
+version="1.0" encoding="ISO8859-1"?&gt;</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<br>
+<tt>&lt;!DOCTYPE dreams2-adf PUBLIC "-//ASIM//DTD DREAMS2/ADF 0.8//EN"</tt><br>
+<tt>"http://aforge.shr.intel.com/home/asim/xml/dtd/dreams2-adf-1.1.dtd"&gt;</tt><br>
+<br>
+<tt>&lt;dreams2-adf version="1.1"&gt;</tt><br>
+<br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<tt>&lt;!-- .. Default global shape/color                        ..
+--&gt;</tt><br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<tt>&lt;set shape="rectangle" color="yellow"/&gt;</tt><br>
+<br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<tt>&lt;!-- .. Descriptors for most common DRAL tags             ..
+--&gt;</tt><br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<tt>&lt;tagdescriptor tagname="UID" type="integer" /&gt;</tt><br>
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><tt>&lt;tagdescriptor
+tagname="DCHIT" type="integer" /&gt;</tt><br>
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><tt>&lt;tagdescriptor
+tagname="MCHIT" type="integer" /&gt;</tt><br>
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><tt>&lt;tagdescriptor
+tagname="RCHIT" type="integer" /&gt;</tt><br>
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><tt>&lt;tagdescriptor
+tagname="KILLED" type="integer" /&gt;</tt><br>
+<br>
+<tt>&lt;tagdescriptor tagname="VPC" type="integer" base="16"/&gt;</tt><br>
+<tt>&lt;tagdescriptor tagname="PEA" type="integer" base="16"/&gt;</tt><br>
+<tt>&lt;tagdescriptor tagname="VEA" type="integer" base="16"/&gt;</tt><br>
+<br>
+<tt>&lt;tagdescriptor tagname="DIS" type="string" /&gt;</tt><br>
+<tt>&lt;tagdescriptor tagname="TYPE" type="string" /&gt;</tt><br>
+<br>
+<tt>&lt;tagdescriptor tagname="ANCESTOR" type="setofvalues" /&gt;<br>
+</tt><br>
+</span><small><small><span
+ style="font-family: courier new,courier,monospace;">&lt;!--
+....................................................... --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!-- ..
+Tab specificationis                               .. --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--
+....................................................... --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;itemwindow&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;!-- ..
+Default item window font                          .. --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;itemfont
+color="black" italic="false" underline="false" bold="false" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;tab
+name="Disassembly" withtag="DIS" orderby="UID" &gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="UID" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="DIS" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="VPC" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;!-- Put
+bold for branches --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;if
+tagname="TYPE" value="B"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;itemfont
+color="black" italic="false" underline="false" bold="true" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;/if&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;/tab&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;tab
+name="Memory" withtag="VEA" orderby="UID"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="UID" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="DIS" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="VEA" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="PEA" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;!-- Put
+some colors --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;itemfont
+color="red" italic="false" underline="false" bold="false" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;if
+tagname="DCHIT" value="1"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;itemfont
+color="#00f000" italic="false" underline="false" bold="false" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;/if&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;if
+tagname="MCHIT" value="1"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;itemfont
+color="#00c000" italic="false" underline="false" bold="false" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;/if&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;if
+tagname="RCHIT" value="1"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;itemfont
+color="#005000" italic="false" underline="false" bold="false" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;/if&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;/tab&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;tab
+name="Type" withtag="DIS" splitbytag="TYPE"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="UID" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="DIS" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;show
+tagname="VPC" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;/tab&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;!-- In
+any case put grey if Item was killed --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;if
+tagname="KILLED" value="1"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;itemfont
+color="#505050" italic="true" underline="false" bold="false" /&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> &lt;/if&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;/itemwindow&gt;<br>
+</span><br style="font-family: courier new,courier,monospace;">
+</small></small><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"> <tt>&lt;!--
+....................................................... --&gt;</tt><br>
+<tt>&lt;!-- .. Default global shading rules                      ..
+--&gt;</tt><br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<tt>&lt;shadetable&gt;</tt><br>
+<tt> &lt;shade color="red"     occupancy="100%"/&gt; &lt;!-- mandatory
+--&gt;</tt><br>
+<tt> &lt;shade color="yellow"  occupancy="75%" /&gt;</tt><br>
+<tt> &lt;shade color="cyan"    occupancy="50%" /&gt;</tt><br>
+<tt> &lt;shade color="#4b0082" occupancy="25%" /&gt; &lt;!-- indigo blue
+--&gt;</tt><br>
+<tt> &lt;shade color="grey"    occupancy="0%"  /&gt; &lt;!-- mandatory
+--&gt;</tt><br>
+<tt>&lt;/shadetable&gt;</tt><br>
+<br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<tt>&lt;!-- .. Node ordering (for occupancy rows)                ..
+--&gt;</tt><br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<tt>&lt;node name="DBUFFER" /&gt;</tt><br>
+<tt>&lt;node name="STB" /&gt;</tt><br>
+<tt>&lt;node name="MGB" /&gt;</tt><br>
+<br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<tt>&lt;!-- .. Edge ordering (for event rows)                    ..
+--&gt;</tt><br>
+<tt>&lt;!-- .......................................................
+--&gt;</tt><br>
+<br>
+<tt>&lt;edge name="ICACHE_MISS" from="IC" to="IFU"&gt;</tt><br>
+<tt> &lt;set color="magenta" /&gt;</tt><br>
+<tt>&lt;/edge&gt;</tt><br>
+<br>
+<tt>&lt;edge name="FUNC_UNIT" from="EFMMBOX" to="EFMMBOX"&gt;</tt><br>
+<tt> &lt;set color="darkgreen" /&gt;</tt><br>
+<tt> &lt;if tagname="KILLED" value="1"&gt;</tt><br>
+<tt> &lt;set color="red"/&gt;</tt><br>
+<tt> &lt;/if&gt;</tt><br>
+<tt>&lt;/edge&gt;</tt><br>
+<br>
+<tt>&lt;edge name="CORE_2_CBOX_READ_REQ" from="IFT" to="CBOX"
+draw_when="received" &gt; </tt><br>
+<tt> &lt;set color="orange" /&gt;</tt><br>
+<tt>&lt;/edge&gt;</tt></span></p>
+<p><tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&lt;!--</span></tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br>
+<tt>NOTE THAT THIS RULE IS AFTER ALL THE EDGE DECLARATIONS SO</tt><br>
+<tt>IT WILL OVERRIDE ANY PREVIOUS GENERIC OR EDGE-SPECIFIC RULE.</tt><br>
+<tt>--&gt;</tt><br>
+<tt>&lt;if tagname="KILLED" value="1"&gt;</tt><br>
+<tt> &lt;set color="grey"/&gt;</tt><br>
+<tt>&lt;/if&gt;</tt><br>
+<br>
+<tt>&lt;/dreams2-adf&gt;</tt></span></p>
+<p> </p>
+<h2>DTD Grammar</h2>
+<p>For people used to read XML documents, the DTD for the current
+version (1.1) of ADF is the following:</p>
+<p><br>
+<small><small><span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  DTD for
+ASIM 2Dreams ADF (Architecture Description File)</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  Version: 1.1</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  Author:
+Federico Ardanaz, Artur Klauser</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--
+Predefined Entities --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--
+Element Names --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Doctype       "dreams2-adf"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Tagdescriptor "tagdescriptor"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Edge          "edge"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+If            "if"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Set           "set"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Blank         "blank"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Node          "node"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Shadetable    "shadetable"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Shade         "shade"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+ItemFont      "itemfont"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+ItemWindow    "itemwindow"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Tab           "tab"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+Show          "show"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--
+Content Substitution --&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  we restrict
+&lt;tagdescriptor&gt; to the beginning of the file, even though</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  all that is
+really required is that an &lt;edgedescriptor&gt; is specified</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  before the
+first use of the associated type (but that is not easily</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  specifiable
+in the DTD)</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+body       "(%Tagdescriptor;)* , (%ItemWindow;), (%Edge; | %If; | %Set;
+| %Blank; | %Node; | %Shadetable;)*"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+if         "(%Set; | %ItemFont;)*"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+edge       "(%Set; | %If;)*"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+node       "(%Shadetable;)?"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+shadetable "(%Shade; , %Shade;+)"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+itemwindow "(%If; | %ItemFont; | %Tab;)+"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ENTITY %
+tab        "(%If; | %ItemFont; | %Show;)+"&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!-- Root
+--&gt;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Doctype; (%body;)&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Doctype;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  version   
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!-- Body
+--&gt;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  A
+&lt;tagdescriptor&gt; associates a type and optionally number base (for</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  integer
+type) to a tag name. All values of that tag name have to conform</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  to this
+specification. The &lt;tagdescriptor&gt; has to appear in the ADF</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  before the
+first time the tag is used (we guarantee this now by</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  requiring
+all tagdescriptors to be at the beginning of the file).</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Tagdescriptor; EMPTY&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Tagdescriptor;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  tagname
+CDATA         #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  type   
+(string |</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">          
+integer |</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">           fp
+|</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">          
+setofvalues) #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  base    ( 2
+|</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">            8
+|</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">           10
+|</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">          
+16)          #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  An
+&lt;edge&gt; statement has two puroses:</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">    1) it
+inserts a row on the display layout that is used to show items</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">      
+traversing this edge;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">    2) it can
+contain specific drawing rules for items that traverse</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">       this
+edge (see &lt;if&gt; and &lt;set&gt;);</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Edge; (%edge;)&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Edge;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  name   
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  from   
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  to     
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  draw_when
+(sent |</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">            
+received) #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  An
+&lt;if&gt; statement imposes a restriction on the rules that it
+contains. </span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  If the
+associated tagname == value, the contents of the &lt;if&gt; is executed,</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  otherwise
+it is skipped.</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  &lt;if&gt;
+statements can only contain &lt;set&gt; statements.</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%If; (%if;)&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%If;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  tagname   
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  value     
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  A
+&lt;set&gt; statement sets drawing attributes for an item that
+traverses an</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  edge.
+Multiple drawing attributes can be set simultaneously. &lt;set&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  statements
+that appear outside of &lt;if&gt; statements are unconditionally</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  executed in
+the context where they are located.</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Set; EMPTY&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Set;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  color     
+CDATA      #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  shape     
+(rectangle |</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">             
+circle |</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">             
+diamond |</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">             
+triangle) #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  letter    
+CDATA      #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  draw_when 
+(sent |</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">             
+received) #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  A
+&lt;blank&gt; statement inserts a blank row on the display. You can</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  optionally
+specify how many blank rows should be inserted (default is</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  1).</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Blank; EMPTY&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Blank;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  rows      
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  color     
+CDATA  #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  A
+&lt;node&gt; statement has two purposes:</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">    1) it
+inserts a row on the display layout that is used to show the</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">      
+occupancy of this node;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">    2) it can
+contain specific shading rules for this node occupancy</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">       (see
+&lt;shadetable&gt;);</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Node; (%node;)&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Node;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  name      
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  A
+&lt;shadetable&gt; just serves as a container for related &lt;shade&gt;
+statements.</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Shadetable; (%shadetable;)&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!--</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  A
+&lt;shade&gt; statement specifies the shading of nodes according to
+their</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  occupancy
+level. &lt;shade&gt; statements outside of &lt;node&gt; statements set</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  defaults,
+wheras they set shading for specific nodes if they appear</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  inside
+&lt;node&gt; statements.</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  </span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  The shading
+of occupancy levels between the ones specified is computed</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  as the
+appropriate shade of color between the two closest user specified</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  shading
+colors. E.g. if the user specifies shading colors for 0%, 50%,</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  and 100%
+occupancy, the shading of a 33% occupancy level will be a</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  mixture of
+the 0% and 50% occupancy shading colors.</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Shade; EMPTY&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Shade;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  color     
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  occupancy 
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!-- </span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  The color
+of the font used in the Item Dock Window can be customized in the ADF.</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  The color
+can be fixed or depending on &lt;tag,value&gt; rules.</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%ItemFont; EMPTY&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%ItemFont;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  color     
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  italic    
+(true | false) #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  underline 
+(true | false) #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  bold      
+(true | false) #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!-- </span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  itemwindow
+wrapper</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%ItemWindow; %(itemwindow;)&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%ItemWindow; (%itemwindow;)&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!-- </span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  For tab spec</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Tab; (%tab;)&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Tab;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  name      
+CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  withtag   
+CDATA  #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  value     
+CDATA  #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  selecttag 
+CDATA  #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  splitbytag
+CDATA  #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  orderby   
+CDATA  #IMPLIED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!-- </span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">  Tags to
+show on a tab</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">--&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ELEMENT
+%Show; EMPTY&gt;</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&lt;!ATTLIST
+%Show;</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;"> 
+tagname       CDATA  #REQUIRED</span><br
+ style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">&gt;</span></small><br
+ style="font-family: courier new,courier,monospace;">
+</small><br>
+<br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"></span></tt></p>
+<p> </p>
+</div>
+</body>
+</html>

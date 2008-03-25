@@ -1,0 +1,9 @@
+Makefile
+.deps
+.libs
+*.o
+*.lo
+*.la
+*_moc.cpp
+TwoDreams
+2Dreams

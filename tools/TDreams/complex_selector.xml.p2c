@@ -1,0 +1,32 @@
+<selector-list>
+    <selector name="hit">
+        <info>Selects all hits (don't go to sbox)</info>
+        <not>
+            <enters nodename="SBOX"/>
+        </not>
+    </selector>
+    <selector name="miss">
+        <info>Selects all misses (go to sbox)</info>
+        <enters nodename="SBOX"/>
+    </selector>
+    <selector name="read">
+        <info>Selects all reads (hits/misses)</info>
+        <ends nodename="MRQ"/>
+    </selector>
+    <selector name="write">
+        <info>Selects all writes (hits/misses)</info>
+        <enters nodename="ACK"/> 
+    </selector>
+    <selector name="read-hit">
+        <info>Selects reads that hit in R$</info>
+        <not>
+            <enters nodename="SBOX"/>
+        </not>
+        <ends nodename="MRQ"/>
+    </selector>
+    <selector name="read-miss">
+        <info>Selects reads that miss in R$</info>
+        <enters nodename="SBOX"/>
+        <ends nodename="MRQ"/>
+    </selector>
+</selector-list>

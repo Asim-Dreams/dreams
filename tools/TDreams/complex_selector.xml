@@ -1,0 +1,6 @@
+<selector-list>
+    <selector name="ack">
+        <info>Ack msgs</info>
+        <enters nodename="ACK"/>
+    </selector>
+</selector-list>

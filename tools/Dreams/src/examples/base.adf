@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO8859-1"?>
+<dreams-adf version="2.7">
+	<!-- ............................................................................... -->
+	<!-- .. DRAL Tags Descriptors                                                     .. -->
+	<!-- .. You must specify the name of the TAG and the type. You can also specify   .. -->
+	<!-- .. how you want to display it in the tool if is an integer (base field. The  .. -->
+	<!-- .. default value is 10). autoflush field also can be used, but better don't  .. -->
+	<!-- .. use it if you are not an advanced user.                                   .. -->
+	<!-- .. You just need to specify the tags that appear in the ADF, there's no need .. -->
+	<!-- .. to write other tags. Even if a tag is not specified in the ADF, they will .. -->
+	<!-- .. be stored in the database.                                                .. -->
+	<!-- ............................................................................... -->
+	<tagdescriptor tagname="DISASM" type="string"/>
+	<tagdescriptor tagname="OPCODE" type="integer" base="16"/>
+	<tagdescriptor tagname="OCCUPANCY" type="integer"/>
+
+	<!-- ............................................................................... -->
+	<!-- .. Shade Table Descriptors                                                   .. -->
+	<!-- .. You might want to color a row using a shade of colors. This descriptors   .. -->
+	<!-- .. specify the different colors of the table (interpolation is automatically .. -->
+	<!-- .. done). Mandatory are the 100% and 0% occupancy, the other occupancies are .. -->
+	<!-- .. optional, and must be written in order.                                   .. -->
+	<!-- ............................................................................... -->
+	<shadetable name="temperatureShading">
+		<shade color="red"    occupancy="100%"/>  <!-- mandatory -->
+		<shade color="cyan"   occupancy="50%"/>
+		<shade color="green"  occupancy="0%"/>    <!-- mandatory -->
+	</shadetable>
+	<shadetable name="temperatureShading2">
+		<shade color="red"    occupancy="100%"/>  <!-- mandatory -->
+		<shade color="yellow" occupancy="0%"/>    <!-- mandatory -->
+	</shadetable>
+
+	<!-- ............................................................................... -->
+	<!-- .. Shade Table Descriptors                                                   .. -->
+	<!-- .. Item window is used to show a list of items distributted in different     .. -->
+	<!-- .. tabs. The user can specify the coloring with rules, what tabs want and    .. -->
+	<!-- .. what tags of the items show.                                              .. -->
+	<!-- .. A tab has a name and can have some other specifiers to perform a pseudo   .. -->
+	<!-- .. SQL query to the list of items:                                           .. -->
+	<!-- ..  - withtag: only shows items that have the tag defined                    .. -->
+	<!-- ..  - selecttag & value: only shows items that have the tag with the desired .. -->
+	<!-- ..    value. Not compatible with splitby                                     .. -->
+	<!-- ..  - splitby: creates one tab for each of the different values of the tag   .. -->
+	<!-- ..  - orderby: orders the items in the list by the tag value                 .. -->
+	<!-- .. Inside the tab you must specify which item tags you want to see. You do   .. -->
+	<!-- .. it with the show command and the tag name. You can also specify specific  .. -->
+	<!-- .. coloring rules for the tab with the command rule (more about rules later  .. -->
+	<!-- .. in the tutorial.                                                          .. -->
+	<!-- .. Now this specification is used in all the views, but we will support      .. -->
+	<!-- .. different definitions for different views (specially for WaterFall.       .. -->
+	<!-- ............................................................................... -->
+	<itemwindow>
+	   <tab name="CPU" withtag="DISASM" >
+		   <rule>
+			   lcolor="blue";
+		   </rule>
+		   <show itemtag="DISASM"/>
+	   </tab>
+	   <tab name="CPU0" withtag="DISASM" selecttag="OPCODE" value="100" orderby="DISASM">
+		   <rule>
+			   underline="true";
+		   </rule>
+		   <show itemtag="DISASM"/>
+		   <show itemtag="OPCODE"/>
+	   </tab>
+	</itemwindow>
+
+	<!-- ............................................................................... -->
+	<!-- .. 2Dreams Descriptors                                                       .. -->
+	<!-- .. You have 4 different commands in 2Dreams:                                 .. -->
+	<!-- ..  - rule: this command specifies the coloring rules. If the command is     .. -->
+	<!-- ..	written in the 2dreams scope, the rule will affect to all the             .. -->
+	<!-- ..	following rows. Otherwise it will only change the coloring of the         .. -->
+	<!-- ..	current edge or node. The rules follow the C syntax (more or less). As    .. -->
+	<!-- ..	a rule is always computed within an edge or node scope, it have 2         .. -->
+	<!-- ..	basic value accessors:                                                    .. -->
+	<!-- ..	 - itag("TAG"): returns the value of the tag TAG of the item inside       .. -->
+	<!-- ..	   the slot (node or edge). If no item is inside or the item hasn't       .. -->
+	<!-- ..	   the tag defined an undefined is returned and any comparison will       .. -->
+	<!-- ..	   evaluate to false.                                                     .. -->
+	<!-- ..	 - stag("TAG"): returns the value of the tag TAG of the slot. If no       .. -->
+	<!-- ..	   value is defined for this tag in the slot, the behaviour is the        .. -->
+	<!-- ..	   equal to itag.                                                         .. -->
+	<!-- ..	This values can then be compared (==, <=, <, ..) and there's also         .. -->
+	<!-- ..	regular expression support for strings. An important function is          .. -->
+	<!-- ..	item_inside(), that returns if an item is inside the slot. This is        .. -->
+	<!-- ..	typically used in edge rows.                                              .. -->
+	<!-- ..	Then you can set the different coloring fields with instructions that     .. -->
+	<!-- ..	end with ; :                                                              .. -->
+	<!-- ..	  - fcolor: sets the fill color of the event                              .. -->
+	<!-- ..	  - bcolor: sets the border color of the event                            .. -->
+	<!-- ..	  - shape: sets the shape of the event                                    .. -->
+	<!-- ..	  - letter: sets the letter inside the event                              .. -->
+	<!-- ..	  - lcolor: sets the color of the letter of the event                     .. -->
+	<!-- ..	  - bold: sets the type of letter of the event                            .. -->
+	<!-- ..	  - underline: sets the type of letter of the event                       .. -->
+	<!-- ..	  - italic: sets the type of letter of the event                          .. -->
+	<!-- ..  - group: this command creates a new group with a name. This only lets    .. -->
+	<!-- ..	you to fold/unfold (hide-show) the rows defined inside the group.         .. -->
+	<!-- ..  - edge: shows things related to an edge. You must specify the name, the  .. -->
+	<!-- ..	the source and destiny node. Then you specify the specific rules of       .. -->
+	<!-- ..	the edge. In the layout will appear as many rows as the bandwidth of      .. -->
+	<!-- ..	the edge. Edge rules typically start with an if(item_inside()) { } to     .. -->
+	<!-- ..	show just the items that travel through the edge.                         .. -->
+	<!-- ..  - node: shows things related to a node. You just need to specify the     .. -->
+	<!-- ..	node name. They are usually used to show occupancies using shading        .. -->
+	<!-- ..	tables. This type of coloring is called mapping and uses the map rule.    .. -->
+	<!-- ..	You specify a tag, a name of a shading table, the min and max values      .. -->
+	<!-- ..	of the tag (for interpolation purposes) and you will see a shaded row.    .. -->
+	<!-- ............................................................................... -->
+	<dreams2>
+		<group name="front-end">
+			<edge name="FETCH_2_STEER">
+				<rule>
+					if(item_inside())
+					{
+						fcolor="blue";
+					}
+				</rule>
+			</edge>
+			<group name="alloc">
+				<edge name="STEER_2_ALLOC" from="steer" to="alloc_rat">
+					<rule>
+						if(item_inside())
+						{
+							fcolor="green";
+							shape="rectangle";
+							if(itag("OPCODE") == 1)
+							{
+								letter='o';
+							}
+						}
+					</rule>
+				</edge>
+			</group>
+		</group>
+		<node name="alloc_rat">
+			<rule>
+				fcolor = map(stag("OCCUPANCY"), "temperatureShading", 0, 32);
+			</rule>
+		</node>
+	</dreams2>
+</dreams-adf>

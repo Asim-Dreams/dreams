@@ -1,0 +1,185 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./advanced_files/filelist.xml">
+<link rel=Edit-Time-Data href="./advanced_files/editdata.mso">
+<title>What</title>
+<meta http-equiv=Content-Language content=en-us>
+</head>
+
+<body lang=EN-GB style='tab-interval:36.0pt'>
+
+<div class=Section1>
+
+<h1 align=center style='text-align:center'>Advanced Functions</h1>
+
+<h1 align=center style='text-align:center'>&nbsp;</h1>
+
+<h2>Item Window Synchronization</h2>
+
+<p>When you click on an event (to highlight it) the Item window tries to find
+the correlated item in the &quot;Item Window&quot; and then select it
+(automatically ensures it is visible).<br>
+The reverse synchronization can be also performed: select an item in the Item
+Window and them hit Return or Space key (or double click). 2Dreams will look
+for the first appearance of the selected item and will shade the cycle and
+highlight the item. The events window is automatically scrolled to ensure the
+item is visible.</p>
+
+<p style='page-break-after:avoid'><img width=642 height=161
+src="./itemwinsynch.png" v:shapes="_x0000_i1025"></p>
+
+<p><b>Note</b>: If you want to avoid automatic synchronization when
+highlighting events, hold Shift key while clicking.</p>
+
+<h2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></h2>
+
+<h2>Highlighting</h2>
+
+<p>2Dreams has the ability of emphasize (highlight) events by some criterion.
+The criterion must be expressed in terms of <tt><span style='font-size:10.0pt;
+font-family:"Courier New"'>&lt;DRAL-Tag, value&gt;</span></tt> pairs.<br>
+Visually 2Dreams selects some light colour (typically white) to draw the border
+of highlighted events.&nbsp;&nbsp;The<span style="mso-spacerun: yes">  </span><tt><span
+style='font-size:10.0pt;font-family:"Courier New"'>&lt;DRAL-Tag, value&gt;</span></tt>
+pairs are given clicking events on screen.</p>
+
+<h3>Basic Highlighting</h3>
+
+<p>To highlight events by a given criterion you must first choose a DRAL-Tag.
+Look for &quot;tools&quot; bar and select a Tag from the list (<span
+style='mso-field-code:"REF _Ref24169529 \\h"'>Figure 1</span>). If you need a Tag that is not in the list just type
+its name in the edit space. To select a value just click (left button) in the
+target event, the DRAL-Tag value for the selected event is checked and all
+events with the same pair <tt><span style='font-size:10.0pt;font-family:"Courier New"'>&lt;DRAL-Tag,
+value&gt;</span></tt> will&nbsp;be highlighted (<span style='mso-field-code:
+"REF _Ref24169546 \\h"'>Figure 2</span>). To disable the highlight click in any empty area of
+the events window or click on &quot;Disable Last&quot; entry of Tools/Highlight
+menu.&nbsp; </p>
+
+<p style='page-break-after:avoid'><img width=341 height=77 id="_x0000_i1027"
+src="highlight_selector.png" alt="Highlight Criteria Selector" border=0
+align=baseline></p>
+
+<p class=MsoCaption><a name="_Ref24169529">Figure <span style='mso-field-code:
+"SEQ Figure \\* ARABIC"'>1</span></a></p>
+
+<p style='page-break-after:avoid'><img width=204 height=332 id="_x0000_i1026"
+src="highlighted_events.png" alt="Highlighted Events" border=0 align=baseline></p>
+
+<p class=MsoCaption><a name="_Ref24169546">Figure <span style='mso-field-code:
+"SEQ Figure \\* ARABIC"'>2</span></a></p>
+
+<h3>&nbsp;</h3>
+
+<h3>Additive Highlighting</h3>
+
+<p>You can keep highlighted events by more than one criterion at the same time
+(<span style='mso-field-code:"REF _Ref24175756 \\h"'>Figure 3</span>). In fact, 2Dreams allows you only one DRAL-Tag at
+once but multiple values for this Tag. To achieve this functionality you need
+to hold CTRL while clicking the events and the new tag value will be added to a
+<i>stack</i> of criteria. Different colours will be used to each criteria. If
+you click in an empty area of the events window or click on &quot;Disable
+Last&quot; entry of Tools/Highlight menu, the last pushed criterion will be
+popped. To remove all the criteria at once you can use the menu option Tools/Highlight/Disable
+All.</p>
+
+<p style='page-break-after:avoid'><img width=497 height=345
+src="./multi_highlighted_events.png" v:shapes="_x0000_i1028"></p>
+
+<p class=MsoCaption><a name="_Ref24175756">Figure <span style='mso-field-code:
+"SEQ Figure \\* ARABIC"'>3</span></a></p>
+
+<p>When several criteria are active, you can check them out using the menu
+option Tools/Highlight/Show Criteria (<span style='mso-field-code:"REF _Ref24175989 \\h"'>Figure
+4</span>).</p>
+
+<p style='page-break-after:avoid'><img width=252 height=173
+src="./criteria_dialog.png" v:shapes="_x0000_i1029"></p>
+
+<p class=MsoCaption><a name="_Ref24175989">Figure <span style='mso-field-code:
+"SEQ Figure \\* ARABIC"'>4</span></a></p>
+
+<p>&nbsp;</p>
+
+<h2>Relationship Scanning</h2>
+
+<p>&nbsp;2Dreams can scan for relationships between different items. This can
+be useful to find instructions parents, relations between <tt><span
+style='font-size:10.0pt;font-family:"Courier New"'>micro</span></tt> and <tt><span
+style='font-size:10.0pt;font-family:"Courier New"'>macro</span></tt>
+instructions, merged memory transactions, etc. The scanning algorithm works
+with any <tt><i><span style='mso-ansi-font-size:12.0pt;mso-bidi-font-size:12.0pt;
+mso-ascii-font-family:"Times New Roman";mso-fareast-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman";mso-bidi-font-family:"Times New Roman"'>set
+of values</span></i></tt> tag. The default used tag is <tt><span
+style='font-size:10.0pt;font-family:"Courier New"'>ANCESTOR</span></tt>. To
+start up a scanning over a given item right-click on the event and select
+“Relationship Scan…” (<span style='mso-field-code:"REF _Ref24189555 \\h"'>Figure
+5</span>).</p>
+
+<p style='page-break-after:avoid'><img width=402 height=203
+src="./rscan_popup.png" v:shapes="_x0000_i1030"></p>
+
+<p class=MsoCaption><a name="_Ref24189555">Figure <span style='mso-field-code:
+"SEQ Figure \\* ARABIC"'>5</span></a></p>
+
+<p>&nbsp;After selecting this option if the clicked event has the tracking tag
+(<tt><span style='font-size:10.0pt;font-family:"Courier New"'>ANCESTOR</span></tt>
+by default), the items referenced by such tag will be scanned. Both the clicked
+item and the referenced ones will be automatically highlighted. If you activate
+the &quot;Relationship Window&quot; (right bottom corner in <span
+style='mso-field-code:"REF _Ref24191478 \\h"'>Figure 6</span>), you will be able to manage the correlated items.
+The Relationship Window is split into two vertical sections. In the left frame,
+you have a tree view of the item respect to the scanned tag. The right frame
+shows the most common tags (check preferences) for the currently selected item
+in the left frame.</p>
+
+<p style='page-break-after:avoid'><img width=482 height=374
+src="./rscan_basic.png" v:shapes="_x0000_i1031"></p>
+
+<p class=MsoCaption><a name="_Ref24191478">Figure <span style='mso-field-code:
+"SEQ Figure \\* ARABIC"'>6</span></a></p>
+
+<p>Once the initial scan was performed, you can manage the correlated items
+right-clicking in the left frame of the Relationship Window. As shown in <span
+style='mso-field-code:"REF _Ref24193945 \\h"'>Figure 7</span> you can insight in the relationship scanning the same
+tag for any correlated item (Expand Node), the new scanned items will be
+automatically highlighted and added to the tree view (<span style='mso-field-code:
+"REF _Ref24193212 \\h"'>Figure 8</span>).<span style="mso-spacerun: yes">  </span>You can
+also switch on and off the highlighting and the arrows on the items or clean up
+the whole scan (Reset Scan).</p>
+
+<p style='page-break-after:avoid'><span style='mso-ignore:vglayout;position:
+ relative;z-index:0;left:-12px;top:0px;width:228px;height:161px'><img
+ width=228 height=161 src="./rscan_framepopup.png" v:shapes="_x0000_s1043"></span><br
+style='mso-ignore:vglayout' clear=ALL>
+</p>
+
+<br style='mso-ignore:vglayout' clear=ALL>
+
+<p class=MsoCaption><a name="_Ref24193945">Figure <span style='mso-field-code:
+"SEQ Figure \\* ARABIC"'>7</span></a></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='page-break-after:avoid'><img width=253 height=121
+src="./rscan_expandednode.png" v:shapes="_x0000_i1032"></p>
+
+<p class=MsoCaption><a name="_Ref24193212">Figure <span style='mso-field-code:
+"SEQ Figure \\* ARABIC"'>8</span></a></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+</div>
+
+</body>
+
+</html>

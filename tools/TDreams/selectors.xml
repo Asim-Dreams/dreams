@@ -1,0 +1,59 @@
+<selector-list>
+    <selector name="requests">
+        <info>Mem requests</info>
+        <ends nodename="SMAF"/>
+    </selector>
+    <selector name="probes">
+        <info>Probe requests</info>
+        <enters nodename="IPQ"/>
+    </selector>
+    <selector name="local_reqs">
+        <info>Requestors to local ZBox</info>
+        <enters nodename="ZRI_0" instance="0"/>
+    </selector>
+    <selector name="other_reqs">
+        <info>Requestors to remote ZBox</info>
+        <enters nodename="ZRI_0" instance="1"/>
+    </selector>
+    <selector name="other_z">
+        <info>Requestors to other ZBox</info>
+        <enters nodename="ZRI_1"/>
+    </selector>
+    <selector name="r_misses">
+        <info>Misses on rcache</info>
+        <itemtag name="RCACHE" value="miss"/>
+    </selector>
+    <selector name="dummy">
+        <info>Test: just for registering CMDTYPE</info>
+        <itemtag name="CMDTYPE" value="miss"/>
+    </selector>
+    <selector name="cmps">
+        <info>Completions</info>
+        <itemtag name="CMDTYPE" value="CMC_CMP"/>
+    </selector>
+    <selector name="datae">
+        <info>Data Exclusive msgs</info>
+        <itemtag name="CMDTYPE" value="CMC_DATA_E"/>
+    </selector>
+    <selector name="rddata">
+        <info>Read Data requests</info>
+        <itemtag name="CMDTYPE" value="CMC_RD_DATA"/>
+    </selector>
+    <selector name="reads">
+        <info>Read requests</info>
+        <itemtag name="CMDTYPE" value="CMC_DATA_E_CMP"/>
+        <enters nodename="TRACKER"/>
+        <ends nodename="IDQ"/>
+    </selector>
+    <selector name="writes">
+        <info>WriteBack requests</info>
+        <itemtag name="CMDTYPE" value="CMC_WB_M_TO_I"/>
+        <starts nodename="VIQ"/>
+        <enters nodename="TRACKER"/>
+        <enters nodename="ICQ"/>
+    </selector>
+    <selector name="finished">
+        <info>Finished requests</info>
+        <ends nodename="IDQ"/>
+    </selector>
+</selector-list>

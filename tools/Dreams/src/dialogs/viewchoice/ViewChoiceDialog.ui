@@ -1,0 +1,132 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ViewChoiceDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>ViewChoiceDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>389</width>
+            <height>278</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Choose the views to compute</string>
+    </property>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>pushButton1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>270</x>
+                <y>230</y>
+                <width>94</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Accept</string>
+        </property>
+        <property name="accel">
+            <string>Alt+A</string>
+        </property>
+    </widget>
+    <widget class="QButtonGroup">
+        <property name="name">
+            <cstring>buttonGroup2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>30</y>
+                <width>340</width>
+                <height>190</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Available Views</string>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>40</y>
+                    <width>300</width>
+                    <height>120</height>
+                </rect>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>checkBox2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Resource</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>checkBox3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Floorplan</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>checkBox4</cstring>
+                    </property>
+                    <property name="text">
+                        <string>WatchWindow</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>checkBox5</cstring>
+                    </property>
+                    <property name="text">
+                        <string>WaterFall</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>timeout</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>21</x>
+                    <y>160</y>
+                    <width>300</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Autoloading in 0 seconds</string>
+            </property>
+            <property name="alignment">
+                <set>AlignCenter</set>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>pushButton1</sender>
+        <signal>released()</signal>
+        <receiver>ViewChoiceDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

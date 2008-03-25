@@ -1,0 +1,73 @@
+<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<class>Colors</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>Colors</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>190</width>
+            <height>257</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Selected Strips</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>11</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QListBox" row="0" column="0">
+            <property name="name">
+                <cstring>listColors</cstring>
+            </property>
+        </widget>
+        <widget class="QListBox" row="2" column="0">
+            <property name="name">
+                <cstring>listColorsActived</cstring>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="1" column="0">
+            <property name="name">
+                <cstring>Layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>Down</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Hide</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>Up</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Unhide</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </grid>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

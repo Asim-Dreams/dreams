@@ -1,0 +1,131 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>HLightForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>HLightForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>263</width>
+            <height>370</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Current Highlight Criteria List</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>11</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout22</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QListView">
+                    <column>
+                        <property name="text">
+                            <string>Color</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>false</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <column>
+                        <property name="text">
+                            <string>Tag</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>false</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <column>
+                        <property name="text">
+                            <string>Value</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>false</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <property name="name">
+                        <cstring>qlv</cstring>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout21</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <spacer>
+                            <property name="name">
+                                <cstring>Spacer2</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>AcceptButton</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>75</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image0</pixmap>
+                            </property>
+                            <property name="accel">
+                                <string></string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="1614">789cadd2cb6eda501006e03d4f61e11daafed8068c51d5456ee406044802245517be06120809314948d577efd833271aa951d54575b8e83bf3cfd81cbc53b3a6839e55dba93ce7613e8fad7816aead5ab2592eb7df7f7cfb59a9babe452fdfb7bcea974a152d2bb6faab87b4445ba3ae31d5186b8c34861a138d40e35023d5586a241ab146a671ab1169cc34161aa186ad30cc15eca2623b4e23709c32d960371df1409c88bb6cdf155f8b4ddd63b74cfd40dc64db10b7a57e2c36fdafecc0f4afc5d28f77b1e9bf179bfe7376dbe42fc4a6eeb3c3547cc28e3c7153ec8b5db1c9efb26393bf1187e29ed8e41d7662f27db1997f2936fd4762d37fc54e4dffa9d8e43becccd4cfc499f8a17440e713945eb1dbae782e36e7997f98eb7762737e6f6c3a2fae6fd999f19ed8173f16769dd075b97f9f1d7be2e7d24114ba9cdfb0e354fc54d873c2d0e3fc0b3b4ad9c3fcefeb5f33b01122428c0429bd6364b8c58c56489539eef859c38232199694594a26a2cc822af7b0f9bcb1a25d3d27a6c4239eb0a61c67323c23a72acf29522b6cf082d7f29a9c59e20d5bbc53a2586bec620ffb38a0dee863ce21ed77708463da3fc129cee8b34b9d59795726d3458f527d5a1dca9c63407b4979e766ce10235cd09c4b5c51768d31266546cf19638a6bdcc0810b0f75ea9894bf50cfa9d36aa0099faed9a2fc08c11f73ea68636aa34cd42933fc644ebb48d9367f7f3ee7bffcefbfbe567e030f5b781c</data>
+    </image>
+</images>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

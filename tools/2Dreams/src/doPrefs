@@ -1,0 +1,4 @@
+uic preferences.ui > preferences.h
+uic -impl preferences.h preferences.ui > preferences.cpp
+# uic -o preferencesImpl.h -subdecl preferencesImpl preferences.h preferences.ui
+# uic -o preferencesImpl.cpp -subimpl preferencesImpl preferencesImpl.h preferences.ui

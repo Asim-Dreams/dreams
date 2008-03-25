@@ -1,0 +1,48 @@
+<section>
+    <title>Programming selectors</title>
+    <para>
+        Custom selectors can be specified as a combination of specific selectors. This is simply done by adding a selector entry in selectors.xml file.
+        <example>
+        <title>Probe requests selector</title>
+        <literallayout>
+            <![CDATA[
+            <selector name="probes">
+                <info>Probe requests</info>
+                <enters nodename="IPQ"/>
+            </selector>
+            ]]>
+        </literallayout>
+        </example>
+    </para>
+    <para>
+        The primitives selectors that can be used are the following:
+        <itemizedlist>
+            <listitem>
+                enters: selects transactions that enter a given node. Valid attributes are nodename and instance. 
+                A nodename can map to various nodes (node instances). However, a nodename and an specific instance
+                determine at most one node.
+            </listitem>
+            <listitem>
+                not-enters: selects all but the transactions that would be selected by the corresponding "enters" selector.
+            </listitem>
+            <listitem>
+                starts: selects transactions that start in a given node. Valid attribute is nodename. 
+                A nodename can map to various nodes (node instances). 
+            </listitem>
+            <listitem>
+                not-starts: selects all but the transactions that would be selected by the corresponding "enters" selector.
+            </listitem>
+            <listitem>
+                ends: selects transactions that start in a given node. Valid attribute is nodename. 
+                A nodename can map to various nodes (node instances). 
+            </listitem>
+            <listitem>
+                not-ends: selects all but the transactions that would be selected by the corresponding "enters" selector.
+            </listitem>
+        </itemizedlist>
+    </para>
+    <para>
+        Apart from that, information on the selector can be added using the tag <![CDATA[<info/>]]>. 
+        This information will be displayed as an entry in the help.
+    </para>
+</section>

@@ -1,0 +1,138 @@
+<svg width="800px" height="600px" viewBox="0 0 140 1115">
+
+<marker id="Triangle" viewBox="0 0 10 10" refX="0" refY="5" stroke="red" fill="red" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto">
+	<path d="M 0 0 L 10 5 L 0 10 z"/>
+</marker>
+	<text font-size="3" x="40" y="18" text-anchor="middle">
+BBOX_0</text>
+	<text font-size="3" x="80" y="18" text-anchor="middle">
+CHIP_0_SBOX_0</text>
+	<text font-size="3" x="120" y="18" text-anchor="middle">
+CHIP_1_SBOX_0</text>
+<g stroke="green" stroke-width="4">
+	<line x1="40" y1="20" x2="40" y2="1095"/>
+	<line x1="80" y1="20" x2="80" y2="1095"/>
+	<line x1="120" y1="20" x2="120" y2="1095"/>
+</g>
+<path id="path_a" d="M 40 55 80 30"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="30">30</text>
+	<line x1="80" y1="30" x2="40" y2="55" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="55">55</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_a" startOffset="20%">
+CMC_RD_CODE</textPath>
+</text>
+<path id="path_b" d="M 80 31 120 75"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="31">31</text>
+	<line x1="80" y1="31" x2="120" y2="75" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="120" y="75">157</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_b" startOffset="20%">
+CMC_SNP_CODE</textPath>
+</text>
+<path id="path_c" d="M 80 77 120 31"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="120" y="31">31</text>
+	<line x1="120" y1="31" x2="80" y2="77" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="77">159</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_c" startOffset="20%">
+CMC_SNP_CODE</textPath>
+</text>
+<path id="path_d" d="M 40 100 120 30"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="120" y="30">30</text>
+	<line x1="120" y1="30" x2="40" y2="100" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="100">182</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_d" startOffset="20%">
+CMC_RD_CODE</textPath>
+</text>
+<path id="path_e" d="M 40 144 80 119"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="119">201</text>
+	<line x1="80" y1="119" x2="40" y2="144" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="144">226</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_e" startOffset="20%">
+CMC_RSP_CNFLT</textPath>
+</text>
+<path id="path_f" d="M 40 164 120 117"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="120" y="117">199</text>
+	<line x1="120" y1="117" x2="40" y2="164" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="164">352</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_f" startOffset="20%">
+CMC_RSP_CNFLT</textPath>
+</text>
+<path id="path_g" d="M 40 167 80 192"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="167">355</text>
+	<line x1="40" y1="167" x2="80" y2="192" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="192">380</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_g" startOffset="20%">
+CMC_DATA_F</textPath>
+</text>
+<path id="path_h" d="M 40 167 80 193"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="167">355</text>
+	<line x1="40" y1="167" x2="80" y2="193" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="193">381</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_h" startOffset="20%">
+CMC_FRC_ACK_CNFLT</textPath>
+</text>
+<path id="path_i" d="M 40 238 80 213"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="213">425</text>
+	<line x1="80" y1="213" x2="40" y2="238" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="238">450</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_i" startOffset="20%">
+CMC_ACK_CNFLT</textPath>
+</text>
+<path id="path_j" d="M 40 241 80 266"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="241">453</text>
+	<line x1="40" y1="241" x2="80" y2="266" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="266">478</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_j" startOffset="20%">
+CMC_CMP_FWD_CODE</textPath>
+</text>
+<path id="path_k" d="M 40 311 80 286"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="80" y="286">542</text>
+	<line x1="80" y1="286" x2="40" y2="311" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="311">567</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_k" startOffset="20%">
+CMC_RSP_I</textPath>
+</text>
+<path id="path_l" d="M 40 314 120 334"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="314">570</text>
+	<line x1="40" y1="314" x2="120" y2="334" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="120" y="334">721</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_l" startOffset="20%">
+CMC_DATA_F</textPath>
+</text>
+<path id="path_m" d="M 40 314 120 336"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="314">570</text>
+	<line x1="40" y1="314" x2="120" y2="336" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="120" y="336">723</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_m" startOffset="20%">
+CMC_CMP</textPath>
+</text>
+<path id="path_n" d="M 40 376 120 356"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="120" y="356">767</text>
+	<line x1="120" y1="356" x2="40" y2="376" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="376">920</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_n" startOffset="20%">
+CMC_ACK_CNFLT</textPath>
+</text>
+<path id="path_o" d="M 40 379 120 399"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="40" y="379">923</text>
+	<line x1="40" y1="379" x2="120" y2="399" stroke-width="1" stroke="red" marker-end="url(#Triangle)"/>
+	<text font-family="Verdana" font-size="4" fill="blue" text-anchor="start" x="120" y="399">1075</text>
+<text font-family="Verdana" font-size="3" fill="blue">
+	<textPath xlink:href="#path_o" startOffset="20%">
+CMC_CMP</textPath>
+</text>
+</svg>
+

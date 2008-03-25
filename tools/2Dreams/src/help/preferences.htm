@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Language" content="en-us">
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=windows-1252">
+  <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+  <title>What</title>
+</head>
+<body>
+<h1 align="center">2Dreams Preferences</h1>
+<br>
+2Dreams is customizable in several ways. To access the preferences
+dialogs click on Tools/Preferences. You will find four tabs (TAGS,
+DBase, File and General) in the dialog. In the following sections, we
+describe the functionality of each of those tabs. Some preferences are
+saved and updated automatically. For instance, the position and size of
+the different windows and toolbars are tracked by default. If for some
+reason you need to change by hand some of those properties edit the file
+~/.qt/2dreamsrc in Unix systems or look for BSSAD/2Dreams prefix in the
+register in Windows systems.<br>
+<br>
+<h2><a name="TAGS_Section"></a>TAGS Section</h2>
+In the TAGS Section, you can manage the Favourite Tag List and the
+Relationship tracking Tag. The Favourite Tags are used in the Tag Window
+(right bottom corner of Figure 1) if "Show Only Favorite Tags" is
+enabled (see <a href="#Behaviour_Section">Behaviour Section</a>) and in
+the Highlight criterion selector (top toolbar). The Relationship
+tracking tag is used to track for relations between items (see <a
+ href="advanced.htm">Advanced Features</a>). The zoom icon is active
+only when an event file is loaded and allows you to select one of the
+used tags in the event file. Bear in mind that the selected tag <b>must</b>
+be of the type <span style="font-style: italic;">set of values</span>
+and each value <b>must </b>be a valid item identifier.<br>
+<br>
+<img src="prefTags.png" alt="TAGS Section screenshot"
+ style="width: 640px; height: 559px;" title="">Figure 1<br>
+<br>
+<br>
+<h2>DBase Section</h2>
+In the DBase section, you will find four sliders to change the amount
+of space (memory) used for the internal database. The maximum number of
+cycles is self-explanatory. The Tag Heap and Mutable Tag Heap sizes can
+be increased if the number of items or the amount of related information
+(tags) is higher than the expected (you will get an error message in
+this case when loading the event file). The symbol table size limits the
+number of string tags (like disassembly).<br>
+<br>
+<img height="564" width="450" alt="DBase Section" src="prefDBase.png">Figure
+2<br>
+<br>
+<br>
+<h2>File Section</h2>
+In the File Section, you can change the location of the log file used
+by 2Dreams and specify a default ADF (see <a href="adf.htm">What's an
+ADF</a>). You can also enable a DTD checking. Note that 2Dreams is not
+able to perform such a checking so you will need some external tool
+(like xmllint). Web connectivity to intranet server aforge.shr.intel.com
+is also required to access the DTD.<br>
+<br>
+<img src="prefFiles.png" alt="File Section" width="450" height="564">Figure
+3<br>
+<br>
+<br>
+<h2>Appearence Section</h2>
+In this section, you will find some common appearance settings
+(background color, font size, etc) and grid lines configuration. Grid
+lines are mainly implemented for some planified features extensions. <br>
+<br>
+<img src="prefAppearence.png" title="" alt="Appearence"
+ style="width: 536px; height: 672px;">Figure 4<br>
+<br>
+<br>
+<h2><a name="Behaviour_Section"></a>Behaviour Section</h2>
+In this section you have two check boxes. The Automatic purge option,
+if enabled, forces the "delete item" command of all the live items when
+the end of the events<br>
+file is reached (or loading stoped by user). If the Tag Window option
+is cheked only the Favorite Tags (see <a href="#TAGS_Section">TAGS
+Section</a>)will be shown in the Tag Window, otherwise all the<br>
+item tags are shown.<br>
+<br>
+<img src="prefBehaviour.png" title="" alt="Behaviour Section"
+ style="width: 520px; height: 318px;">Figure 5<br>
+</body>
+</html>

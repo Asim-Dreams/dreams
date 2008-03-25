@@ -1,0 +1,131 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>HighLightMgrDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>HighLightMgrDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>263</width>
+            <height>370</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Current Highlight Criteria List</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>11</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout22</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QListView">
+                    <column>
+                        <property name="text">
+                            <string>Color</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>false</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <column>
+                        <property name="text">
+                            <string>Tag</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>false</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <column>
+                        <property name="text">
+                            <string>Value</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>false</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>true</bool>
+                        </property>
+                    </column>
+                    <property name="name">
+                        <cstring>qlv</cstring>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout21</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <spacer>
+                            <property name="name">
+                                <cstring>Spacer2</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>160</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>AcceptButton</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>75</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image0</pixmap>
+                            </property>
+                            <property name="accel">
+                                <string></string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="333">89504e470d0a1a0a0000000d49484452000000100000001008060000001ff3ff610000011449444154789ca593ad4e03511085bfbba958b906070ed347e82424f42698ca2688d6afe00578142c82074054d42da2c994a40292151520360189a8a818d1e42258d86e283fdb3dc95537dfc99c9319a7aab451d48a063afb823e97400722994b680acb5c82ad21ebaa8b6262fcc2ffcb64f03408e3d771c0407bea00a2ac97b9a49be0f39f4dfcc287613c0cc95142b12cd0fe070c65892b5bc10864568f237712642381146c6d14d3023dab60284bb4dce0143807b996800127400a1c804d0cbb3534adc35f063c97ef1818953f87800157c03de8c57718c07d2e922c25d00736400cbc01536a7977a95aa4c712b2729a9bbfe12a02c0cb96c1849d797f9d402fd5316b06d70c00786806c35689fbaaf535be031c9f69aaeaf640fd0000000049454e44ae426082</data>
+    </image>
+</images>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

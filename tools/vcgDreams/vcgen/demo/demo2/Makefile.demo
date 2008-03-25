@@ -1,0 +1,36 @@
+## -------------------------------------------------------------------
+## vcgen demo generic makefile
+## started at 2002-02-26 by Federico Ardanaz
+## 
+## VCGEN_LIBPATH, VCGEN_IPATH, TARGET and SRCS 
+## must be defined before use this file
+##
+## Makefile using GEM C++ (with optimization flags)
+## -------------------------------------------------------------------
+
+## -------------------------------------------------------------------
+## GEM compiler
+## -------------------------------------------------------------------
+CPP := g++ 
+
+## -------------------------------------------------------------------
+## optimization flags
+## -------------------------------------------------------------------
+CFLAGS := -O2 -g
+
+##
+OBJS := $(foreach name, $(SRCS), $(name).o)
+
+all: $(TARGET)
+
+$(TARGET): ${OBJS} $(VCGEN_LIBPATH)libvcgen.a
+	$(CPP) $(CFLAGS) -o $(TARGET) ${OBJS} -L$(VCGEN_LIBPATH) -lvcgen 
+	
+$(OBJS): %.o : %.cpp
+	$(CPP) $(CFLAGS) -I$(VCGEN_IPATH) -c -o $@ $<
+
+## -------------------------------------------------------------------
+## -------------------------------------------------------------------
+clean:
+	rm -f *.o $(TARGET)
+

@@ -1,0 +1,10 @@
+
+[Global]
+Description=Description of dreams
+Lock=asim-dreams
+CSN=CSN-dreams-340
+Version=1
+Tag=HEAD
+Name=dreams
+Dependencies=simcore/HEAD
+Buildorder=10

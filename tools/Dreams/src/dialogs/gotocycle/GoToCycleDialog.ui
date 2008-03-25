@@ -1,0 +1,189 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>GoToCycleDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>GoToCycleDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>394</width>
+            <height>250</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Go To Cycle</string>
+    </property>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel1_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>261</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Select Clock Domain:</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>70</y>
+                <width>261</width>
+                <height>21</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Enter Cycle Number:</string>
+        </property>
+    </widget>
+    <widget class="QComboBox">
+        <property name="name">
+            <cstring>comboBox1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>30</y>
+                <width>370</width>
+                <height>31</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QButtonGroup">
+        <property name="name">
+            <cstring>buttonGroup2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>100</x>
+                <y>140</y>
+                <width>210</width>
+                <height>60</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Phase</string>
+        </property>
+        <property name="exclusive">
+            <bool>true</bool>
+        </property>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioButton1_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>108</x>
+                    <y>21</y>
+                    <width>81</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Low</string>
+            </property>
+        </widget>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioButton1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>21</x>
+                    <y>21</y>
+                    <width>81</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>High</string>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QSpinBox">
+        <property name="name">
+            <cstring>spinBox1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>100</y>
+                <width>370</width>
+                <height>30</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>pushButton1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>260</x>
+                <y>210</y>
+                <width>40</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>OK</string>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>pushButton1_2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>310</x>
+                <y>210</y>
+                <width>70</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Cancel</string>
+        </property>
+        <property name="autoDefault">
+            <bool>false</bool>
+        </property>
+    </widget>
+</widget>
+<connections>
+    <connection>
+        <sender>pushButton1</sender>
+        <signal>clicked()</signal>
+        <receiver>GoToCycleDialog</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>pushButton1_2</sender>
+        <signal>clicked()</signal>
+        <receiver>GoToCycleDialog</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>spinBox1</tabstop>
+    <tabstop>comboBox1</tabstop>
+    <tabstop>radioButton1</tabstop>
+    <tabstop>radioButton1_2</tabstop>
+    <tabstop>pushButton1</tabstop>
+    <tabstop>pushButton1_2</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

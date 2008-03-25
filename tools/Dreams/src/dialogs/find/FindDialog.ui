@@ -1,0 +1,334 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>FindDialog</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>FindDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>634</width>
+            <height>255</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Find</string>
+    </property>
+    <property name="focusPolicy">
+        <enum>NoFocus</enum>
+    </property>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>layout9</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>610</width>
+                <height>230</height>
+            </rect>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout12</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>TextLabel1</cstring>
+                        </property>
+                        <property name="text">
+                            <string>TAG Name:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>LineEdit_TAGName</cstring>
+                        </property>
+                        <property name="focusPolicy">
+                            <enum>StrongFocus</enum>
+                        </property>
+                    </widget>
+                    <widget class="QToolButton">
+                        <property name="name">
+                            <cstring>ToolButton_Search</cstring>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>22</width>
+                                <height>22</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                        <property name="iconSet">
+                            <iconset>image0</iconset>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout13</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>TextLabel1_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>TAG Value:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit">
+                        <property name="name">
+                            <cstring>LineEdit_TAGValue</cstring>
+                        </property>
+                        <property name="focusPolicy">
+                            <enum>StrongFocus</enum>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout14</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>TextLabel1_2_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Starting at cycle:</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox">
+                        <property name="name">
+                            <cstring>SpinBox_Cycle</cstring>
+                        </property>
+                        <property name="maxValue">
+                            <number>999999999</number>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout8</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>TextLabel1_2_2_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Clock Domain:</string>
+                        </property>
+                    </widget>
+                    <widget class="QComboBox">
+                        <property name="name">
+                            <cstring>comboBox1</cstring>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>textLabel1</cstring>
+                </property>
+                <property name="text">
+                    <string>Search Options:</string>
+                </property>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout29</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QCheckBox">
+                        <property name="name">
+                            <cstring>CheckBox_CaseSensitive</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                        <property name="text">
+                            <string>Case Sensitive</string>
+                        </property>
+                    </widget>
+                    <spacer>
+                        <property name="name">
+                            <cstring>spacer9</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>40</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QCheckBox">
+                        <property name="name">
+                            <cstring>CheckBox_ExactMatch</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                        <property name="text">
+                            <string>Exact Match</string>
+                        </property>
+                    </widget>
+                    <spacer>
+                        <property name="name">
+                            <cstring>spacer9_2</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>40</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QCheckBox">
+                        <property name="name">
+                            <cstring>CheckBox_Regular</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                        <property name="text">
+                            <string>Regular Expression</string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout7</cstring>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <spacer>
+                        <property name="name">
+                            <cstring>spacer7</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>250</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QPushButton">
+                        <property name="name">
+                            <cstring>FindButton</cstring>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>75</width>
+                                <height>0</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap>image1</pixmap>
+                        </property>
+                        <property name="accel">
+                            <string></string>
+                        </property>
+                        <property name="default">
+                            <bool>false</bool>
+                        </property>
+                    </widget>
+                    <widget class="QPushButton">
+                        <property name="name">
+                            <cstring>CancelButton</cstring>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>75</width>
+                                <height>0</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap>image2</pixmap>
+                        </property>
+                        <property name="accel">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+        </vbox>
+    </widget>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="415">89504e470d0a1a0a0000000d49484452000000100000001008060000001ff3ff610000016649444154789c9d92bd4a03411485bf4dd4c06a65b31aac2c023636d7c64a112cac6cacc44ed85442242f903c80a028e8860882be80c45a121b0b77ca60b4b111458b88246c91662cb24ea2c986e869e68ff3cdb977c6a24bd9c3b26e8c4d0020c063abc9deceb2c5009943d7f33522c6acbe21b7958110abdb2c020ef0464808698f47d19091cddd83b639bcd148da2007607129b284584b278ca15b33a17906700432b97ddd173039b7d0f6aa76eae7d0c4aff1fdb37f1b62f57b3f321ec05c100010ffa845009eee4cbf3a938ed9b66d9a950ae767c77d23c4ae2f4fadfa85476f17c1b66d8220a0542a452634d48dcc895edd4ae348a7f6f15a8d62b148a391627afa857c3edf93e2c7c6cafab69e9a9d37eb879b2a4a15ac6c36ab538d32824201e902037f675ff99e68edbbdaf7d09e609e34362c4015144a81888bb8d00d195aaea07dcf35495c41c7ff0250afe47955b9645210842bc53f9a1126498cae5175927c01111c8390e108949b0000000049454e44ae426082</data>
+    </image>
+    <image name="image1">
+        <data format="PNG" length="506">89504e470d0a1a0a0000000d49484452000000100000001008060000001ff3ff61000001c149444154789c8d924f6b134118c67f1b174616127711b161a1081ea4da83f0060f3d7bece7484e821f41fc046abc648f5210f4da93e241f020b20312827b32ad411213e95242d9386dca7a30bb6eb2b1f8c030cc3bf3fce6993f160575c2340518f5a0be0da069351a1617c80208c330ddef0990190bd29a56ebdf102bdb5900a46804fd1f10bbd3095316e6ad240120721c90bf3cbdceb95065b5e038ced2782b491011daed76ba16a00bc923c7412f4ceec110d5ebd1eff7710f867c3d3a27088212c4ae9e9eac8d56bfee022ec618e2e31937af5ee2cb302927383ffa7ce11995524c7e7ca35aadae9daf3c79f4d0422f23a2c23d186378f5e613c66cb371f9571900b0b9f99397cfdff37d0532180c78fcec050067671fb9df7f5d025800711ca7f1f18c776ff78946b37cf2ee0d17dff7994c46dc3a798aa0d11a1a015609e0791e4992608cc9a32ba5504a11eded01012282d6011420956c7126cff3504a51abd5f25a7d7797ecb1459a20d06992e600a554be3859fcc60c3a9d4e715d17b5f38020f87304912622d011d2a59fe8384ede5693f8becf61f50e8d5660e93c89600374bb5dc6e331b66d339fcf4b7d96e8cab5db00e8568016e1c3e93d7e032cbabd2cacea7c800000000049454e44ae426082</data>
+    </image>
+    <image name="image2">
+        <data format="PNG" length="265">89504e470d0a1a0a0000000d49484452000000100000001008060000001ff3ff61000000d049444154789cad93c109c24010455fac21e0d10e149c2ebc0816b13d69118217abd809c43aece17b889a8dbbab827e0824d9792fc330817f4586fa4dab4f75d190c3b44e86b40f520c6f25d19082498964067099b76000c672bba3248986cc6c78b0f17df3b8e937ad96dbddf3e0723ab23a5f9b0cc6e90e6077b621c954e2f8c1870f56e04c304a168ffa24395c14e42dd761b80ff163bc7e94195f0796c29de75d4c3a284dbb4b04eb4159de93e7920493c274db1ca4e4ca24efe0af24cef01fd4e09224bed679a9b58a24837fc90d0cdc9277062a2b470000000049454e44ae426082</data>
+    </image>
+</images>
+<tabstops>
+    <tabstop>LineEdit_TAGName</tabstop>
+    <tabstop>LineEdit_TAGValue</tabstop>
+    <tabstop>FindButton</tabstop>
+    <tabstop>CheckBox_CaseSensitive</tabstop>
+    <tabstop>CheckBox_ExactMatch</tabstop>
+    <tabstop>CheckBox_Regular</tabstop>
+    <tabstop>CancelButton</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

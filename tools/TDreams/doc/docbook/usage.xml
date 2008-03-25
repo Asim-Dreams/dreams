@@ -1,0 +1,148 @@
+<section><title>Usage</title>
+<para><emphasis>./tdreams Events_Filename [Batch_Commands_Filename]</emphasis></para>
+<para>The Events_Filename is required in order to start while the Batch_Commands_File is optional. If 
+no Batch_Commands_File is specified the program enters in interactive mode.
+</para>
+<para>Two configuration files are required for executing the program:
+    <itemizedlist>
+        <listitem id="config-file">config.xml: Program configuration. Not many possibilities yet though.
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <![CDATA[
+                        <parameter name="lookup-tag" value="PA">
+                        ]]>
+                        The lookup tag is required. This is used to relate all the items corresponding with a transaction.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <![CDATA[
+                        <ignore node="SPIS">
+                        ]]>
+                        These are used to ignore some nodes. By default, all the entered/exited nodes are shown, which can be overwhelming.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </listitem>
+        <listitem>selectors.xml: Selector configuration <link linkend="selectors">(read below)</link>.</listitem>
+    </itemizedlist>
+</para>
+<section><title id="commands">Commands</title>
+    <itemizedlist>
+        <listitem id="dump-command">
+            <para>
+                dump SELECTOR [string] - dump information that matches selector and only 
+                stages where the name includes string. Shows stage information.
+            </para>
+            <example>
+            <title>Command: <emphasis>dump all</emphasis></title>
+            <literallayout>
+                ID: 199
+                Total: 20
+                        ITEM_59923:SBOX:0:9951:0
+                        ITEM_59923:EgressQ_ADDR_CCW_ODD_RANK_0:0:9952:1
+                        ITEM_59923:IPQ:0:9955:6
+                        ITEM_59923:CBOX_MAF:0:9959:7
+                        ITEM_59987:EgressQ_ADDR_CW_ODD_RANK_2:0:9964:1
+                        ITEM_59988:EgressQ_BLOCK_CW_ODD_RANK_2:0:9964:1
+                        ITEM_59987:SBOX:0:9968:-1
+                        ITEM_59988:SBOX:0:9971:-1
+            </literallayout>
+            </example>
+            <example>
+            <title>Command: <emphasis>dump all Egress</emphasis></title>
+            <literallayout>
+                ID: 199
+                Total: 20
+                        ITEM_59923:EgressQ_ADDR_CCW_ODD_RANK_0:0:9952:1
+                        ITEM_59987:EgressQ_ADDR_CW_ODD_RANK_2:0:9964:1
+                        ITEM_59988:EgressQ_BLOCK_CW_ODD_RANK_2:0:9964:1
+                Time on selected stages: 3
+            </literallayout>
+            </example>
+        </listitem>
+        <listitem id="dumptotals-command">
+            dumptotals SELECTOR - dump the total lifetime of selected transactions. Don't show stage information.
+            <example>
+            <title>Command: <emphasis>dumptotals all</emphasis></title>
+            <literallayout>
+                S_TIME  DURATION
+                2       21
+                51      20
+                101     20
+                151     20
+                201     20
+                251     20
+                301     20
+                351     20
+                401     20
+                451     20
+                501     20
+            </literallayout>
+            </example>
+        </listitem>
+        <listitem id="dumpworse-command">
+            dumpworse SELECTOR #items [#stage/stage_name] - dump the #items with longer lifetime (most time in the system). 
+            If a #stage or a stage_name is specified it show the items which spend more time in that stage. 
+            #Stage selects the stage number #Stage (starting by 0) sequentially.
+            Stage_name selects the stages where stage_name is a substring of its name.
+            <example>
+            Given a transaction with the following stage decomposition:
+            <literallayout>
+                ID: 199
+                Total: 20
+                        ITEM_59923:SBOX:0:9951:0
+                        ITEM_59923:EgressQ_ADDR_CCW_ODD_RANK_0:0:9952:1
+                        ITEM_59923:IPQ:0:9955:6
+                        ITEM_59923:CBOX_MAF:0:9959:7
+                        ITEM_59987:EgressQ_ADDR_CW_ODD_RANK_2:0:9964:1
+                        ITEM_59988:EgressQ_BLOCK_CW_ODD_RANK_2:0:9964:1
+                        ITEM_59987:SBOX:0:9968:-1
+                        ITEM_59988:SBOX:0:9971:-1
+            </literallayout>
+            , #stage == 1 would select the first EgressQ stage (duration == 1) while name_stage == egress would select
+            stages 1, 4 and 5 (duration == 1+1+1 == 3).
+            </example>
+        </listitem>
+        <listitem id="dumpbest-command">
+            dumpbest SELECTOR #items [#stage/stage_name] - dump the #items with shorter lifetime (less time in the system). 
+            If a #stage or a stage_name is specified it show the items which spend more time in that stage.
+        </listitem>
+        <listitem id="dumphist-command">
+            dumphist SELECTOR - dump stripchart of selected requests
+        </listitem>
+        <listitem id="dumpavg-command">
+            dumpavg SELECTOR #stage - dump stripchart of average time spent in #stage for selected requests
+        </listitem>
+        <listitem id="set-ofile-command">
+            set output FILENAME - redirects the output to a file
+        </listitem>
+    </itemizedlist>
+</section>
+<section id="selectors"><title>Selectors</title>
+    <itemizedlist>
+        Currently the only usable selectors are:
+        <listitem id="all-selector">
+            all: Selects all transactions.
+        </listitem>
+        <listitem>
+            put-your-selector-here: Custom selectors can be easily created. Right now, only the stages entered can be used for selector
+            specification. I'm aware that it would be very convenient to specify selectors based on tags, but that's not implemented yet.
+            <example>
+                <title>Memory requests selector</title>
+                <literallayout>
+                    <![CDATA[
+                    <selector name="mem_req">
+                        <info>Memory requests</info>
+                        <enters nodename="MAF"/>
+                        <ends nodename="MRQ"/>
+                    </selector>
+                    ]]>
+                </literallayout>
+            </example>
+        </listitem>
+    </itemizedlist>
+</section>
+
+</section>

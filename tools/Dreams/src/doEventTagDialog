@@ -1,0 +1,4 @@
+uic eventTagDialog.ui > eventTagDialog.h
+uic -impl eventTagDialog.h eventTagDialog.ui > eventTagDialog.cpp
+#uic -o eventTagDialogImpl.h -subdecl eventTagDialogImpl eventTagDialog.h eventTagDialog.ui
+#uic -o eventTagDialogImpl.cpp -subimpl eventTagDialogImpl eventTagDialogImpl.h eventTagDialog.ui

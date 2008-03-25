@@ -1,0 +1,169 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>TextOverviewForm</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>TextOverviewForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>515</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Text Overview</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout131</cstring>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout128</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>SAllButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Select &amp;All</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+A</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>SNondeButton</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Select &amp;None</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+N</string>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer62</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QToolButton">
+                            <property name="name">
+                                <cstring>CopyButton</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>24</width>
+                                    <height>24</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="iconSet">
+                                <iconset>image0</iconset>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Copy</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QTextEdit">
+                    <property name="name">
+                        <cstring>textEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout129</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer63</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>330</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QToolButton">
+                            <property name="name">
+                                <cstring>AcceptButton</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>75</width>
+                                    <height>24</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="iconSet">
+                                <iconset>image1</iconset>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="1205">789c5dd4db6eda401006e07b9ec2823b543931c12656d50b8e4948a0242481a4eac5dabbf63a9cd69c49d577efeeccac8b6223cbdffc338bc1e08baa331d0d9cea4569b365db2c7662c9d64e95ef168bd3afdf3ffe94ca5ee0e897af8fe56fa5b2706267b85a0a73fea8cf2b8dab861fc68637c0a81122d796ac6ef893c8311d195e5f3538a61ef2da43de117d06cd2b6064d92386c82191239f0dc3bae512197a11acfc4ef49197c0d872420c916f05b9e194c8915d4356b77c42320f3903c68cc5be212f08e9a761546702b9434635e402c8a380c3ec81c8905bc3d88f04f20519d7909b82708ff6c400f900e496b74486742d4560981005a67d4b4cdb86dcb78c90bc868c0bc2ec0731c0b402149a90322243de1305b26328f41527309b23450d792406c857a0b01c144c0c4f4486e9b820a42da24066864960a990490d3927d2ca4d60622989b4724a4c906e854571643e1f6ef065a7692ab38fd9792dd2b574be58aebef4a52a7767ebaf7d95cd76e7ee0f677deab857fa78ca3f8bbe66ebd89626ea747b37d4a75ad9ada935f3c3ec0efba4522de89359db5d616dde54aa6f6ad97dbbdf835f931ae4f9bd2bcd68877586f03f1fe9fdf1494fb6c6c73c7f8687066c077d8d6a3cce07c3ffb517299b2a7bcdf3b3da834ca57effd3f8ac36ec4ea693b7f7c9a557fefbbdf40fa2493c51</data>
+    </image>
+    <image name="image1">
+        <data format="XPM.GZ" length="1040">789c95d2494fc2501405e07d7f45033b62a425504b8c0be679da991817af23f3d496a1c6ff6efbce0111374a58bcefde7bdac70df99cfa3a1ea8b9bc1284229cd9aa3d157b35e744abd5f9edfde543c9e8869a7c8b2555cf3c289947d556879bb59b9e27c939ab694553d3520ec09206d649078c414307db24bb7df089dd802c8163b20c1e486697a0c9ac4f32bb2199b548666b6099c30d92dd11285cf0085a0570481a608fe4f016b439dc2105582139dc051d0e57493eb949321b91ccb64097d913c9e110f4d83d931e684b9ac936cc940e58d6c12cc9d5cdae945d4172572b30598eecae418fdc9106e8a6d435a1eb32bb07ed023895342da1cbe13968bba097b2a0095190c30bd072c1c7bbcfdf6a5921ff1bb725cb9273b673adb89ecfec74868a335f2c2fcf5bad37c9d1dfeef6c1f51d7e181d82e3e97c8cbfdf1b57c26a353cd5eab7776944cd56c5ff79bf76a7dbebdfdd79301cc5bf7ec7f8a674a94dfebf83a4f6f9ac7c01c18ad479</data>
+    </image>
+</images>
+<tabstops>
+    <tabstop>SAllButton</tabstop>
+    <tabstop>SNondeButton</tabstop>
+    <tabstop>textEdit</tabstop>
+</tabstops>
+<slots>
+    <slot>SAllButton_stateChanged(int)</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

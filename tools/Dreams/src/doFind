@@ -1,0 +1,4 @@
+uic find.ui > find.h
+uic -impl find.h find.ui > find.cpp
+#uic -o findImpl.h -subdecl findImpl find.h find.ui
+#uic -o findImpl.cpp -subimpl findImpl findImpl.h find.ui

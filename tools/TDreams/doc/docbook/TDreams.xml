@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                    "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" 
+    [
+        <!ENTITY installation SYSTEM "install.xml" >
+        <!ENTITY overview SYSTEM "overview.xml" >
+        <!ENTITY usage SYSTEM "usage.xml" >
+        <!ENTITY selectors SYSTEM "programming_selectors.xml" >
+    ]
+>
+<article id="TDream">
+    <title>TDreams</title>
+    <articleinfo>
+        <author>
+            <firstname>Oscar</firstname>
+            <surname>Rosell</surname>
+            <email>
+                oscarx.m.rosell@intel.com
+            </email>
+        </author>
+        <copyright>
+            <year>2004</year>
+            <holder>Intel Corp.</holder>
+        </copyright>
+    </articleinfo>
+    &overview;
+    &installation;
+    &usage;
+    &selectors;
+</article>

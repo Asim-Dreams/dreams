@@ -1,0 +1,86 @@
+<tdreams>
+    <parameter name="lookup-tag" value="PA"/>
+    <parameter name="cycle-step" value="1000000"/>
+    <showtag name="CMDTYPE"/>
+    <ignore node="SPIS"/>
+<!--
+    <ignore node="CHIP_0_SBOX_0"/>
+    <ignore node="CHIP_1_SBOX_0"/>
+    <ignore node="CHIP_2_SBOX_0"/>
+    <ignore node="CHIP_3_SBOX_0"/>
+    <ignore node="CHIP_0_SBOX_1"/>
+    <ignore node="CHIP_1_SBOX_1"/>
+    <ignore node="CHIP_2_SBOX_1"/>
+    <ignore node="CHIP_3_SBOX_1"/>
+-->
+<!--
+    <ignore node="BBOX_0"/>
+    <ignore node="BBOX_1"/>
+-->
+    <ignore node="TRACKER"/>
+    <ignore node="DIL"/>
+    <ignore node="IMT"/>
+    <ignore node="SPIS_STUB_0"/>
+    <ignore node="SPIS_STUB_1"/>
+    <ignore node="SPIS_STUB_2"/>
+    <ignore node="SPIS_STUB_3"/>
+    <ignore node="SPIS_STUB_4"/>
+    <ignore node="SPIS_STUB_5"/>
+    <ignore node="SPIS_STUB_6"/>
+    <ignore node="SPIS_STUB_7"/>
+    <ignore node="RBOX"/>
+    <ignore node="DC"/>
+    <ignore node="CBOX_MAF"/>
+    <ignore node="SMAF"/> 
+    <ignore node="PAF"/>
+    <ignore node="IWB"/>
+    <ignore node="DBUFFER"/>
+    <ignore node="RTQ"/>
+    <ignore node="IPQ"/>
+    <ignore node="IRQ"/>
+    <ignore node="IFT"/>
+    <ignore node="LSB"/>
+    <ignore node="CBOX_CACHE"/>
+    <ignore node="CHIP_0_BBOX_0"/>
+    <ignore node="CHIP_0_BBOX_1"/>
+    <ignore node="CHIP_1_BBOX_0"/>
+    <ignore node="CHIP_1_BBOX_1"/>
+    <ignore node="SYSINT_SBOX_0"/>
+    <ignore node="SYSINT_SBOX_1"/>
+    <ignore node="MC"/>
+    <ignore node="EgressQ_ADDR_CCW_ODD_RANK_2"/>
+    <ignore node="EgressQ_ACK_CW_ODD_RANK_0"/>
+    <ignore node="EgressQ_ACK_CW_EVEN_RANK_1"/>
+    <ignore node="EgressQ_ACK_CCW_EVEN_RANK_1"/>
+    <ignore node="EgressQ_ACK_CW_ODD_RANK_1"/>
+    <ignore node="EgressQ_ACK_CCW_ODD_RANK_1"/>
+    <ignore node="EgressQ_ACK_CCW_EVEN_RANK_0"/>
+    <ignore node="EgressQ_BLOCK_CCW_EVEN_RANK_1"/>
+    <ignore node="EgressQ_BLOCK_CW_EVEN_RANK_1"/>
+    <ignore node="EgressQ_BLOCK_CCW_ODD_RANK_1"/>
+    <ignore node="EgressQ_BLOCK_CW_ODD_RANK_1"/>
+    <ignore node="EgressQ_ADDR_CW_ODD_RANK_1"/>
+    <ignore node="EgressQ_ADDR_CCW_ODD_RANK_1"/>
+    <ignore node="EgressQ_ADDR_CW_EVEN_RANK_1"/>
+    <ignore node="EgressQ_ADDR_CCW_EVEN_RANK_1"/>
+    <ignore node="EgressQ_ADDR_CW_ODD_RANK_2"/>
+    <ignore node="EgressQ_BLOCK_CCW_EVEN_RANK_0"/>
+    <ignore node="EgressQ_BLOCK_CW_EVEN_RANK_0"/>
+    <ignore node="EgressQ_BLOCK_CCW_ODD_RANK_0"/>
+    <ignore node="EgressQ_BLOCK_CW_ODD_RANK_0"/>
+    <ignore node="EgressQ_ADDR_CW_ODD_RANK_0"/>
+    <ignore node="EgressQ_ADDR_CCW_ODD_RANK_0"/>
+    <ignore node="EgressQ_ADDR_CW_EVEN_RANK_0"/>
+    <ignore node="EgressQ_ADDR_CCW_EVEN_RANK_0"/>
+    <ignore node="EgressQ_ACK_CW_EVEN_RANK_2"/>
+    <ignore node="EgressQ_ACK_CCW_EVEN_RANK_2"/>
+    <ignore node="EgressQ_ACK_CW_ODD_RANK_2"/>
+    <ignore node="EgressQ_ACK_CCW_ODD_RANK_2"/>
+    <ignore node="EgressQ_INVAL_CW_EVEN_RANK_0"/>
+    <ignore node="EgressQ_BLOCK_CW_ODD_RANK_2"/>
+    <ignore node="EgressQ_BLOCK_CW_EVEN_RANK_2"/>
+    <ignore node="EgressQ_BLOCK_CCW_ODD_RANK_2"/>
+    <ignore node="EgressQ_BLOCK_CCW_EVEN_RANK_2"/>
+    <ignore node="EgressQ_ACK_CCW_ODD_RANK_0"/>
+    <ignore node="EgressQ_ADDR_CW_EVEN_RANK_2"/>
+</tdreams>
