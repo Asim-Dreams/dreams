@@ -10304,3 +10304,23 @@ Log message:	CSN: CSN-dreams-344
 
 - a few minor tweaks to get Dreams to build on 64-bit machines
 with GCC 4, etc.
+
+----------
+emer        Date: Mon Mar 26 18:52:49 EDT 2012  CSN: CSN-dreams-4
+                  Mon Mar 26 22:52:49 UTC 2012
+
+
+Directory .
+ configure                 Locally Modified            3 
+ configure.in              Locally Modified            3 
+
+Directory scripts
+ ylwrap                    Locally Added               0 
+
+Directory .
+ aclocal.m4                Locally Modified            3 
+
+Some changes to get dreams to build on Ubuntu. Added new places
+to look for qt3 and missing file ylwrap. 1Dreams now seems
+to build but Dreams has problems with libtool among other
+things.
