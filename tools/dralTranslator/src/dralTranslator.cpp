@@ -29,9 +29,9 @@
 #include "asim/dralServer.h"
 #include "asim/dralListenerOld.h"
 #include "asim/dralListenerConverter.h"
+#define MAX_CLOCKS 8;
 
 using namespace std;
-
 
 bool finish=false;
 bool only_graph=false;
@@ -46,6 +46,9 @@ INT64 print_cycle = 0;
 UINT64 first_cycle=0;
 UINT64 last_cycle=UINT64_MAX;
 UINT16 cid=0; //Reference clock id
+UINT64 base_line_freq = 0;
+UINT64 base_line_cycles_to_normalize = 0;
+UINT64 cycles_to_normalize[3];
 
 set<UINT32> liveItems;
 
@@ -55,54 +58,56 @@ class DRALLISTENER_CLASS : public DRAL_LISTENER_OLD_CLASS
     void Cycle (UINT64);
     void NewItem (UINT32);
     void SetTagSingleValue (
-        UINT32, char *, UINT64, unsigned char);
+        UINT32, const char *, UINT64, unsigned char);
     void SetTagString (
-        UINT32, char *, char *, unsigned char);
+        UINT32, const char *, const char *, unsigned char);
     void SetTagSet (
-        UINT32, char *, UINT32, UINT64 *, unsigned char);
+        UINT32, const char *, UINT32, const UINT64 *, unsigned char);
     void MoveItems (UINT16, UINT32, UINT32 *);
     void MoveItemsWithPositions (UINT16, UINT32, UINT32 *, UINT32 *);
     void EnterNode (UINT16, UINT32, UINT32);
     void ExitNode (UINT16, UINT32);
     void DeleteItem (UINT32);
     void EndSimulation (void);
-    void AddNode (UINT16, char *, UINT16, UINT16);
-    void AddEdge (UINT16, UINT16, UINT16, UINT32, UINT32, char *);
-    void SetCapacity (UINT16,UINT32, UINT32 *, UINT16);
+    void AddNode (UINT16, const char *, UINT16, UINT16);
+    void AddEdge (UINT16, UINT16, UINT16, UINT32, UINT32, const char *);
+    void SetCapacity (UINT16,UINT32, const UINT32 *, UINT16);
     void SetHighWaterMark (UINT16, UINT32);
-    void Comment (UINT32 magic_num, char * comment);
-    void Comment (char * );
-    void Error (char * e);
-    void NonCriticalError (char * e);
+    void Comment (UINT32 magic_num, const char * comment);
+    void Comment (const char * );
+    void Error (const char * e);
+    void NonCriticalError (const char * e);
 
     void Version (UINT16);
-    void SetNodeLayout (UINT16,UINT32, UINT16, UINT32 *);
-    void SetItemTag (UINT32, char *, UINT64);
-    void SetItemTagString (UINT32, char *, char *);
-    void SetItemTagSet (UINT32, char *, UINT32, UINT64 *);
-    void EnterNode (UINT16, UINT32, UINT16, UINT32 *);
-    void ExitNode (UINT16, UINT32, UINT16, UINT32 *);
-    void SetNodeTag (UINT16, char *, UINT64, UINT16, UINT32 *);
-    void SetNodeTagString (UINT16, char *, char *, UINT16, UINT32 *);
-    void SetNodeTagSet (UINT16, char *, UINT16, UINT64 *, UINT16, UINT32 *);
+    void SetNodeLayout (UINT16,UINT32, UINT16, const UINT32 *);
+    void SetItemTag (UINT32, const char *, UINT64);
+    void SetItemTagString (UINT32, const char *, const char *);
+    void SetItemTagSet (UINT32, const char *, UINT32, const UINT64 *);
+    void EnterNode (UINT16, UINT32, UINT16, const UINT32 *);
+    void ExitNode (UINT16, UINT32, UINT16, const UINT32 *);
+    void SetNodeTag (UINT16, const char *, UINT64, UINT16, const UINT32 *);
+    void SetNodeTagString (UINT16, const char *, const char *, UINT16, const UINT32 *);
+    void SetNodeTagSet (UINT16, const char *, UINT16, const UINT64 *, UINT16, const UINT32 *);
 
-    void SetCycleTag (char *, UINT64);
-    void SetCycleTagString (char *, char *);
-    void SetCycleTagSet (char *, UINT32, UINT64 *);
-    void NewNode (UINT16, char *, UINT16, UINT16);
-    void NewEdge (UINT16, UINT16, UINT16, UINT32, UINT32, char *);
+    void SetCycleTag (const char *, UINT64);
+    void SetCycleTagString (const char *, const char *);
+    void SetCycleTagSet (const char *, UINT32, const UINT64 *);
+    void NewNode (UINT16, const char *, UINT16, UINT16);
+    void NewEdge (UINT16, UINT16, UINT16, UINT32, UINT32, const char *);
     void SetNodeInputBandwidth (UINT16, UINT32);
     void SetNodeOutputBandwidth (UINT16, UINT32);
     void StartActivity (UINT64);
-    void SetTagDescription (char *, char *);
+    void SetTagDescription (const char *, const char *);
 
-    void CommentBin (UINT16, char *, UINT32);
+    void CommentBin (UINT16, const char *, UINT32);
 
     void SetNodeClock (UINT16, UINT16);
     void NewClock (UINT16, UINT64, UINT16, const char []);
     void NewClock (UINT16, UINT64, UINT16, UINT16, const char []);
     void Cycle (UINT16, UINT64, UINT16);
+
 };
+
 
 
 void
@@ -116,11 +121,28 @@ void
 DRALLISTENER_CLASS::NewClock (
     UINT16 clockId, UINT64 freq, UINT16 skew, const char name [])
 {
+
+    float factor;
+   
+    if(base_line_freq != 0)
+    {
+        factor = (((float)freq)/((float)base_line_freq));
+        cycles_to_normalize[clockId] = (UINT64) (base_line_cycles_to_normalize*factor)-1;
+    }
+
     if (list_clocks)
     {
         cout << "Clock id: " << clockId << ", name: " << name << ", freq: " << freq
              << ", skew: " << skew << endl;
+
+        if(base_line_freq != 0)
+            cout << " Normalizing cycles. Baseline frequency " << base_line_freq << " clock frequency " << freq 
+                 << " Factor " << factor << "Cycles to normalize " << cycles_to_normalize[clockId] << endl;
+
     }
+
+
+
     server->NewClock(clockId,freq,skew,name);
     num_events++;
 }
@@ -129,11 +151,26 @@ void
 DRALLISTENER_CLASS::NewClock (
     UINT16 clockId, UINT64 freq, UINT16 skew, UINT16 divisions, const char name [])
 {
+    float factor;
+
+    if(base_line_freq != 0)
+    {
+        factor = (((float)freq)/((float)base_line_freq));
+        cycles_to_normalize[clockId] = (UINT64) (base_line_cycles_to_normalize*factor)-1;
+    }
+
     if (list_clocks)
     {
         cout << "Clock id: " << clockId << ", name: " << name << ", freq: " << freq
              << ", skew: " << skew << ", divisions: " << divisions << endl;
+
+        if(base_line_freq != 0)
+            cout << " Normalizing cycles. Baseline frequency " << base_line_freq << " clock frequency " << freq 
+                 << " Factor " << factor << "Cycles to normalize " << cycles_to_normalize[clockId] << endl;
+
     }
+
+
     server->NewClock(clockId,freq,skew,divisions, name);
     num_events++;
 }
@@ -161,7 +198,11 @@ DRALLISTENER_CLASS::Cycle (UINT16 clockId, UINT64 cycle, UINT16 phase)
             }
             liveItems.clear();
         }
-        server->Cycle(clockId, cycle, phase);
+
+
+        assert(cycle - cycles_to_normalize[clockId] >= 0);
+
+        server->Cycle(clockId, cycle - cycles_to_normalize[clockId], phase);
     }
     num_events++;
 }
@@ -172,7 +213,9 @@ DRALLISTENER_CLASS::Cycle(UINT64 n)
     current_cycle=n;
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
-        server->Cycle (current_cycle);
+        assert(current_cycle - base_line_cycles_to_normalize>= 0);
+
+        server->Cycle (current_cycle - base_line_cycles_to_normalize);
     }
     num_events++;
     if (count_cycles && print_cycle && (current_cycle%print_cycle == 0))
@@ -242,13 +285,13 @@ DRALLISTENER_CLASS::EndSimulation(void)
 }
 
 void
-DRALLISTENER_CLASS::Error(char * error)
+DRALLISTENER_CLASS::Error(const char * error)
 {
     cerr << error << endl;
 }
 
 void
-DRALLISTENER_CLASS::NonCriticalError(char * error)
+DRALLISTENER_CLASS::NonCriticalError(const char * error)
 {
     cerr << error << endl;
 }
@@ -273,7 +316,7 @@ DRALLISTENER_CLASS::Version (UINT16 version)
 
 void
 DRALLISTENER_CLASS::NewNode(
-    UINT16 node_id, char * name,UINT16 parent_id, UINT16 instance)
+    UINT16 node_id, const char * name,UINT16 parent_id, UINT16 instance)
 {
     server->NewNode (node_id,name,parent_id,instance);
     num_events++;
@@ -282,7 +325,7 @@ DRALLISTENER_CLASS::NewNode(
 void
 DRALLISTENER_CLASS::NewEdge(
     UINT16 source, UINT16 destination, UINT16 edge_id, 
-    UINT32 bandwidth, UINT32 latency, char * name)
+    UINT32 bandwidth, UINT32 latency, const char * name)
 {
     server->NewEdge (edge_id,source,destination,bandwidth,latency,name);
     num_events++;
@@ -290,7 +333,7 @@ DRALLISTENER_CLASS::NewEdge(
 
 void
 DRALLISTENER_CLASS::SetNodeLayout (
-    UINT16 node_id,UINT32 , UINT16 dim, UINT32 * cap)
+    UINT16 node_id,UINT32 , UINT16 dim, const UINT32 * cap)
 {
     server->SetNodeLayout(node_id,dim,cap);
     num_events++;
@@ -322,7 +365,7 @@ DRALLISTENER_CLASS::StartActivity (UINT64)
     num_events++;
 }
 
-void DRALLISTENER_CLASS::SetTagDescription (char * tag, char * desc)
+void DRALLISTENER_CLASS::SetTagDescription (const char * tag, const char * desc)
 {
     server->SetTagDescription(tag,desc);
     num_events++;
@@ -330,7 +373,7 @@ void DRALLISTENER_CLASS::SetTagDescription (char * tag, char * desc)
 
 void
 DRALLISTENER_CLASS::SetItemTag (
-    UINT32 item_id, char * tag_name, UINT64 value)
+    UINT32 item_id, const char * tag_name, UINT64 value)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -340,11 +383,11 @@ DRALLISTENER_CLASS::SetItemTag (
 }
 
 void
-DRALLISTENER_CLASS::SetItemTagString (UINT32 item_id, char * tag_name, char * str)
+DRALLISTENER_CLASS::SetItemTagString (UINT32 item_id, const char * tag_name, const char * str)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
-        server->SetItemTag(item_id,(const char *)tag_name,str);
+        server->SetItemTag(item_id,tag_name,str);
     }
     num_events++;
 }
@@ -352,17 +395,17 @@ DRALLISTENER_CLASS::SetItemTagString (UINT32 item_id, char * tag_name, char * st
 
 void
 DRALLISTENER_CLASS::SetItemTagSet (
-    UINT32 item_id, char * tag_name, UINT32 n, UINT64 * nval)
+    UINT32 item_id, const char * tag_name, UINT32 n, const UINT64 * nval)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
-        server->SetItemTag(item_id,(const char *)tag_name,n,nval);
+        server->SetItemTag(item_id,tag_name,n,nval);
     }
     num_events++;
 }
 
 void
-DRALLISTENER_CLASS::Comment (UINT32 magic_num, char * comment)
+DRALLISTENER_CLASS::Comment (UINT32 magic_num, const char * comment)
 {
     if (!only_graph)
     {
@@ -373,7 +416,7 @@ DRALLISTENER_CLASS::Comment (UINT32 magic_num, char * comment)
 
 void
 DRALLISTENER_CLASS::CommentBin (
-    UINT16 magic_num, char * contents, UINT32 length)
+    UINT16 magic_num, const char * contents, UINT32 length)
 {
     if (!only_graph)
     {
@@ -382,7 +425,7 @@ DRALLISTENER_CLASS::CommentBin (
     }
 }
 
-void DRALLISTENER_CLASS::SetCycleTag (char * tag_name, UINT64 value)
+void DRALLISTENER_CLASS::SetCycleTag (const char * tag_name, UINT64 value)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -392,7 +435,7 @@ void DRALLISTENER_CLASS::SetCycleTag (char * tag_name, UINT64 value)
 }
 
 
-void DRALLISTENER_CLASS::SetCycleTagString (char * tag_name, char *str)
+void DRALLISTENER_CLASS::SetCycleTagString (const char * tag_name, const char *str)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -403,7 +446,7 @@ void DRALLISTENER_CLASS::SetCycleTagString (char * tag_name, char *str)
 
 
 void DRALLISTENER_CLASS::SetCycleTagSet (
-    char * tag_name, UINT32 n, UINT64 * val)
+    const char * tag_name, UINT32 n, const UINT64 * val)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -414,7 +457,7 @@ void DRALLISTENER_CLASS::SetCycleTagSet (
 
 void
 DRALLISTENER_CLASS::EnterNode (
-    UINT16 node_id, UINT32 item_id, UINT16 dim, UINT32 * pos)
+    UINT16 node_id, UINT32 item_id, UINT16 dim, const UINT32 * pos)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -425,7 +468,7 @@ DRALLISTENER_CLASS::EnterNode (
 
 void
 DRALLISTENER_CLASS::ExitNode (
-    UINT16 node_id, UINT32 item_id, UINT16 dim, UINT32 * pos)
+    UINT16 node_id, UINT32 item_id, UINT16 dim, const UINT32 * pos)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -436,36 +479,36 @@ DRALLISTENER_CLASS::ExitNode (
 
 void
 DRALLISTENER_CLASS::SetNodeTag (
-    UINT16 node_id, char * tag_name, UINT64 val, UINT16 lev, UINT32 * pos)
+    UINT16 node_id, const char * tag_name, UINT64 val, UINT16 lev, const UINT32 * pos)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
-        server->SetNodeTag(node_id,(const char *)tag_name,val,lev,pos);
+        server->SetNodeTag(node_id,tag_name,val,lev,(UINT32 *)pos);
     }
     num_events++;
 }
 
 void
 DRALLISTENER_CLASS::SetNodeTagString (
-    UINT16 node_id, char * tag_name, char * str, UINT16 lev, UINT32 * pos)
+    UINT16 node_id, const char * tag_name, const char * str, UINT16 lev, const UINT32 * pos)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
         server->SetNodeTag(
-        node_id,(const char *)tag_name,(const char *)str,lev,pos);
+        node_id,tag_name,str,lev,(UINT32 *)pos);
     }
     num_events++;
 }
 
 void
 DRALLISTENER_CLASS::SetNodeTagSet (
-    UINT16 node_id, char * tag_name, UINT16 n,
-    UINT64 * nval, UINT16 lev, UINT32 * pos)
+    UINT16 node_id, const char * tag_name, UINT16 n,
+    const UINT64 * nval, UINT16 lev, const UINT32 * pos)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
         server->SetNodeTag(
-        node_id,(const char *)tag_name,n,nval,lev,pos);
+        node_id,tag_name,n,(UINT64 *)nval,lev,(UINT32 *)pos);
     }
     num_events++;
 }
@@ -481,7 +524,7 @@ DRALLISTENER_CLASS::SetHighWaterMark (UINT16 node_id, UINT32 mark)
 
 void
 DRALLISTENER_CLASS::SetTagSingleValue(
-    UINT32 item_id, char * tag_name, UINT64 value, unsigned char)
+    UINT32 item_id, const char * tag_name, UINT64 value, unsigned char)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -492,7 +535,7 @@ DRALLISTENER_CLASS::SetTagSingleValue(
 
 void
 DRALLISTENER_CLASS::SetTagString(
-    UINT32 item_id, char * tag_name, char * str, unsigned char)
+    UINT32 item_id, const char * tag_name, const char * str, unsigned char)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -503,7 +546,7 @@ DRALLISTENER_CLASS::SetTagString(
 
 void
 DRALLISTENER_CLASS::SetTagSet(
-    UINT32 item_id,  char * tag_name,UINT32 n,UINT64 * set, unsigned char)
+    UINT32 item_id,  const char * tag_name,UINT32 n,const UINT64 * set, unsigned char)
 {
     if (current_cycle >= first_cycle && current_cycle <= last_cycle)
     {
@@ -535,7 +578,7 @@ DRALLISTENER_CLASS::ExitNode(UINT16, UINT32)
 
 void
 DRALLISTENER_CLASS::AddNode(
-    UINT16 node_id, char * name,UINT16 parent_id, UINT16 instance)
+    UINT16 node_id, const char * name,UINT16 parent_id, UINT16 instance)
 {
     server->NewNode (node_id,name,parent_id,instance);
     num_events++;
@@ -544,7 +587,7 @@ DRALLISTENER_CLASS::AddNode(
 void
 DRALLISTENER_CLASS::AddEdge(
     UINT16 source, UINT16 destination, UINT16 edge_id, 
-    UINT32 bandwidth, UINT32 latency, char * name)
+    UINT32 bandwidth, UINT32 latency, const char * name)
 {
     server->NewEdge (edge_id,source,destination,bandwidth,latency,name);
     num_events++;
@@ -553,7 +596,7 @@ DRALLISTENER_CLASS::AddEdge(
 
 void
 DRALLISTENER_CLASS::SetCapacity (
-    UINT16 node_id, UINT32, UINT32 * capacities, UINT16 n)
+    UINT16 node_id, UINT32, const UINT32 * capacities, UINT16 n)
 {
     server->SetNodeLayout(node_id,n,capacities);
     num_events++;
@@ -561,7 +604,7 @@ DRALLISTENER_CLASS::SetCapacity (
 
 
 void
-DRALLISTENER_CLASS::Comment (char * comment)
+DRALLISTENER_CLASS::Comment (const char * comment)
 {
     server->Comment(0, comment);
     num_events++;
@@ -623,6 +666,14 @@ int main(int argn, char * argv []) {
         {
             list_clocks = true;
         }
+        else if(!strcmp(argv[i],"-ctn"))
+        {
+            base_line_cycles_to_normalize = strtol( argv[++i],NULL,0);
+        }
+        else if(!strcmp(argv[i],"-bf"))
+        {
+            base_line_freq= strtol( argv[++i],NULL,0);
+        }
         else if (!strcmp(argv[i],"-cid") && (argn > i))
         {
             cid = strtol(argv[++i], NULL, 0);
@@ -646,6 +697,12 @@ int main(int argn, char * argv []) {
             << "dralFileIn will be ignored" << endl
             << "\t-lc <n>: All the events found after the <n>th cycle in "
             << "dralFileIn will be ignored" << endl
+            << "\t-ctn <n>: Number of cycles to normalize <n> (default 0), all the cycles numbers " 
+            << "will be normalized according to this: current_cycle=currant_input_cycle - <n>" << endl
+            << "\t-bf <n>: baseline frequency. The cycles must be normalized according the base line frequency"
+            << " the -ctn cycles are accounted assuming this -bf frequency. The normalization cycles for the"
+            << " rest of frequencies is computed according this cycles and the frequency ratio" 
+            << " do -listclocks to see the proper baseline freq " << endl
             << "\tWARNING: The use of the -fc or -lc paramters may produce a "
             << "no coherent dralFileOut" << endl;
             exit(-1);

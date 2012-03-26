@@ -23,8 +23,10 @@
 #include <qglobal.h>
 
 #include <stdio.h>
-#include <iostream.h>
+#include <iostream>
 #include "StripChartView.h"
+
+using namespace std;
 
 #define MARKER_WIDTH 11
 #define MARKER_HEIGHT 6

@@ -23,7 +23,7 @@ dnl This is the configure.in file for asim-dreams.
 AC_INIT([ASIM dreams], [1.3a], [eric.borch@intel.com], [asim-dreams])
 
 dnl required autoconf version
-AC_PREREQ(2.53) 
+AC_PREREQ(2.61) 
 
 dnl Use scripts in ./scripts
 AC_CONFIG_AUX_DIR(scripts)
@@ -31,7 +31,7 @@ AC_CONFIG_AUX_DIR(scripts)
 dnl AC_CONFIG_SRCDIR([admin/packages/dreams])
 
 dnl automake version + options
-AM_INIT_AUTOMAKE([1.6.2 foreign subdir-objects]) 
+AM_INIT_AUTOMAKE([1.8.3 foreign subdir-objects]) 
 AM_CONFIG_HEADER(config.h)
 
 dnl prevent casual installer from having to deal with Makefile.in etc.
@@ -146,7 +146,7 @@ AC_DEFUN(FIND_QT, [
 
     AC_SUBST(QT)
 
-    FIND_MOC($with_qt_moc $with_qt_dir $QTDIR ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
+    FIND_MOC($with_qt_moc $with_qt_dirx $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
     if test "X$QTMOCDIR" = "X"; then
         echo ""
         echo "Qt's moc not found! If you have installed Qt in an"
@@ -166,7 +166,7 @@ AC_DEFUN(FIND_QT, [
     dnl find uic
     dnl
 
-    FIND_UIC($with_qt_uic $with_qt_dir $QTDIR ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
+    FIND_UIC($with_qt_uic $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
     if test "X$QTUICDIR" = "X"; then
         echo ""
         echo "Qt's uic not found! If you have installed Qt in an"
@@ -186,7 +186,7 @@ AC_DEFUN(FIND_QT, [
     dnl find qt libraries
     dnl
 
-    FIND_QT_LIBS($with_qt_libs $with_qt_dir $QTDIR ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/lib /usr/local/lib /usr/X11R6/lib)
+    FIND_QT_LIBS($with_qt_libs $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4/lib ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/lib /usr/local/lib /usr/X11R6/lib)
     if test "X$QTLIBDIR" = "X"
     then
         echo ""
@@ -210,7 +210,7 @@ AC_DEFUN(FIND_QT, [
     dnl find qt headers
     dnl
 
-    FIND_QT_INCLUDES($with_qt_includes $with_qt_dir $QTDIR ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/include /usr/include/qt /usr/local/include /usr/X11R6/include/qt3)
+    FIND_QT_INCLUDES($with_qt_includes $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/include /usr/include/qt /usr/local/include /usr/X11R6/include/qt3)
     if test "X$QTINCDIR" = "X"
     then
         echo ""
@@ -250,6 +250,8 @@ AC_DEFUN(FIND_GUI, [
         alpha*) 
        	    X_EXTRA_LIBS="-lXext -lX11" ;;
         i?86*)
+	    X_EXTRA_LIBS="-ldl -lGL -lXext -lX11 -lXinerama -lXrender" ;;
+        x86_64*)
 	    X_EXTRA_LIBS="-ldl -lGL -lXext -lX11 -lXinerama -lXrender" ;;
         *)
             echo "This architecture is not supported" ;
@@ -514,9 +516,11 @@ else
     qt_available=0
 fi
 AC_SUBST(NO_GUI)
-    
+
+asimcore_dir=`awb-resolver admin/packages/asimcore | sed 's/admin\/packages\/asimcore//'`
+
 dnl check for asimcore
-FIND_ASIM_CORE_DIR($with_asim_core_dir `dirname $PWD`/asim-simcore)
+FIND_ASIM_CORE_DIR($with_asim_core_dir `dirname $PWD`/asim-simcore $asimcore_dir)
 FIND_ASIM_DIR($with_asim_dir /usr /usr/local $prefix)
 ASIMCORE_CFLAGS="$LOCAL_ASIMCOREINCS $GLOBAL_ASIMCOREINCS"
 ASIMCORE_LFLAGS="$LOCAL_ASIMCORELIBDIRS $GLOBAL_ASIMCORELIBDIRS $ASIMCORELIBS"
@@ -620,6 +624,12 @@ dnl support variables in the first argument of AC_DEFINE
         CORELIBS="-L/usr/X11R6/lib"
         COREINCS="-idirafter /usr/local/include" ;
         AC_DEFINE(HOST_LINUX_X86, 1, [system is Linux x86]) ;;
+      x86_64) 
+        COREFLAGS="-DQT_CLEAN_NAMESPACE -DQT_NO_STL -DQ_STRICT_INLINING_RULES -DHOST_LINUX_X86 -DLINUX_$HOSTOSRELEASE_SUBST -D__STDC_LIMIT_MACROS" ;
+        CORELIBS="-L/usr/X11R6/lib"
+        COREINCS="-idirafter /usr/local/include" ;
+        AC_DEFINE(HOST_LINUX_X86, 1, [system is Linux x86]) ;;
+
       ia64) 
         COREFLAGS="-DQT_CLEAN_NAMESPACE -DQT_NO_STL -DQ_STRICT_INLINING_RULES -DHOST_LINUX_IA64 -DLINUX_$HOSTOSRELEASE_SUBST" ;
         CORELIBS="-L/usr/X11R6/lib" ;

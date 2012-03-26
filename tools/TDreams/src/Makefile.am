@@ -19,7 +19,7 @@
 
 bin_PROGRAMS= tdreams
 
-tdreams_LDFLAGS = -lm -lxml2 -lreadline -lncurses
+tdreams_LDFLAGS = $(ASIMCORE_LFLAGS) -lm -lxml2 -lreadline -lncurses
 
 tdreams_SOURCES = main.cpp listener.cpp selector.cpp node_db.cpp lifetime.cpp commands.cpp command_line.cpp configuration.cpp svg_drawer.cpp dumpers.cpp item_tags.cpp
 

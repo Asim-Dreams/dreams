@@ -24,6 +24,8 @@
 #include "dDB/taghandler/TagHandler.h"
 #include "dDB/trackheap/TagVecValue64NFDense.h"
 
+#include <stdio.h>
+
 /*
  * Creator of this class. Forward the call to its super class and copies
  * the entries.

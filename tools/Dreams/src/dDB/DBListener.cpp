@@ -817,7 +817,7 @@ DBListener::Do_EndSimulation()
 }
 
 void
-DBListener::AddNode(UINT16 node_id, char * node_name, UINT16 parent_id, UINT16 instance)
+DBListener::AddNode(UINT16 node_id, const char * node_name, UINT16 parent_id, UINT16 instance)
 {
     if(state != DBL_GRAPH)
     {
@@ -854,7 +854,7 @@ DBListener::AddNode(UINT16 node_id, char * node_name, UINT16 parent_id, UINT16 i
 }
 
 void
-DBListener::AddEdge(UINT16 sourceNode, UINT16 destNode, UINT16 edge_id, UINT32 bandwidth, UINT32 latency, char * name)
+DBListener::AddEdge(UINT16 sourceNode, UINT16 destNode, UINT16 edge_id, UINT32 bandwidth, UINT32 latency, const char * name)
 {
     if(state != DBL_GRAPH)
     {
@@ -956,7 +956,7 @@ DBListener::SetHighWaterMark(UINT16 node_id, UINT32 mark)
 }
 
 void
-DBListener::Error(char * error)
+DBListener::Error(const char * error)
 {
     bool wasOK;
 
@@ -972,7 +972,7 @@ DBListener::Error(char * error)
 }
 
 void
-DBListener::NonCriticalError(char * error)
+DBListener::NonCriticalError(const char * error)
 {
     if(state == DBL_ERROR)
     {
@@ -1013,7 +1013,7 @@ DBListener::Version(UINT16 version)
 }
 
 void
-DBListener::NewNode(UINT16 node_id, char * node_name, UINT16 parent_id, UINT16 instance)
+DBListener::NewNode(UINT16 node_id, const char * node_name, UINT16 parent_id, UINT16 instance)
 {
     if(state != DBL_GRAPH)
     {
@@ -1043,7 +1043,7 @@ DBListener::NewNode(UINT16 node_id, char * node_name, UINT16 parent_id, UINT16 i
 }
 
 void
-DBListener::NewEdge(UINT16 sourceNode, UINT16 destNode, UINT16 edge_id, UINT32 bandwidth, UINT32 latency, char * name)
+DBListener::NewEdge(UINT16 sourceNode, UINT16 destNode, UINT16 edge_id, UINT32 bandwidth, UINT32 latency, const char * name)
 {
     if(state != DBL_GRAPH)
     {
@@ -1749,7 +1749,7 @@ DBListener::SetNodeTagSet(UINT16 node_id, UINT32 tag_idx, UINT16 n, UINT64 * set
 }
 
 void
-DBListener::Comment(char * comment)
+DBListener::Comment(const char * comment)
 {
     if(state != DBL_GRAPH)
     {
@@ -1788,7 +1788,7 @@ DBListener::Comment(char * comment)
 }
 
 void
-DBListener::Comment(UINT32 magic_num, char * comment)
+DBListener::Comment(UINT32 magic_num, const char * comment)
 {
     if(state != DBL_GRAPH)
     {
@@ -1827,7 +1827,7 @@ DBListener::Comment(UINT32 magic_num, char * comment)
 }
 
 void
-DBListener::CommentBin(UINT16 magic_num, char * comment, UINT32 length)
+DBListener::CommentBin(UINT16 magic_num, const char * comment, UINT32 length)
 {
     if(state != DBL_GRAPH)
     {
@@ -1922,7 +1922,7 @@ DBListener::SetNodeOutputBandwidth(UINT16, UINT32)
 }
 
 void 
-DBListener::SetTagDescription(UINT32 tag_idx, char * desc)
+DBListener::SetTagDescription(UINT32 tag_idx, const char * desc)
 {
     if(tag_rename[tag_idx] == TAG_ID_INVALID)
     {
@@ -2361,7 +2361,7 @@ DBListener::getStats() const
  *
  * @return new object.
  */
-DralComment::DralComment(char * _comment)
+DralComment::DralComment(const char * _comment)
 {
     magic_num = 0;
     length = strlen(_comment);
@@ -2374,7 +2374,7 @@ DralComment::DralComment(char * _comment)
  *
  * @return new object.
  */
-DralComment::DralComment(UINT32 _magic_num, char * _comment)
+DralComment::DralComment(UINT32 _magic_num, const char * _comment)
 {
     magic_num = _magic_num;
     length = strlen(_comment);
@@ -2387,7 +2387,7 @@ DralComment::DralComment(UINT32 _magic_num, char * _comment)
  *
  * @return new object.
  */
-DralComment::DralComment(UINT16 _magic_num, char * _comment, UINT32 _length)
+DralComment::DralComment(UINT16 _magic_num, const char * _comment, UINT32 _length)
 {
     magic_num = _magic_num;
     length = _length;

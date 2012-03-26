@@ -25,6 +25,8 @@
 #include "dDB/trackheap/TagVecValue64.h"
 #include "dDB/trackheap/TagVecValue64Dense.h"
 
+#include <stdio.h>
+
 /**
  * Creator of this class. Gets the static instances.
  *

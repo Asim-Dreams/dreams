@@ -124,7 +124,7 @@ ClockDomainEntry::toString() const
 void
 ClockDomainEntry::dump() const
 {
-    printf("This: 0x%X, Id: %i, Freq: %llu, Divisions: %i, Skew: %i, LCMSkew: %i, Name: %s, InternalClock: %i, LCMRatio: %i, FastestRatio: %f\n", (INT32) this, getId(), getFreq(), getDivisions(), getSkew(), getLCMSkew(), getName().latin1(), getInternalClock(), getLCMRatio(), getFastestRatio());
+    printf("This: 0x%p, Id: %i, Freq: %llu, Divisions: %i, Skew: %i, LCMSkew: %i, Name: %s, InternalClock: %i, LCMRatio: %i, FastestRatio: %f\n", this, getId(), getFreq(), getDivisions(), getSkew(), getLCMSkew(), getName().latin1(), getInternalClock(), getLCMRatio(), getFastestRatio());
 }
 
 /*

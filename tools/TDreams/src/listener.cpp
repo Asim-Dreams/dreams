@@ -78,7 +78,7 @@ LISTENER_CLASS::~LISTENER_CLASS()
 }
 
 void
-LISTENER_CLASS::NewNode(UINT16 node_id, char * node_name,UINT16 parent_id, UINT16 instance)
+LISTENER_CLASS::NewNode(UINT16 node_id, const char * node_name,UINT16 parent_id, UINT16 instance)
 {
     ++numDralEvents[ET_NEW_NODE];
     NODE_DB_CLASS::addNode(node_id, node_name, instance);
@@ -120,7 +120,7 @@ LISTENER_CLASS::Cycle(UINT16 clock_id, UINT64 cycle, UINT16 phase)
 
 
 void
-LISTENER_CLASS::EnterNode(UINT16 node_id, UINT32 item_id, UINT16 dim, UINT32 position [])
+LISTENER_CLASS::EnterNode(UINT16 node_id, UINT32 item_id, UINT16 dim, const UINT32 position [])
 {
     ++numDralEvents[ET_ENTER_NODE];
 
@@ -186,7 +186,7 @@ LISTENER_CLASS::MoveItems (UINT16 edge_id, UINT32 numOfItems, UINT32 * items)
 }
 
 void
-LISTENER_CLASS::ExitNode(UINT16 node_id, UINT32 item_id, UINT16 dim, UINT32 position [])
+LISTENER_CLASS::ExitNode(UINT16 node_id, UINT32 item_id, UINT16 dim, const UINT32 position [])
 {
     ++numDralEvents[ET_EXIT_NODE];
     Uid2DidTable::iterator it = uid2didTable_.find(item_id);
@@ -211,7 +211,7 @@ LISTENER_CLASS::ExitNode(UINT16 node_id, UINT32 item_id, UINT16 dim, UINT32 posi
 };
 
 void
-LISTENER_CLASS::SetItemTag(UINT32 item_id, char tag_name [], UINT64 value)
+LISTENER_CLASS::SetItemTag(UINT32 item_id, const char tag_name [], UINT64 value)
 {
     ++numDralEvents[ET_SET_ITEM_TAG];
 
@@ -235,7 +235,7 @@ LISTENER_CLASS::SetItemTag(UINT32 item_id, char tag_name [], UINT64 value)
 
 void
 LISTENER_CLASS::SetItemTagString(
-        UINT32 item_id, char tag_name [], char str [])
+        UINT32 item_id, const char tag_name [], const char str [])
 {
     ++numDralEvents[ET_SET_ITEM_TAG_STR];
 

@@ -27,8 +27,9 @@
 #include <stdio.h>
 #include <vector>
 using namespace std;
-#include <ext/hash_map>
-using namespace __gnu_cxx;
+#include <unordered_map>
+#include <functional>
+//using namespace __gnu_cxx;
 
 // Dreams includes.
 #include "dDB/DralDBSyntax.h"
@@ -122,8 +123,8 @@ class TagDescVector : public AMemObj, public StatObj
         /*
          * Structs to implement the mapping using a stl hash map.
          */
-        typedef hash_map<const char *, TagDescriptor *, hash<const char *>, StrCmp> TagDescriptorHash;
-        typedef hash_map<const char *, TagDescriptor *, hash<const char *>, StrCmp>::iterator TagDescriptorHashIterator;
+        typedef unordered_map<const char *, TagDescriptor *, std::hash<const char *>, StrCmp> TagDescriptorHash;
+        typedef unordered_map<const char *, TagDescriptor *, std::hash<const char *>, StrCmp>::iterator TagDescriptorHashIterator;
 
     private:
         vector<TagDescriptor *> tags; ///< Vector of tags used to access by index.

@@ -26,6 +26,7 @@
 #include <unistd.h>
 #include "asim/agt_syntax.h"
 #include "asim/AGTTypes.h"
+#include <string.h>
 
 using namespace std;
 

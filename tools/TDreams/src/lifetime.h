@@ -61,7 +61,7 @@ class LIFETIME_CLASS
       public:
         static const INT32 NULL_DURATION = -1;
         
-        STAGE_CLASS(NodeId node_id, UINT32 cycle, char* edge_name=NULL,char* value=NULL):
+        STAGE_CLASS(NodeId node_id, UINT32 cycle, const char* edge_name=NULL,const char* value=NULL):
             node_id_(node_id),
             cycle_(cycle),
             duration_(NULL_DURATION),
@@ -85,16 +85,16 @@ class LIFETIME_CLASS
         ItemId itemId() const;
         void setItemId(UINT32 item_id);
         UINT32 getCycle() const { return cycle_; }
-        char* getEdgeName() const { return edge_name_; }
-        char* getEventValue() const { return generic_event_value; }
+        const char* getEdgeName() const { return edge_name_; }
+        const char* getEventValue() const { return generic_event_value; }
 
       private: 
         NodeId node_id_;
         UINT32 cycle_;
         INT32 duration_;
         ItemId item_id_;
-        char* edge_name_;          // Should be NULL if this isn't an edge stage or a generic event
-        char* generic_event_value; // Should be NULL if this isn't a generic event
+        const char* edge_name_;          // Should be NULL if this isn't an edge stage or a generic event
+        const char* generic_event_value; // Should be NULL if this isn't a generic event
     };
 
     class start_time_comparator {
@@ -155,8 +155,8 @@ class LIFETIME_CLASS
     explicit LIFETIME_CLASS(TransactionId id);
     ~LIFETIME_CLASS();
 
-    void addStage(NodeId node_id, ItemId item_id, UINT32 cycle, char* edge_name=NULL, char* generic_event=NULL);
-    void addFutureStage(NodeId node_id, ItemId item_id, UINT32 cycle, char* edge_name, char* generic_event=NULL);
+    void addStage(NodeId node_id, ItemId item_id, UINT32 cycle, const char* edge_name=NULL, const char* generic_event=NULL);
+    void addFutureStage(NodeId node_id, ItemId item_id, UINT32 cycle, const char* edge_name, const char* generic_event=NULL);
     void endLastStage(UINT32 cycle);
     void endStage(NodeId node_id, ItemId item_id, UINT32 cycle);
     TransactionId id() const;

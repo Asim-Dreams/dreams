@@ -151,7 +151,7 @@ LIFETIME_CLASS::~LIFETIME_CLASS()
 }
 
 void
-LIFETIME_CLASS::addStage(NodeId node_id, ItemId item_id, UINT32 cycle, char* edge_name, char* generic_event_value)
+LIFETIME_CLASS::addStage(NodeId node_id, ItemId item_id, UINT32 cycle, const char* edge_name, const char* generic_event_value)
 {
     while(!future_stages_.empty() && (future_stages_.top().getCycle() <= cycle))
     {
@@ -172,7 +172,7 @@ LIFETIME_CLASS::addStage(NodeId node_id, ItemId item_id, UINT32 cycle, char* edg
 };
 
 void
-LIFETIME_CLASS::addFutureStage(NodeId node_id, ItemId item_id, UINT32 cycle, char* edge_name, char* generic_event_value)
+LIFETIME_CLASS::addFutureStage(NodeId node_id, ItemId item_id, UINT32 cycle, const char* edge_name, const char* generic_event_value)
 {
     if (NODE_DB_CLASS::isActive(node_id))
     {

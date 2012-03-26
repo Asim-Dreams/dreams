@@ -19,7 +19,7 @@
 
 bin_PROGRAMS= dralTranslator
 
-dralTranslator_LDFLAGS= -ldral -lz
+dralTranslator_LDFLAGS= -lz $(ASIMCORE_LFLAGS)
 
 dralTranslator_SOURCES = dralTranslator.cpp
 

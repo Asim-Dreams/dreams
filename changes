@@ -10161,3 +10161,146 @@ Directory .
 
 
 - put GPL license notice into all source file headers
+
+----------
+mgambhir    Date: Mon Mar 26 16:11:45 EDT 2012  CSN: CSN-dreams-3
+                  Mon Mar 26 20:11:45 UTC 2012
+
+
+Directory .
+ configure                 Locally Modified            2 
+ Makefile.in               Locally Modified            2 
+ configure.in              Locally Modified            2 
+
+Directory scripts
+ config.guess              Locally Modified            2 
+ config.sub                Locally Modified            2 
+ ltmain.sh                 Locally Modified            2 
+ install-sh                Locally Modified            2 
+
+Directory .
+ config.h                  Locally Modified            2 
+
+Directory tools/TDreams
+ Makefile.in               Locally Modified            2 
+
+Directory tools/TDreams/src
+ Makefile.in               Locally Modified            2 
+ lifetime.h                Locally Modified            2 
+ listener.h                Locally Modified            2 
+ lifetime.cpp              Locally Modified            2 
+ listener.cpp              Locally Modified            2 
+ Makefile.am               Locally Modified            2 
+
+Directory tools
+ Makefile.in               Locally Modified            2 
+
+Directory tools/stb2stc
+ Makefile.in               Locally Modified            2 
+
+Directory tools/stb2stc/src
+ Makefile.in               Locally Modified            2 
+ stb2stc.cpp               Locally Modified            2 
+
+Directory tools/stc2stb
+ Makefile.in               Locally Modified            2 
+
+Directory tools/stc2stb/src
+ Makefile.in               Locally Modified            2 
+
+Directory tools/1Dream
+ Makefile.in               Locally Modified            2 
+
+Directory tools/1Dream/src
+ Makefile.in               Locally Modified            2 
+ Makefile.am               Locally Modified            2 
+ Ruler.cpp                 Locally Modified            2 
+
+Directory tools/Dreams
+ Makefile.in               Locally Modified            2 
+
+Directory tools/Dreams/src
+ Makefile.in               Locally Modified            2 
+
+Directory tools/Dreams/src/dialogs/event
+ EventDialog_moc.cpp       Locally Modified            2 
+
+Directory tools/Dreams/src/dDB
+ DBListener.h              Locally Modified            2 
+ TagDescVector.h           Locally Modified            2 
+
+Directory tools/Dreams/src/dDB/trackheap
+ TagVecValue64.cpp         Locally Modified            2 
+ TagVecValue64Dense.cpp    Locally Modified            2 
+ TagVecValue64NF.cpp       Locally Modified            2 
+ TagVecValue64NFDense.cpp  Locally Modified            2 
+
+Directory tools/Dreams/src/dDB
+ ClockDomainMgr.cpp        Locally Modified            2 
+ DBListener.cpp            Locally Modified            2 
+
+Directory tools/Dreams/src/adf
+ lexer.ll                  Locally Modified            2 
+
+Directory tools/Dreams/src
+ Makefile.am               Locally Modified            2 
+
+Directory tools/vcgDreams/vcgen
+ Makefile.in               Locally Modified            2 
+
+Directory tools/vcgDreams/vcgen/src
+ Makefile.in               Locally Modified            2 
+
+Directory tools/vcgDreams
+ Makefile.in               Locally Modified            2 
+
+Directory tools/dralTranslator
+ Makefile.in               Locally Modified            2 
+
+Directory tools/dralTranslator/src
+ Makefile.in               Locally Modified            2 
+ Makefile.am               Locally Modified            2 
+ dralTranslator.cpp        Locally Modified            2 
+
+Directory tools/dral2PTV
+ Makefile.in               Locally Modified            2 
+
+Directory tools/dral2PTV/src
+ Makefile.in               Locally Modified            2 
+
+Directory .
+ config.h.in               Locally Modified            2 
+ aclocal.m4                Locally Modified            2 
+
+- Sync with Intel repository
+
+r342
+Author:	fguim
+Last modification:	Rev 342 - 2011-03-31 16:17:31
+Log message:	CSN: CSN-dreams-342
+
+
+The dralTranslator has been extended in order to be able to normalize the cycle numbers located in a trace. This has been done in order to avoid problems when loading traces to dreams with larger cycle numbers (i.e: > 2 M). With this extension two new knobs are specified: the first one specifies the amount of cycles that have to be subtracted to the cycle number, and the second specifies the frequency assumed for this cycle count. If other frequencies are used in the dreams the cycle offset will be scaled according the clock domain and the previous cycle offset. 
+
+Cycle_clock_M = cycle_from_trace - offset_baseline*(freq_clock_M/freq_baseline)
+
+r343
+Author:	mgambhir
+Last modification:	Rev 343 - 2012-03-15 21:49:28
+Log message:	CSN: CSN-dreams-343
+
+
+- A number of fixes to make all Dreams tools compile with latest build
+tools and on SLES 10, 64 bit machines
+
+- FIXMEs still a lot of warnings get thrown.
+
+
+r344
+Author:	cjbeckma
+Last modification:	Rev 344 - 2012-03-21 14:22:58
+Log message:	CSN: CSN-dreams-344
+
+
+- a few minor tweaks to get Dreams to build on 64-bit machines
+with GCC 4, etc.

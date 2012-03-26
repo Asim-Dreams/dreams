@@ -19,7 +19,7 @@
 
 bin_PROGRAMS= 1Dream 
 
-1Dream_LDFLAGS =	$(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) -lm
+1Dream_LDFLAGS =	$(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) $(ASIMCORE_LFLAGS) -lm
 
 
 # ---------------------------------------------------------------------------

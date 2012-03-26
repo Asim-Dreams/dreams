@@ -6,8 +6,6 @@
 #include "expressions/Expression.h"
 #include "parser.h"
 
-#define yywrap() 1
-
 YY_BUFFER_STATE curBuf;
 
 

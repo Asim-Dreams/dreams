@@ -19,7 +19,7 @@
 
 bin_PROGRAMS= dreams
 
-dreams_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) -lm -lpthread
+dreams_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) $(ASIMCORE_LFLAGS) -lm -lpthread -lfl
 
 AM_YFLAGS = -d
 
@@ -414,9 +414,9 @@ EXTRA_DIST =	help \
 
 # Note: QT .h files produce tons of warning if -Wall is present
 # so we redefine the warning flags to an intermediate level:
-WARNFLAGS = -ansi -pedantic -W -Wall -Wcast-align -Wformat=2 -Wconversion -Wno-unused -Wno-parentheses -Wno-long-long
+WARNFLAGS = -ansi -pedantic -W -Wcast-align -Wformat=2 -Wconversion -Wno-unused -Wno-parentheses -Wno-long-long
 
-AM_CXXFLAGS += $(QTINCDIR)
+AM_CXXFLAGS += $(QTINCDIR) -std=c++0x 
 
 CLEANFILES = adf/parser.cc \
     adf/lexer.cc \

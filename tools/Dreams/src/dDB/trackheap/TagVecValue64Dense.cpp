@@ -24,6 +24,8 @@
 #include "dDB/taghandler/TagHandler.h"
 #include "dDB/trackheap/TagVecValue64Dense.h"
 
+#include <stdio.h>
+
 /*
  * Creator of this class. Gets the static instances and allocates
  * space for the entries.

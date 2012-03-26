@@ -14,7 +14,7 @@
 
 #include <private/qucomextra_p.h>
 #if !defined(Q_MOC_OUTPUT_REVISION) || (Q_MOC_OUTPUT_REVISION != 26)
-#error "This file was generated using the moc from 3.3.1. It"
+#error "This file was generated using the moc from 3.3.4. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif

@@ -29,7 +29,9 @@
 #include "dral_event_types.h"
 #include "comparators.h"
 #include "dumpers.h"
-#include <asim/dralListenerConverter.h>
+#include <asim/dralListenerConverter.h>a
+
+#include <string.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -120,21 +122,21 @@ class LISTENER_CLASS : public DRAL_LISTENER_OLD_CLASS
         }
             
     };
-    virtual void Error (char * error){
+    virtual void Error (const char * error){
         std::cout << "ERROR: " << error << std::endl;
         ++numDralEvents[ET_ERROR];
     };
-    virtual void NonCriticalError (char * error){
+    virtual void NonCriticalError (const char * error){
         ++numDralEvents[ET_NON_CRITICAL_ERROR];
     };
     virtual void Version (UINT16 version){
         ++numDralEvents[ET_VERSION];
     };
     virtual void NewNode (
-        UINT16 node_id, char * node_name,UINT16 parent_id, UINT16 instance);
+        UINT16 node_id, const char * node_name,UINT16 parent_id, UINT16 instance);
     virtual void NewEdge (
         UINT16 sourceNode, UINT16 destNode, UINT16 edge_id,
-        UINT32 bandwidth, UINT32 latency, char * name){
+        UINT32 bandwidth, UINT32 latency, const char * name){
         ++numDralEvents[ET_NEW_EDGE];
         Edge2Src[edge_id] = sourceNode;
         Edge2Dst[edge_id] = destNode;
@@ -142,68 +144,68 @@ class LISTENER_CLASS : public DRAL_LISTENER_OLD_CLASS
         EdgeName[edge_id] = strdup(name);
     };
     virtual void SetNodeLayout (
-        UINT16 node_id, UINT32 capacity, UINT16 dim, UINT32 capacities []){
+        UINT16 node_id, UINT32 capacity, UINT16 dim, const UINT32 capacities []){
         ++numDralEvents[ET_SET_NODE_LAYOUT];
     };
     virtual void EnterNode (
-        UINT16 node_id, UINT32 item_id, UINT16 dim, UINT32 position []);
+        UINT16 node_id, UINT32 item_id, UINT16 dim, const UINT32 position []);
 
     virtual void ExitNode (
-        UINT16 node_id, UINT32 item_id, UINT16 dim, UINT32 position []);
+        UINT16 node_id, UINT32 item_id, UINT16 dim, const UINT32 position []);
 
-    virtual void SetCycleTag(char tag_name [], UINT64 value){
+    virtual void SetCycleTag(const char tag_name [], UINT64 value){
         ++numDralEvents[ET_SET_CYCLE_TAG];
     };
-    virtual void SetCycleTagString(char tag_name [], char str []){
+    virtual void SetCycleTagString(const char tag_name [], const char str []){
         ++numDralEvents[ET_SET_CYCLE_TAG_STR];
     };
-    virtual void SetCycleTagSet(char tag_name [], UINT32 nval, UINT64 set []){
+    virtual void SetCycleTagSet(const char tag_name [], UINT32 nval, const UINT64 set []){
         ++numDralEvents[ET_SET_CYCLE_TAG_SET];
     };
-    virtual void SetItemTag(UINT32 item_id, char tag_name [], UINT64 value);
-    virtual void SetItemTagString(UINT32 item_id, char tag_name [], char str []);
+    virtual void SetItemTag(UINT32 item_id, const char tag_name [], UINT64 value);
+    virtual void SetItemTagString(UINT32 item_id, const char tag_name [], const char str []);
 
-    virtual void SetItemTagSet( UINT32 item_id, char tag_name [], UINT32 nval, UINT64 set []){
+    virtual void SetItemTagSet( UINT32 item_id, const char tag_name [], UINT32 nval, const UINT64 set []){
         std::string name(tag_name);
         ++numDralEvents[ET_SET_ITEM_TAG_SET];
     };
     virtual void SetNodeTag(
-        UINT16 node_id, char tag_name [], UINT64 value,
-        UINT16 level, UINT32 list []){
+        UINT16 node_id, const char tag_name [], UINT64 value,
+        UINT16 level, const UINT32 list []){
         ++numDralEvents[ET_SET_NODE_TAG];
     };
     virtual void SetNodeTagString(
-        UINT16 node_id, char tag_name [], char str [],
-        UINT16 level, UINT32 list []){
+        UINT16 node_id, const char tag_name [], const char str [],
+        UINT16 level, const UINT32 list []){
         ++numDralEvents[ET_SET_NODE_TAG_STR];
     }
     virtual void SetNodeTagSet(
-        UINT16 node_id, char tag_name [], UINT16 n, UINT64 set [],
-        UINT16 level, UINT32 list []){
+        UINT16 node_id, const char tag_name [], UINT16 n, const UINT64 set [],
+        UINT16 level, const UINT32 list []){
         ++numDralEvents[ET_SET_NODE_TAG_SET];
     }
-    virtual void Comment (UINT32 magic_num, char comment []){
+    virtual void Comment (UINT32 magic_num, const char comment []){
         ++numDralEvents[ET_COMMENT];
     };
 
-    virtual void CommentBin (UINT16 magic_num, char * cont, UINT32 length){
+    virtual void CommentBin (UINT16 magic_num, const char * cont, UINT32 length){
         ++numDralEvents[ET_COMMENT];
     };
     virtual void SetNodeInputBandwidth(UINT16 node_id, UINT32 bandwidth){};
     virtual void SetNodeOutputBandwidth(UINT16 node_id, UINT32 bandwidth){};
     virtual void StartActivity (UINT64 start_activity_cycle);
-    virtual void SetTagDescription (char tag_name [], char description []){};
+    virtual void SetTagDescription (const char tag_name [], const char description []){};
     virtual void SetTagSingleValue (
-        UINT32 item_id, char * tag_name,
+        UINT32 item_id, const char * tag_name,
         UINT64 value, UBYTE time_span_flags){
     };
     virtual void SetTagString (
-        UINT32 item_id, char * tag_name,
-        char * str, UBYTE time_span_flags){
+        UINT32 item_id, const char * tag_name,
+        const char * str, UBYTE time_span_flags){
         };
     virtual void SetTagSet (
-        UINT32 item_id, char * tag_name, UINT32 set_size,
-        UINT64 * set, UBYTE time_span_flags){
+        UINT32 item_id, const char * tag_name, UINT32 set_size,
+        const UINT64 * set, UBYTE time_span_flags){
         };
     virtual void EnterNode (
         UINT16 node_id, UINT32 item_id, UINT32 slot){
@@ -211,14 +213,14 @@ class LISTENER_CLASS : public DRAL_LISTENER_OLD_CLASS
     virtual void ExitNode (UINT16 node_id, UINT32 slot){};
     virtual void SetCapacity (
         UINT16 node_id, UINT32 capacity,
-        UINT32 capacities [], UINT16 dimensions){};
+        const UINT32 capacities [], UINT16 dimensions){};
     virtual void SetHighWaterMark (UINT16 node_id, UINT32 mark){};
-    virtual void Comment (char * comment){};
+    virtual void Comment (const char * comment){};
     virtual void AddNode (
-        UINT16 node_id, char * node_name,UINT16 parent_id, UINT16 instance){};
+        UINT16 node_id, const char * node_name,UINT16 parent_id, UINT16 instance){};
     virtual void AddEdge (
         UINT16 sourceNode, UINT16 destNode, UINT16 edge_id,
-        UINT32 bandwidth, UINT32 latency, char * name){};
+        UINT32 bandwidth, UINT32 latency,const char * name){};
 
     virtual void SetNodeClock(UINT16 node_id, UINT16 clock_id);
     virtual void NewClock(UINT16 clock_id, UINT64 freq, UINT16 skew, UINT16 divisions, const char name []);
@@ -266,7 +268,7 @@ class LISTENER_CLASS : public DRAL_LISTENER_OLD_CLASS
     void setOutputMode(OUTPUT_MODE mode);
     bool setOutputFile(const std::string o_file);
 
-    LIFETIME_DUMPER* LISTENER_CLASS::getNewDumper(std::ostream& o_stream = std::cout) const;
+    LIFETIME_DUMPER* getNewDumper(std::ostream& o_stream = std::cout) const;
 
     void
     setSilentMode(bool on)

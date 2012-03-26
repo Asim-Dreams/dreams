@@ -78,9 +78,9 @@ class Dict2064;
 class DralComment : public AMemObj
 {
     public:
-        DralComment(char * _comment);
-        DralComment(UINT32 _magic_num, char * _comment);
-        DralComment(UINT16 _magic_num, char * _comment, UINT32 _length);
+        DralComment(const char * _comment);
+        DralComment(UINT32 _magic_num, const char * _comment);
+        DralComment(UINT16 _magic_num, const char * _comment, UINT32 _length);
         virtual ~DralComment();
 
         UINT32 getMagicNumber() const;
@@ -162,17 +162,17 @@ class DBListener : public AMemObj, public StatObj, public DRAL_LISTENER_CLASS
 
         void EndSimulation();
 
-        void AddNode(UINT16 node_id, char * node_name, UINT16 parent_id, UINT16 instance);
-        void AddEdge(UINT16 sourceNode, UINT16 destNode, UINT16 edge_id, UINT32 bandwidth, UINT32 latency, char * name);
+        void AddNode(UINT16 node_id, const char * node_name, UINT16 parent_id, UINT16 instance);
+        void AddEdge(UINT16 sourceNode, UINT16 destNode, UINT16 edge_id, UINT32 bandwidth, UINT32 latency, const char * name);
         void SetCapacity(UINT16 node_id, UINT32 capacity, UINT32 * capacities, UINT16 dimensions);
 
         void SetHighWaterMark(UINT16 node_id, UINT32 mark);
 
-        void Comment(char * comment);
+        void Comment(const char * comment);
 
-        void Error(char * error);
+        void Error(const char * error);
 
-        void NonCriticalError(char * error);
+        void NonCriticalError(const char * error);
 
     // -----------------------------------------------
     // Dral (2) Listener Interface methods
@@ -180,8 +180,8 @@ class DBListener : public AMemObj, public StatObj, public DRAL_LISTENER_CLASS
 
         void Version(UINT16 version);
 
-        void NewNode(UINT16 node_id, char * node_name,UINT16 parent_id, UINT16 instance);
-        void NewEdge(UINT16 sourceNode, UINT16 destNode, UINT16 edge_id, UINT32 bandwidth, UINT32 latency, char * name);
+        void NewNode(UINT16 node_id, const char * node_name,UINT16 parent_id, UINT16 instance);
+        void NewEdge(UINT16 sourceNode, UINT16 destNode, UINT16 edge_id, UINT32 bandwidth, UINT32 latency, const char * name);
         void SetNodeLayout(UINT16 node_id, UINT32 capacity, UINT16 dim, UINT32 * capacities);
 
         void EnterNode(UINT16 node_id, UINT32 item_id, UINT16 dim, UINT32 * position);
@@ -199,15 +199,15 @@ class DBListener : public AMemObj, public StatObj, public DRAL_LISTENER_CLASS
         void SetNodeTagString(UINT16 node_id, UINT32 tag_idx, UINT32 str_idx, UINT16 level, UINT32 * list);
         void SetNodeTagSet(UINT16 node_id, UINT32 tag_idx, UINT16 n, UINT64 * set, UINT16 level, UINT32 * list);
 
-        void Comment(UINT32 magic_num, char * comment);
-        void CommentBin(UINT16 magic_num, char * comment, UINT32 length);
+        void Comment(UINT32 magic_num, const char * comment);
+        void CommentBin(UINT16 magic_num, const char * comment, UINT32 length);
 
         void StartActivity(UINT64);
 
         void SetNodeInputBandwidth(UINT16, UINT32);
         void SetNodeOutputBandwidth(UINT16, UINT32);
 
-        void SetTagDescription(UINT32 tag_idx, char * desc);
+        void SetTagDescription(UINT32 tag_idx, const char * desc);
 
         // -----------------------------------------------
         // Multi clock methods

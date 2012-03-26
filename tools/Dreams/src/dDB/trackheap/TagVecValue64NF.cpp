@@ -25,6 +25,8 @@
 #include "dDB/trackheap/TagVecValue64NF.h"
 #include "dDB/trackheap/TagVecValue64NFDense.h"
 
+#include <stdio.h>
+
 /**
  * Creator of this class. Just calls the TagVecValue64 creator.
  *
