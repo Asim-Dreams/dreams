@@ -10324,3 +10324,25 @@ Some changes to get dreams to build on Ubuntu. Added new places
 to look for qt3 and missing file ylwrap. 1Dreams now seems
 to build but Dreams has problems with libtool among other
 things.
+
+----------
+emer        Date: Wed Mar 28 07:53:58 EDT 2012  CSN: CSN-dreams-6
+                  Wed Mar 28 11:53:58 UTC 2012
+
+
+Directory debian
+ control                   Locally Added               0 
+ dirs                      Locally Added               0 
+ dreams.docs               Locally Added               0 
+ compat                    Locally Added               0 
+ changelog                 Locally Added               0 
+ copyright                 Locally Added               0 
+ rules                     Locally Added               0 
+ dreams.dirs               Locally Added               0 
+ README                    Locally Added               0 
+ README.Debian             Locally Added               0 
+
+Directory .
+ debian/                   Locally Added               0 
+
+Debian build instructions for dreams.
