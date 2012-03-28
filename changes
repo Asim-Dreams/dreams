@@ -10346,3 +10346,107 @@ Directory .
  debian/                   Locally Added               0 
 
 Debian build instructions for dreams.
+
+----------
+emer        Date: Wed Mar 28 08:55:43 EDT 2012  CSN: CSN-dreams-7
+                  Wed Mar 28 12:55:43 UTC 2012
+
+
+Directory tools
+ TDreams/                  Locally Modified            6 
+
+Directory tools/TDreams
+ src/                      Locally Modified            6 
+
+Directory tools
+ stb2stc/                  Locally Modified            6 
+
+Directory tools/stb2stc
+ src/                      Locally Modified            6 
+
+Directory tools
+ stc2stb/                  Locally Modified            6 
+
+Directory tools/stc2stb
+ src/                      Locally Modified            6 
+
+Directory tools
+ 1Dream/                   Locally Modified            6 
+
+Directory tools/1Dream
+ src/                      Locally Modified            6 
+
+Directory tools
+ Dreams/                   Locally Modified            6 
+
+Directory tools/Dreams
+ src/                      Locally Modified            6 
+
+Directory tools/Dreams/src/dialogs
+ find/                     Locally Modified            6 
+ event/                    Locally Modified            6 
+ viewchoice/               Locally Modified            6 
+ gotocycle/                Locally Modified            6 
+ tag/                      Locally Modified            6 
+ textoverview/             Locally Modified            6 
+ highlightmgr/             Locally Modified            6 
+
+Directory tools/Dreams/src
+ expressions/              Locally Modified            6 
+ avt/                      Locally Modified            6 
+
+Directory tools/Dreams/src/dockwin
+ disassembly/              Locally Modified            6 
+ joystick/                 Locally Modified            6 
+ log/                      Locally Modified            6 
+ pushout/                  Locally Modified            6 
+ tag/                      Locally Modified            6 
+ ancestor/                 Locally Modified            6 
+
+Directory tools/Dreams/src/layout
+ waterfall/                Locally Modified            6 
+ watch/                    Locally Modified            6 
+ resource/                 Locally Modified            6 
+ floorplan/                Locally Modified            6 
+
+Directory tools/Dreams/src
+ dDB/                      Locally Modified            6 
+
+Directory tools/Dreams/src/dDB
+ itemheap/                 Locally Modified            6 
+ aux/                      Locally Modified            6 
+ trackheap/                Locally Modified            6 
+ dralgraph/                Locally Modified            6 
+ taghandler/               Locally Modified            6 
+
+Directory tools/Dreams/src
+ adf/                      Locally Modified            6 
+ highlight/                Locally Modified            6 
+ mdi/                      Locally Modified            6 
+
+Directory tools
+ vcgDreams/                Locally Modified            6 
+
+Directory tools/vcgDreams
+ vcgen/                    Locally Modified            6 
+
+Directory tools/vcgDreams/vcgen
+ src/                      Locally Modified            6 
+
+Directory tools
+ dralTranslator/           Locally Modified            6 
+
+Directory tools/dralTranslator
+ src/                      Locally Modified            6 
+
+Directory tools
+ dral2PTV/                 Locally Modified            6 
+
+Directory tools/dral2PTV
+ src/                      Locally Modified            6 
+
+Directory .
+ tools/                    Locally Modified            6 
+ ./                        Locally Modified            6 
+
+Add lots of svn:ignore directives.
