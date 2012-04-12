@@ -2,9 +2,9 @@
 [Global]
 Description=Description of dreams
 Lock=asim-dreams
-CSN=CSN-dreams-7
+CSN=CSN-dreams-8
 Version=1
-Tag=HEAD
+Tag=v12.04
+Prerelease=1
 Name=dreams
-Dependencies=simcore/HEAD
 Buildorder=10

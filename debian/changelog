@@ -1,7 +1,7 @@
-dreams (12.02~svn20120228r360+lucid) lucid; urgency=low
+dreams (12.04~svn20120412r8+lucid) lucid; urgency=low
 
   [ Joel Emer ]
 
-  *   For v12.02. 
+  *   Release v12.04.
 
- -- Joel Emer <emer@csail.mit.edu>  Wed, 25 Jan 2012 14:57:16 -0500
+ -- Joel Emer <emer@csail.mit.edu>  Thu, 12 Apr 2012 12:43:11 -0400

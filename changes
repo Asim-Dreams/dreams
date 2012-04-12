@@ -10450,3 +10450,17 @@ Directory .
  ./                        Locally Modified            6 
 
 Add lots of svn:ignore directives.
+
+----------
+emer        Date: Thu Apr 12 13:42:10 EDT 2012  CSN: CSN-dreams-8
+                  Thu Apr 12 17:42:10 UTC 2012
+
+
+Directory debian
+ changelog                 Locally Modified            7 
+ rules                     Locally Modified            7 
+
+Directory admin/packages
+ dreams                    Locally Modified            7 
+
+Prepare for v12.04 release.
