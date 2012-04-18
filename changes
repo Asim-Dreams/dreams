@@ -10464,3 +10464,23 @@ Directory admin/packages
  dreams                    Locally Modified            7 
 
 Prepare for v12.04 release.
+
+----------
+mgambhir    Date: Wed Apr 18 07:03:56 EDT 2012  CSN: CSN-dreams-11
+                  Wed Apr 18 11:03:56 UTC 2012
+
+
+Directory tools/Dreams/src/dDB
+ TagDescVector.h           Locally Modified           10 
+ TagDescVector.cpp         Locally Modified           10 
+
+- Sync from Intel r345
+
+Author:	mgambhir
+Last modification:	Rev 345 - 2012-04-18 10:10:50
+Log message:	CSN: CSN-dreams-345
+
+- Bug fix that was resulting in ADF parsing failure. hash_map was
+replaced with unordered_map when porting to gcc 4.4.2. Key type
+const char * does not work in unordered_map since it tries to match the
+pointer address

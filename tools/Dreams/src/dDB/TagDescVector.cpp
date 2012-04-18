@@ -56,16 +56,13 @@ TagDescVector::TagDescVector(StrTable * _strtbl)
 TagDescVector::~TagDescVector()
 {
     TagDescriptor * tag;
-    char * name;
 
     // Erases all the allocated tag descriptors.
     while(hash.size() > 0)
     {
         tag = hash.begin()->second;
-        name = (char *) hash.begin()->first;
         hash.erase(hash.begin());
         delete tag;
-        free((void *) name);
     }
 }
 
