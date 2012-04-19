@@ -1,8 +1,8 @@
 /****************************************************************************
 ** EventDialog meta object code from reading C++ file 'EventDialog.h'
 **
-** Created: Tue Oct 31 00:50:54 2006
-**      by: The Qt MOC ($Id: EventDialog_moc.cpp 341 2006-10-31 12:19:54Z cjbeckma $)
+** Created: Thu Apr 19 13:55:54 2012
+**      by: The Qt MOC ($Id: qt/moc_yacc.cpp   3.3.8   edited Feb 2 14:59 $)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -14,7 +14,7 @@
 
 #include <private/qucomextra_p.h>
 #if !defined(Q_MOC_OUTPUT_REVISION) || (Q_MOC_OUTPUT_REVISION != 26)
-#error "This file was generated using the moc from 3.3.4. It"
+#error "This file was generated using the moc from 3.3.8b. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif

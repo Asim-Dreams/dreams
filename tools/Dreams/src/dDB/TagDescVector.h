@@ -26,10 +26,11 @@
 // General includes.
 #include <stdio.h>
 #include <vector>
+#include <iostream>
 using namespace std;
 #include <unordered_map>
 #include <functional>
-//using namespace __gnu_cxx;
+using namespace __gnu_cxx;
 
 // Dreams includes.
 #include "dDB/DralDBSyntax.h"
@@ -123,8 +124,8 @@ class TagDescVector : public AMemObj, public StatObj
         /*
          * Structs to implement the mapping using a stl hash map.
          */
-        typedef unordered_map<const char *, TagDescriptor *, std::hash<const char *>, StrCmp> TagDescriptorHash;
-        typedef unordered_map<const char *, TagDescriptor *, std::hash<const char *>, StrCmp>::iterator TagDescriptorHashIterator;
+        typedef unordered_map<std::string, TagDescriptor *> TagDescriptorHash;
+        typedef unordered_map<std::string, TagDescriptor *>::iterator TagDescriptorHashIterator;
 
     private:
         vector<TagDescriptor *> tags; ///< Vector of tags used to access by index.
@@ -265,7 +266,7 @@ TagDescVector::getTagId(QString name)
 
     // Tries to find the string in the hash.
     it = hash.find(name.latin1());
-
+    
     // The tag was already defined.
     if(it != hash.end())
     {
