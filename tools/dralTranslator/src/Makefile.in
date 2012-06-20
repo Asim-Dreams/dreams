@@ -230,7 +230,7 @@ target_alias = @target_alias@
 tooldir = @tooldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-dralTranslator_LDFLAGS = -lz $(ASIMCORE_LFLAGS)
+dralTranslator_LDFLAGS = $(ASIMCORE_LFLAGS) -lz
 dralTranslator_SOURCES = dralTranslator.cpp
 all: all-am
 
