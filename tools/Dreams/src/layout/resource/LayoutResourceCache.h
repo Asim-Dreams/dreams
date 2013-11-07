@@ -82,7 +82,7 @@ class LayoutResourceMapEntry
 class LayoutResourceCache
 {
     public:
-        LayoutResourceCache(UINT32 _numRows, UINT32 numGroups);
+        LayoutResourceCache(UINT32 _numRows, UINT32 numGroups, bool defaultGroupExpansion = false);
         virtual ~LayoutResourceCache();
 
         inline UINT32 getNumRows() const;

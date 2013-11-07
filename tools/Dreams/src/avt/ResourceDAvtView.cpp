@@ -2352,7 +2352,7 @@ ResourceDAvtView::foldingChanged()
     hlmgr->reset();
 
     // All the beziers are removed.
-    QPtrDictIterator<AnnotationItem> it = annCtrl->getIterator();
+    /*QPtrDictIterator<AnnotationItem> it = annCtrl->getIterator();
 
     while(it.current() != NULL)
     {
@@ -2362,7 +2362,8 @@ ResourceDAvtView::foldingChanged()
         {
             annCtrl->annotationRemove(bezier);
         }
-    }
+    }*/
+    ancWin->reset();
     repaintContents(true);
 }
 

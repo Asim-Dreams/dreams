@@ -31,7 +31,7 @@
  *
  * @return new object.
  */
-LayoutResourceCache::LayoutResourceCache(UINT32 _numRows, UINT32 numGroups)
+LayoutResourceCache::LayoutResourceCache(UINT32 _numRows, UINT32 numGroups, bool defaultGroupExpansion)
 {
     numRows = _numRows;
     // Allocates space for the maximum size. Just one allocation all the layout lifetime.
@@ -41,10 +41,11 @@ LayoutResourceCache::LayoutResourceCache(UINT32 _numRows, UINT32 numGroups)
     groupExpansion = new bool[numGroups];
     numVirtualRows = 0;
 
-    // All are expanded by default.
-    for(UINT32 i = 0; i < numGroups; i++)
+    // Only expand the first group by default
+    groupExpansion[0] = true;
+    for(UINT32 i = 1; i < numGroups; i++)
     {
-        groupExpansion[i] = true;
+        groupExpansion[i] = defaultGroupExpansion;
     }
 }
 

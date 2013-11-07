@@ -338,7 +338,7 @@ LayoutResource::computeLayoutPlainCache()
 {
     Q_ASSERT(plainCache == NULL);
 
-    plainCache = new LayoutResourceCache(getNumPhysicalRows(), getNumGroups());
+    plainCache = new LayoutResourceCache(getNumPhysicalRows(), getNumGroups(), true);
 
     // Starts the filling of the map.
     LayoutResourceNodeIterator it_node(nodeList); ///< Iterator of the nodes of the layout.

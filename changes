@@ -10484,3 +10484,21 @@ Log message:	CSN: CSN-dreams-345
 replaced with unordered_map when porting to gcc 4.4.2. Key type
 const char * does not work in unordered_map since it tries to match the
 pointer address
+
+----------
+mgambhir    Date: Thu Nov  7 14:46:50 EST 2013  CSN: CSN-dreams-18
+                  Thu Nov  7 19:46:50 UTC 2013
+
+
+Directory tools/Dreams/src/avt
+ ResourceDAvtView.cpp      Locally Modified           17 
+
+Directory tools/Dreams/src/layout/resource
+ LayoutResourceCache.h     Locally Modified           17 
+ LayoutResource.cpp        Locally Modified           17 
+ LayoutResourceCache.cpp   Locally Modified           17 
+
+Directory tools/Dreams/src/dDB/aux
+ FValueVector.h            Locally Modified           17 
+
+- Sync with Intel repository

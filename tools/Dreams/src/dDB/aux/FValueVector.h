@@ -25,6 +25,7 @@
 
 // General includes.
 #include <stdlib.h>
+#include <qtl.h>
 
 /**
   * @brief
