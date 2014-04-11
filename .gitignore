@@ -1,0 +1,270 @@
+
+# /
+/build-stamp
+/config.log
+/config.status
+/config.guess
+/stamp-h1
+/config.sub
+/libtool
+/Makefile
+
+# /debian/
+/debian/files
+/debian/dreams.debhelper.log
+/debian/dreams.substvars
+/debian/dreams
+
+# /tools/
+/tools/Makefile
+
+# /tools/1Dream/
+/tools/1Dream/Makefile
+
+# /tools/1Dream/src/
+/tools/1Dream/src/LittleSelectorImpl_moc.cpp
+/tools/1Dream/src/Main_moc.cpp
+/tools/1Dream/src/error_moc.cpp
+/tools/1Dream/src/.deps
+/tools/1Dream/src/Properties_moc.cpp
+/tools/1Dream/src/Makefile
+/tools/1Dream/src/SelectorImpl_moc.cpp
+/tools/1Dream/src/colors_moc.cpp
+/tools/1Dream/src/PropertiesImpl_moc.cpp
+/tools/1Dream/src/ColorsImpl_moc.cpp
+/tools/1Dream/src/Ruler_moc.cpp
+/tools/1Dream/src/1Dream
+/tools/1Dream/src/LittleSelector_moc.cpp
+/tools/1Dream/src/StripChartView_moc.cpp
+/tools/1Dream/src/Selector_moc.cpp
+
+# /tools/Dreams/
+/tools/Dreams/Makefile
+
+# /tools/Dreams/src/
+/tools/Dreams/src/preferences_moc.cpp
+/tools/Dreams/src/preferencesImpl_moc.cpp
+/tools/Dreams/src/text2dbrowser_moc.cpp
+/tools/Dreams/src/Dreams_moc.cpp
+/tools/Dreams/src/tagDescDialogs_moc.cpp
+/tools/Dreams/src/DreamsDB_moc.cpp
+/tools/Dreams/src/PreferenceMgr_moc.cpp
+/tools/Dreams/src/.deps
+/tools/Dreams/src/Makefile
+/tools/Dreams/src/ItemWFCombo_moc.cpp
+/tools/Dreams/src/HelpDreamsWindow_moc.cpp
+/tools/Dreams/src/TagSelector_moc.cpp
+/tools/Dreams/src/dreams
+/tools/Dreams/src/IOMgr_moc.cpp
+/tools/Dreams/src/ItemTabWidget_moc.cpp
+
+# /tools/Dreams/src/adf/
+/tools/Dreams/src/adf/ADFMgr_moc.cpp
+/tools/Dreams/src/adf/parser.cc
+/tools/Dreams/src/adf/parser.h
+/tools/Dreams/src/adf/lexer.cc
+/tools/Dreams/src/adf/.dirstamp
+/tools/Dreams/src/adf/.deps
+
+# /tools/Dreams/src/avt/
+/tools/Dreams/src/avt/ResourceDAvtView_moc.cpp
+/tools/Dreams/src/avt/FloorplanDAvtView_moc.cpp
+/tools/Dreams/src/avt/.dirstamp
+/tools/Dreams/src/avt/DAvtView_moc.cpp
+/tools/Dreams/src/avt/.deps
+/tools/Dreams/src/avt/WaterfallDAvtView_moc.cpp
+
+# /tools/Dreams/src/dDB/
+/tools/Dreams/src/dDB/.deps
+/tools/Dreams/src/dDB/.dirstamp
+
+# /tools/Dreams/src/dDB/aux/
+/tools/Dreams/src/dDB/aux/.deps
+/tools/Dreams/src/dDB/aux/.dirstamp
+
+# /tools/Dreams/src/dDB/dralgraph/
+/tools/Dreams/src/dDB/dralgraph/.deps
+/tools/Dreams/src/dDB/dralgraph/.dirstamp
+
+# /tools/Dreams/src/dDB/itemheap/
+/tools/Dreams/src/dDB/itemheap/.deps
+/tools/Dreams/src/dDB/itemheap/.dirstamp
+
+# /tools/Dreams/src/dDB/taghandler/
+/tools/Dreams/src/dDB/taghandler/.deps
+/tools/Dreams/src/dDB/taghandler/.dirstamp
+
+# /tools/Dreams/src/dDB/trackheap/
+/tools/Dreams/src/dDB/trackheap/.deps
+/tools/Dreams/src/dDB/trackheap/.dirstamp
+
+# /tools/Dreams/src/dialogs/event/
+/tools/Dreams/src/dialogs/event/.dirstamp
+/tools/Dreams/src/dialogs/event/EventDialogImpl_moc.cpp
+/tools/Dreams/src/dialogs/event/.deps
+
+# /tools/Dreams/src/dialogs/find/
+/tools/Dreams/src/dialogs/find/FindDialog_moc.cpp
+/tools/Dreams/src/dialogs/find/FindDialogImpl_moc.cpp
+/tools/Dreams/src/dialogs/find/.dirstamp
+/tools/Dreams/src/dialogs/find/.deps
+
+# /tools/Dreams/src/dialogs/gotocycle/
+/tools/Dreams/src/dialogs/gotocycle/.dirstamp
+/tools/Dreams/src/dialogs/gotocycle/GoToCycleDialog_moc.cpp
+/tools/Dreams/src/dialogs/gotocycle/GoToCycleDialogImpl_moc.cpp
+/tools/Dreams/src/dialogs/gotocycle/.deps
+
+# /tools/Dreams/src/dialogs/highlightmgr/
+/tools/Dreams/src/dialogs/highlightmgr/.dirstamp
+/tools/Dreams/src/dialogs/highlightmgr/.deps
+/tools/Dreams/src/dialogs/highlightmgr/HighLightMgrDialog_moc.cpp
+/tools/Dreams/src/dialogs/highlightmgr/HighLightMgrDialogImpl_moc.cpp
+
+# /tools/Dreams/src/dialogs/tag/
+/tools/Dreams/src/dialogs/tag/TagDialogImpl_moc.cpp
+/tools/Dreams/src/dialogs/tag/.deps
+/tools/Dreams/src/dialogs/tag/TagDialog_moc.cpp
+/tools/Dreams/src/dialogs/tag/MutableTagDialogFormImpl_moc.cpp
+/tools/Dreams/src/dialogs/tag/LongTagDialogFormImpl_moc.cpp
+/tools/Dreams/src/dialogs/tag/.dirstamp
+/tools/Dreams/src/dialogs/tag/MutableTagDialogForm_moc.cpp
+/tools/Dreams/src/dialogs/tag/LongTagDialogForm_moc.cpp
+
+# /tools/Dreams/src/dialogs/textoverview/
+/tools/Dreams/src/dialogs/textoverview/.dirstamp
+/tools/Dreams/src/dialogs/textoverview/.deps
+/tools/Dreams/src/dialogs/textoverview/TextOverviewDialog_moc.cpp
+/tools/Dreams/src/dialogs/textoverview/TextOverviewDialogImpl_moc.cpp
+
+# /tools/Dreams/src/dialogs/viewchoice/
+/tools/Dreams/src/dialogs/viewchoice/.dirstamp
+/tools/Dreams/src/dialogs/viewchoice/ViewChoiceDialog_moc.cpp
+/tools/Dreams/src/dialogs/viewchoice/ViewChoiceDialogImpl_moc.cpp
+/tools/Dreams/src/dialogs/viewchoice/.deps
+
+# /tools/Dreams/src/dockwin/ancestor/
+/tools/Dreams/src/dockwin/ancestor/AncestorWidgetImpl_moc.cpp
+/tools/Dreams/src/dockwin/ancestor/.dirstamp
+/tools/Dreams/src/dockwin/ancestor/AncestorWidget_moc.cpp
+/tools/Dreams/src/dockwin/ancestor/.deps
+/tools/Dreams/src/dockwin/ancestor/AncestorDockWin_moc.cpp
+
+# /tools/Dreams/src/dockwin/disassembly/
+/tools/Dreams/src/dockwin/disassembly/DisDockWinResource_moc.cpp
+/tools/Dreams/src/dockwin/disassembly/DisDockWinFloorplan_moc.cpp
+/tools/Dreams/src/dockwin/disassembly/.dirstamp
+/tools/Dreams/src/dockwin/disassembly/.deps
+/tools/Dreams/src/dockwin/disassembly/DisDockWin_moc.cpp
+
+# /tools/Dreams/src/dockwin/joystick/
+/tools/Dreams/src/dockwin/joystick/.dirstamp
+/tools/Dreams/src/dockwin/joystick/JoystickWidget_moc.cpp
+/tools/Dreams/src/dockwin/joystick/.deps
+/tools/Dreams/src/dockwin/joystick/JoystickDockWin_moc.cpp
+
+# /tools/Dreams/src/dockwin/log/
+/tools/Dreams/src/dockwin/log/LogDockWin_moc.cpp
+/tools/Dreams/src/dockwin/log/.dirstamp
+/tools/Dreams/src/dockwin/log/.deps
+
+# /tools/Dreams/src/dockwin/pushout/
+/tools/Dreams/src/dockwin/pushout/PushoutWidget_moc.cpp
+/tools/Dreams/src/dockwin/pushout/.dirstamp
+/tools/Dreams/src/dockwin/pushout/PushoutDockWin_moc.cpp
+/tools/Dreams/src/dockwin/pushout/.deps
+/tools/Dreams/src/dockwin/pushout/PushoutWidgetImpl_moc.cpp
+
+# /tools/Dreams/src/dockwin/tag/
+/tools/Dreams/src/dockwin/tag/.dirstamp
+/tools/Dreams/src/dockwin/tag/TagDockWin_moc.cpp
+/tools/Dreams/src/dockwin/tag/.deps
+
+# /tools/Dreams/src/expressions/
+/tools/Dreams/src/expressions/.deps
+/tools/Dreams/src/expressions/.dirstamp
+
+# /tools/Dreams/src/highlight/
+/tools/Dreams/src/highlight/HighLightMgrWFall_moc.cpp
+/tools/Dreams/src/highlight/HighLightMgr_moc.cpp
+/tools/Dreams/src/highlight/HighLightMgrResource_moc.cpp
+/tools/Dreams/src/highlight/HighLightMgrFloorplan_moc.cpp
+/tools/Dreams/src/highlight/.deps
+/tools/Dreams/src/highlight/.dirstamp
+
+# /tools/Dreams/src/layout/floorplan/
+/tools/Dreams/src/layout/floorplan/.deps
+/tools/Dreams/src/layout/floorplan/.dirstamp
+
+# /tools/Dreams/src/layout/resource/
+/tools/Dreams/src/layout/resource/.deps
+/tools/Dreams/src/layout/resource/.dirstamp
+
+# /tools/Dreams/src/layout/watch/
+/tools/Dreams/src/layout/watch/.deps
+/tools/Dreams/src/layout/watch/.dirstamp
+
+# /tools/Dreams/src/layout/waterfall/
+/tools/Dreams/src/layout/waterfall/.deps
+/tools/Dreams/src/layout/waterfall/.dirstamp
+
+# /tools/Dreams/src/mdi/
+/tools/Dreams/src/mdi/MDIWaterfallWindow_moc.cpp
+/tools/Dreams/src/mdi/MDIResourceWindow_moc.cpp
+/tools/Dreams/src/mdi/MDIFloorplanWindow_moc.cpp
+/tools/Dreams/src/mdi/MDIResourceWindowFold_moc.cpp
+/tools/Dreams/src/mdi/MDIWatchWindow_moc.cpp
+/tools/Dreams/src/mdi/MDIResourceWindowCombo_moc.cpp
+/tools/Dreams/src/mdi/.deps
+/tools/Dreams/src/mdi/.dirstamp
+/tools/Dreams/src/mdi/MDIDreamsWindow_moc.cpp
+
+# /tools/TDreams/
+/tools/TDreams/Makefile
+
+# /tools/TDreams/src/
+/tools/TDreams/src/.deps
+/tools/TDreams/src/Makefile
+/tools/TDreams/src/tdreams
+
+# /tools/dral2PTV/
+/tools/dral2PTV/Makefile
+
+# /tools/dral2PTV/src/
+/tools/dral2PTV/src/.deps
+/tools/dral2PTV/src/Makefile
+
+# /tools/dralTranslator/
+/tools/dralTranslator/Makefile
+
+# /tools/dralTranslator/src/
+/tools/dralTranslator/src/.deps
+/tools/dralTranslator/src/Makefile
+/tools/dralTranslator/src/dralTranslator
+
+# /tools/stb2stc/
+/tools/stb2stc/Makefile
+
+# /tools/stb2stc/src/
+/tools/stb2stc/src/stb2stc
+/tools/stb2stc/src/.deps
+/tools/stb2stc/src/Makefile
+
+# /tools/stc2stb/
+/tools/stc2stb/Makefile
+
+# /tools/stc2stb/src/
+/tools/stc2stb/src/stc2stb
+/tools/stc2stb/src/.deps
+/tools/stc2stb/src/Makefile
+
+# /tools/vcgDreams/
+/tools/vcgDreams/.deps
+/tools/vcgDreams/Makefile
+
+# /tools/vcgDreams/vcgen/
+/tools/vcgDreams/vcgen/Makefile
+
+# /tools/vcgDreams/vcgen/src/
+/tools/vcgDreams/vcgen/src/.deps
+/tools/vcgDreams/vcgen/src/Makefile
