@@ -1,7 +1,7 @@
-dreams (12.04~git1397231363r197b07a8f4cb5cb751235fa0239b4162aca107a0+lucid) lucid; urgency=low
+dreams (14.08~git1406924189rff5ee2f83d4224479fc6d3f0f6e141d59046bff7+lucid) lucid; urgency=low
 
   [ Joel Emer ]
 
-  *   Release v12.04.
+  *   Release v14.08.
 
- -- Joel Emer <emer@csail.mit.edu>  Thu, 12 Apr 2012 12:43:11 -0400
+ -- Joel Emer <emer@csail.mit.edu>  Tue, 05 Aug 2014 15:03:11 -0400
