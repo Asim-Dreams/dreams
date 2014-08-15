@@ -5,6 +5,6 @@ Lock=asim-dreams
 CSN=CSN-dreams-18
 Version=1
 Tag=v14.08
-Prerelease=1
+Prerelease=0
 Name=dreams
 Buildorder=10
