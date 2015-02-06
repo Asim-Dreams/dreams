@@ -228,6 +228,12 @@ DreamsDB::parseADF(QString defaultADF, QString paramADF)
                 break;
             }
 
+            case DREAMS2_SETENV_MAGIC_NUMBER:
+            {
+                putenv(comment->getComment());
+                break;
+            }
+
             default:
                 break;
         }

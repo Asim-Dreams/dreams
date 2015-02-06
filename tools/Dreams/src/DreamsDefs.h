@@ -52,6 +52,7 @@
 
 #define DREAMS2_SESSION_MAGIC_NUMBER      0xfedeecdf
 #define DREAMS2_EMBEDDED_ADF_MAGIC_NUMBER 0x0adf
+#define DREAMS2_SETENV_MAGIC_NUMBER 0x05e7
 
 // Clocking base interval
 #define BASE_INTERVAL 1000
