@@ -146,7 +146,7 @@ AC_DEFUN(FIND_QT, [
 
     AC_SUBST(QT)
 
-    FIND_MOC($with_qt_moc $with_qt_dirx $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
+    FIND_MOC($with_qt_moc $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/share/qt3 ${prefix}/lib/qt /usr/share/qt3 /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
     if test "X$QTMOCDIR" = "X"; then
         echo ""
         echo "Qt's moc not found! If you have installed Qt in an"
@@ -166,7 +166,7 @@ AC_DEFUN(FIND_QT, [
     dnl find uic
     dnl
 
-    FIND_UIC($with_qt_uic $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
+    FIND_UIC($with_qt_uic $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/share/qt3 ${prefix}/lib/qt /usr/share/qt3 /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
     if test "X$QTUICDIR" = "X"; then
         echo ""
         echo "Qt's uic not found! If you have installed Qt in an"
@@ -186,7 +186,7 @@ AC_DEFUN(FIND_QT, [
     dnl find qt libraries
     dnl
 
-    FIND_QT_LIBS($with_qt_libs $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4/lib ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/lib /usr/local/lib /usr/X11R6/lib)
+    FIND_QT_LIBS($with_qt_libs $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4/lib ${prefix}/share/qt3 ${prefix}/lib/qt /usr/share/qt3 /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/lib /usr/local/lib /usr/X11R6/lib)
     if test "X$QTLIBDIR" = "X"
     then
         echo ""
@@ -210,7 +210,7 @@ AC_DEFUN(FIND_QT, [
     dnl find qt headers
     dnl
 
-    FIND_QT_INCLUDES($with_qt_includes $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/lib/qt /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/include /usr/include/qt3 /usr/include/qt /usr/local/include /usr/X11R6/include/qt3)
+    FIND_QT_INCLUDES($with_qt_includes $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/share/qt3 ${prefix}/lib/qt /usr/share/qt3 /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/include /usr/include/qt3 /usr/include/qt /usr/local/include /usr/X11R6/include/qt3)
     if test "X$QTINCDIR" = "X"
     then
         echo ""
@@ -283,14 +283,14 @@ AC_DEFUN(FIND_ASIM_CORE_DIR,[
                     LOCAL_ASIMCORELIBDIRS="$LOCAL_ASIMCORELIBDIRS $dir/lib/lib$i.a"
                     AC_MSG_RESULT("lib$i.a found in $dir")
                 else
-		    if test -f $dir/lib/lib$i.a
+		    if test -f $dir/lib/lib$i/lib$i.a
                     then	
 			LOCAL_ASIMCOREINCS="$LOCAL_ASIMCOREINCS -I$dir/lib/lib$i/include/"
                     	LOCAL_ASIMCORELIBDIRS="$LOCAL_ASIMCORELIBDIRS $dir/lib/lib$i/lib$i.a"
-                    	AC_MSG_RESULT("lib$i.a found in $dir")
-                    else
-                    	ASIMCORELIBS="$ASIMCORELIBS -l$i"
-                    	AC_MSG_RESULT("lib$i.a not found will look in $prefix")
+                    	AC_MSG_RESULT("lib$i.a found in local build $dir")
+dnl                    else
+dnl                    	ASIMCORELIBS="$ASIMCORELIBS -l$i"
+dnl                    	AC_MSG_RESULT("lib$i.a not found will look in $prefix")
 		    fi
                 fi
             done
@@ -527,7 +527,7 @@ AC_SUBST(NO_GUI)
 asimcore_dir=`awb-resolver admin/packages/asimcore | sed 's/admin\/packages\/asimcore//'`
 
 dnl check for asimcore
-FIND_ASIM_CORE_DIR($with_asim_core_dir /usr `dirname $PWD`/asim-simcore $asimcore_dir)
+FIND_ASIM_CORE_DIR($with_asim_core_dir `dirname $PWD`/asim-simcore `dirname $PWD`/asimcore $asimcore_dir /usr)
 FIND_ASIM_DIR($with_asim_dir /usr /usr/local $prefix)
 ASIMCORE_CFLAGS="$LOCAL_ASIMCOREINCS $GLOBAL_ASIMCOREINCS"
 ASIMCORE_LFLAGS="$LOCAL_ASIMCORELIBDIRS $GLOBAL_ASIMCORELIBDIRS $ASIMCORELIBS"

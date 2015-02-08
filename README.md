@@ -48,8 +48,8 @@ Dependenecies:
 
 * Qt3 - version 3.0.4 or later
 
-* Libraries from asim-core. If not installed or available in
-  ../asim-core, then check out the ./confgure switches on
+* Libraries from asimcore. If not installed or available in
+  ../asimcore, then check out the ./confgure switches on
   how to find them.
 
 Build procedure:

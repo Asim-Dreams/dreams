@@ -1,7 +1,7 @@
 Source: dreams
 Priority: optional
 Maintainer:  Asim/Awb Software Releases <releases@asim.csail.mit.edu>
-Build-Depends: debhelper (>= 7), autotools-dev, libqt3-mt-dev, qt3-apps-dev, qt3-assistant, libreadline-dev
+Build-Depends: debhelper (>= 7), autotools-dev, libqt3-mt-dev, qt3-apps-dev, qt3-assistant, libtool, libreadline-dev, libxml2-dev, libncurses5-dev, bison, flex, apache2-utils
 Standards-Version: 3.8.1
 Section: libs
 Homepage: http://asim.csail.mit.edu

@@ -1,5 +1,13 @@
+# Editor and OS temporary files
+*~
+\#*#
+*.DS_Store
+
+# Build itermediate files
+*.o
 
 # /
+/autom4te.cache
 /build-stamp
 /config.log
 /config.status
