@@ -22,7 +22,7 @@
 #ifndef ITEM_TAGS_H
 #define ITEM_TAGS_H
 
-#include <asim/syntax.h>
+#include "asim/agt_syntax.h"
 #include <string>
 #include <map>
 #include <deque>

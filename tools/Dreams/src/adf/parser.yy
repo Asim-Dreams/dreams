@@ -4,7 +4,7 @@
 #include "../expressions/Expressions.h"
 #include "parserCtrl.h"
 
-void yyerror(char *);
+void yyerror(void * yyctl, char *);
 int  yylex(); 
 Expression *BinOp(DralDB * draldb, ExpressionOperatorType, Expression *left, Expression *right);
 Expression *UnaryOp(ExpressionOperatorType, Expression *left);
@@ -13,13 +13,15 @@ Expression *MapOp(DreamsDB *db, Expression *, const char *, UINT64, UINT64);
 extern ExpressionList  *parseTree;
 QString errstr;
 
-#define YYPARSE_PARAM yyctl
+//#define YYPARSE_PARAM yyctl
 #define DRALDB     (((yyctl_t *)yyctl)->draldb)
 #define DREAMSDB   (((yyctl_t *)yyctl)->dreamsdb)
 #define CHECK(a) if ( (a) == NULL ) YYERROR; 
 
 
 %}
+
+%parse-param {void * yyctl}
 
 /*  
  * Literal tokens 
@@ -262,6 +264,6 @@ MapOp(DreamsDB *db, Expression *idx, const char *mapname, UINT64 min, UINT64 max
  return new ExpressionMap(idx, map, min, max);
 }
 
-void yyerror(char *msg){
+void yyerror(void * yyctl, char *msg){
 	errstr = msg;
 }
