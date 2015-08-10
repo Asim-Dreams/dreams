@@ -20,10 +20,10 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl This is the configure.in file for asim-dreams.
 
-AC_INIT([ASIM dreams], [1.3a], [eric.borch@intel.com], [asim-dreams])
+AC_INIT([ASIM dreams],[1.3a],[eric.borch@intel.com],[asim-dreams])
 
 dnl required autoconf version
-AC_PREREQ(2.61) 
+AC_PREREQ([2.69]) 
 
 dnl Use scripts in ./scripts
 AC_CONFIG_AUX_DIR(scripts)
@@ -50,7 +50,7 @@ dnl
 dnl FIND_QT(<dirs>)
 dnl
 
-AC_DEFUN(FIND_MOC,[
+AC_DEFUN([FIND_MOC],[
     AC_MSG_CHECKING("for Qt moc")
 
     for dir in $1
@@ -71,7 +71,7 @@ AC_DEFUN(FIND_MOC,[
     done
 ])
 
-AC_DEFUN(FIND_UIC,[
+AC_DEFUN([FIND_UIC],[
     AC_MSG_CHECKING("for Qt uic")
 
     for dir in $1
@@ -92,7 +92,7 @@ AC_DEFUN(FIND_UIC,[
     done
 ])
 
-AC_DEFUN(FIND_QT_LIBS,[
+AC_DEFUN([FIND_QT_LIBS],[
     AC_MSG_CHECKING("for Qt 3.x.x libraries")
 
     QTLIBS="qt-mt qt"
@@ -120,7 +120,7 @@ AC_DEFUN(FIND_QT_LIBS,[
     done
 ])
 
-AC_DEFUN(FIND_QT_INCLUDES,[
+AC_DEFUN([FIND_QT_INCLUDES],[
     AC_MSG_CHECKING("for Qt 3.x.x include files")
 
     for dir in $1
@@ -141,7 +141,7 @@ AC_DEFUN(FIND_QT_INCLUDES,[
     done
 ])
 
-AC_DEFUN(FIND_QT, [
+AC_DEFUN([FIND_QT], [
     qt_available=1;
 
     AC_SUBST(QT)
@@ -230,7 +230,7 @@ AC_DEFUN(FIND_QT, [
     fi    
 ])
 
-AC_DEFUN(FIND_GUI, [
+AC_DEFUN([FIND_GUI], [
 
     AC_PATH_XTRA
 
@@ -263,10 +263,10 @@ AC_DEFUN(FIND_GUI, [
 
 ])
 
-AC_DEFUN(FIND_ASIM_CORE_DIR,[
+AC_DEFUN([FIND_ASIM_CORE_DIR],[
     AC_MSG_CHECKING("for Asim core directory")
 
-    TLIBS="agt dral draldb"
+    TLIBS="dral draldb"
 
     for i in $TLIBS
     do
@@ -323,7 +323,7 @@ dnl                    	AC_MSG_RESULT("lib$i.a not found will look in $prefix")
     fi
 ])
 
-AC_DEFUN(FIND_ASIM_DIR,[
+AC_DEFUN([FIND_ASIM_DIR],[
     AC_MSG_CHECKING("for Asim directory")
 
     for dir in $1
@@ -354,8 +354,7 @@ dnl
 dnl --enable-distcc
 dnl
 AC_ARG_ENABLE([distcc],
-      AC_HELP_STRING([--enable-distcc=ARG],
-                     [use distcc compiler [[ARG=no|yes]] (default=no)]),
+      AS_HELP_STRING([--enable-distcc=ARG],[use distcc compiler [[ARG=no|yes]] (default=no)]),
       asim_cv_enable_distcc=$enableval,
       asim_cv_enable_distcc=no)
 
@@ -369,8 +368,7 @@ dnl
 dnl --enable-warning
 dnl
 AC_ARG_ENABLE([warning],
-      AC_HELP_STRING([--enable-warning=ARG],
-                     [warning level [[ARG=no|warn|error]] (default=warn)]),
+      AS_HELP_STRING([--enable-warning=ARG],[warning level [[ARG=no|warn|error]] (default=warn)]),
       asim_cv_enable_warning=$enableval,
       asim_cv_enable_warning=warn)
 
@@ -396,8 +394,7 @@ dnl
 dnl --enable-optimize
 dnl
 AC_ARG_ENABLE([optimize],
-      AC_HELP_STRING([--enable-optimize=ARG],
-                     [optimizations [[ARG=no|yes|high]] (default=yes)]),
+      AS_HELP_STRING([--enable-optimize=ARG],[optimizations [[ARG=no|yes|high]] (default=yes)]),
       asim_cv_enable_optimize=$enableval,
       asim_cv_enable_optimize=yes)
 
@@ -417,8 +414,8 @@ fi
 AC_SUBST(OPTFLAGS)
 
 dnl pull all flags together
-AM_CXXFLAGS='$(WARNFLAGS) $(OPTFLAGS) $(COREFLAGS) $(COREINCS) $(ASIMCORE_CFLAGS)'
-AM_LDFLAGS='$(CORELIBS) $(ASIMCORE_LFLAGS)'
+AM_CXXFLAGS='$(WARNFLAGS) $(OPTFLAGS) $(COREFLAGS) $(COREINCS) $(ASIMCORE_CFLAGS) $(AGT_CFLAGS)'
+AM_LDFLAGS='$(CORELIBS) $(ASIMCORE_LFLAGS) $(AGT_LFLAGS)'
 AC_SUBST(AM_CXXFLAGS)
 AC_SUBST(AM_LDFLAGS)
 
@@ -475,8 +472,8 @@ AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 dnl tools for building libraries
-AM_DISABLE_SHARED
-AM_PROG_LIBTOOL
+AC_DISABLE_SHARED([])
+LT_INIT
 
 #dnl Require lex and yacc
 # Sometimes Flex is installed as Lex, e.g., NetBSD.
@@ -509,8 +506,7 @@ dnl TBD
 dnl Handle gui-based stuff
 
 AC_ARG_ENABLE([gui],
-      AC_HELP_STRING([--enable-gui=ARG],
-         [build gui-based programs [[ARG=no|yes]] (default=yes)]),
+      AS_HELP_STRING([--enable-gui=ARG],[build gui-based programs [[ARG=no|yes]] (default=yes)]),
       asim_cv_enable_gui=$enableval,
       asim_cv_enable_gui=yes)
 
@@ -534,11 +530,15 @@ ASIMCORE_LFLAGS="$LOCAL_ASIMCORELIBDIRS $GLOBAL_ASIMCORELIBDIRS $ASIMCORELIBS"
 TWODREAMS_CFLAGS="$LOCAL_2DREAMSINCS"
 TWODREAMS_LFLAGS="$LOCAL_2DREAMSLIBDIRS $TWODREAMSLIBS"
 TDREAMS_CFLAGS="-I./Loki-Lib/ -I/usr/include/libxml2/"
+AGT_CFLAGS="-I$ac_pwd/lib/libagt/include"
+AGT_LFLAGS="$ac_pwd/lib/libagt/libagt.a"
 AC_SUBST(TWODREAMS_CFLAGS)
 AC_SUBST(TWODREAMS_LFLAGS)
 AC_SUBST(ASIMCORE_CFLAGS)
 AC_SUBST(ASIMCORE_LFLAGS)
 AC_SUBST(TDREAMS_CFLAGS)
+AC_SUBST(AGT_CFLAGS)
+AC_SUBST(AGT_LFLAGS)
 
 dnl Define LINK... 
 
@@ -550,12 +550,8 @@ dnl
 dnl some glob libraries do not support tilde and brace expansion
 dnl
 AC_MSG_CHECKING(for define of GLOB_TILDE)
-AC_TRY_COMPILE(
-  [#include <glob.h>],
-  [int foo = GLOB_TILDE;],
-  have_glob_brace=1,
-  have_glob_brace=0
-)
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <glob.h>]], [[int foo = GLOB_TILDE;]])],[have_glob_brace=1],[have_glob_brace=0
+])
 if test $have_glob_brace = 1 ; then
   AC_MSG_RESULT(yes)
 else
@@ -565,12 +561,8 @@ else
     [stub out GLOB_TILDE if not defined by system headers])
 fi
 AC_MSG_CHECKING(for define of GLOB_BRACE)
-AC_TRY_COMPILE(
-  [#include <glob.h>],
-  [int foo = GLOB_BRACE;],
-  have_glob_brace=1,
-  have_glob_brace=0
-)
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <glob.h>]], [[int foo = GLOB_BRACE;]])],[have_glob_brace=1],[have_glob_brace=0
+])
 if test $have_glob_brace = 1 ; then
   AC_MSG_RESULT(yes)
 else
@@ -659,7 +651,18 @@ AC_CHECK_HEADERS(fcntl.h limits.h unistd.h)
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_MODE_T
 AC_TYPE_SIZE_T
-AC_TYPE_SIGNAL
+AC_DIAGNOSE([obsolete],[your code may safely assume C89 semantics that RETSIGTYPE is void.
+Remove this warning and the `AC_CACHE_CHECK' when you adjust the code.])dnl
+AC_CACHE_CHECK([return type of signal handlers],[ac_cv_type_signal],[AC_COMPILE_IFELSE(
+[AC_LANG_PROGRAM([#include <sys/types.h>
+#include <signal.h>
+],
+		 [return *(signal (0, 0)) (0) == 1;])],
+		   [ac_cv_type_signal=int],
+		   [ac_cv_type_signal=void])])
+AC_DEFINE_UNQUOTED([RETSIGTYPE],[$ac_cv_type_signal],[Define as the return type of signal handlers
+		    (`int' or `void').])
+
 AC_STRUCT_TM
 
 dnl Checks for library functions.
@@ -670,8 +673,12 @@ dnl top level
 AC_CONFIG_FILES(Makefile)
 dnl tools
 AC_CONFIG_FILES(tools/Makefile)
+dnl lib
+AC_CONFIG_FILES(lib/Makefile)
 
 if test $qt_available = 1; then
+    dnl libagt
+    AC_CONFIG_FILES(lib/libagt/Makefile lib/libagt/include/Makefile)
     dnl 2Dreams
     AC_CONFIG_FILES(tools/Dreams/Makefile tools/Dreams/src/Makefile)
     dnl AC_CONFIG_FILES(tools/2Dreams/Makefile tools/2Dreams/src/Makefile)
