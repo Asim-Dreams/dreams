@@ -100,7 +100,7 @@ host_triplet = @host@
 subdir = lib/libagt
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/scripts/mkinstalldirs \
-	$(top_srcdir)/scripts/depcomp
+	$(top_srcdir)/scripts/depcomp README
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \

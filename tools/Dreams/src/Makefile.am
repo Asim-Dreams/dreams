@@ -19,7 +19,7 @@
 
 bin_PROGRAMS= dreams
 
-dreams_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) $(ASIMCORE_LFLAGS) $(AGT_LFLAGS) -lm -lpthread -lfl
+dreams_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) $(ASIMCORE_LFLAGS) $(AGT_LFLAGS) -lm -lpthread -lfl -lz
 
 AM_YFLAGS = -d
 
@@ -420,7 +420,7 @@ AM_CXXFLAGS += $(QTINCDIR) -std=c++0x
 
 CLEANFILES = adf/parser.cc \
     adf/lexer.cc \
-    adf/parser.h \
+    adf/parser.hh \
     adf/lex.yy.c \
     *moc* 
 
