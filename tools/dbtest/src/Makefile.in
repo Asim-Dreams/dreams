@@ -343,7 +343,7 @@ tooldir = @tooldir@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-dbtest_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) -L../../../lib/libdraldb -ldraldb $(ASIMCORE_LFLAGS) -lm 
+dbtest_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) -L../../../lib/libdraldb -ldraldb $(ASIMCORE_LFLAGS) -lm -lz
 dbtest_SOURCES = dbtest.cpp 
 all: all-am
 
