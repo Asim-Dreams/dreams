@@ -19,7 +19,7 @@
 
 bin_PROGRAMS= dbtest
 
-dbtest_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) -L../../../lib/libdraldb -ldraldb $(ASIMCORE_LFLAGS) -lm -lz
+dbtest_LDFLAGS = -L../../../lib/libdraldb -ldraldb $(ASIMCORE_LFLAGS) $(QTLIBDIR) $(QTLIBOBJ) -lm -lz
 
 dbtest_SOURCES =   dbtest.cpp 
  
