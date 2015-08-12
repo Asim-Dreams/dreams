@@ -19,7 +19,7 @@
 
 bin_PROGRAMS= dreams
 
-dreams_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) $(ASIMCORE_LFLAGS) -lm -lpthread -lfl
+dreams_LDFLAGS = $(AGT_LFLAGS) $(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) $(ASIMCORE_LFLAGS) -lm -lpthread -lfl
 
 AM_YFLAGS = -d
 

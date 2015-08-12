@@ -50,103 +50,88 @@ dnl
 dnl FIND_QT(<dirs>)
 dnl
 
-AC_DEFUN(FIND_MOC,[
+AC_DEFUN([FIND_MOC],[
     AC_MSG_CHECKING("for Qt moc")
 
     for dir in $1
     do
-        if test -f $dir/moc
-        then
-            QTMOCDIR=$dir
-            AC_MSG_RESULT("found in $QTMOCDIR")
-            break
-        else
-            if test -f $dir/bin/moc
-            then
-                QTMOCDIR=$dir/bin
-                AC_MSG_RESULT("found in $QTMOCDIR")
-                break
-            fi
-        fi
-    done
-])
-
-AC_DEFUN(FIND_UIC,[
-    AC_MSG_CHECKING("for Qt uic")
-
-    for dir in $1
-    do
-        if test -f $dir/uic
-        then
-            QTUICDIR=$dir
-            AC_MSG_RESULT("found in $QTUICDIR")
-            break
-        else
-            if test -f $dir/bin/uic
-            then
-                QTUICDIR=$dir/bin
-                AC_MSG_RESULT("found in $QTUICDIR")
-                break
-            fi
-        fi
-    done
-])
-
-AC_DEFUN(FIND_QT_LIBS,[
-    AC_MSG_CHECKING("for Qt 3.x.x libraries")
-
-    QTLIBS="qt-mt qt"
-
-    for dir in $1
-    do
-        for i in $QTLIBS
+        for try in $dir/bin $dir/qt/bin $dir/qt $dir
         do
-            if test -f $dir/lib$i.a -o -f $dir/lib$i.so
+            if test -f $try/moc-qt4
             then
-                QTLIBDIR=$dir
-                AC_MSG_RESULT("found in $QTLIBDIR")
-                QT=$i
+                QTMOCDIR=$try
+                QTMOCBIN=moc-qt4
+                AC_MSG_RESULT("found in $QTMOCDIR")
                 break 2
-            else
-                if test -f $dir/lib/lib$i.a -o -f $dir/lib/lib$i.so
-                then
-                    QTLIBDIR=$dir/lib
-                    AC_MSG_RESULT("found in $QTLIBDIR")
-                    QT=$i
-                    break 2
-                fi
             fi
         done
     done
 ])
 
-AC_DEFUN(FIND_QT_INCLUDES,[
-    AC_MSG_CHECKING("for Qt 3.x.x include files")
+AC_DEFUN([FIND_UIC],[
+    AC_MSG_CHECKING("for Qt uic")
 
     for dir in $1
     do
-        if test -f $dir/qwidget.h
-        then
-            QTINCDIR=$dir
-            AC_MSG_RESULT("found in $QTINCDIR")
-            break
-        else
-            if test -f $dir/include/qwidget.h
+        for try in $dir/qt/bin $dir/bin $dir/qt $dir
+        do
+            if test -f $try/uic-qt4
             then
-                QTINCDIR=$dir/include
-                AC_MSG_RESULT("found in $QTINCDIR")
-                break
+                QTUICDIR=$try
+                QTUICBIN=uic-qt4
+                AC_MSG_RESULT("found in $QTUICDIR")
+                break 2
             fi
-        fi
+        done
     done
 ])
 
-AC_DEFUN(FIND_QT, [
+AC_DEFUN([FIND_QT_LIBS],[
+    AC_MSG_CHECKING("for Qt 4.x.x libraries")
+
+    QTLIBS="QtCore QtGui"
+
+    for dir in $1
+    do
+        for try in $dir/qt/lib $dir/lib/qt $dir/lib $dir/qt $dir/qt4/lib $dir/lib/qt4 $dir/qt4 $dir/lib64/qt $dir/lib64 $dir/lib64/qt4 $dir/lib64 $dir/qt4 $dir
+        do
+            for i in $QTLIBS
+            do
+                if test -f $try/lib$i.a -o -f $try/lib$i.so -o -f $try/lib$i.so.3
+                then
+                    QTLIBDIR=$try
+                    QT=$i
+                    AC_MSG_RESULT("found lib$i in $QTLIBDIR")
+                    break 3
+                fi
+            done
+        done
+    done
+
+])
+
+AC_DEFUN([FIND_QT_INCLUDES],[
+    AC_MSG_CHECKING("for Qt 4.x.x include files")
+    for dir in $1
+    do
+        for try in $dir/qt/include $dir/include/qt $dir/include $dir/qt $dir $dir/Qt
+        do
+            if test -f $try/QtCore/QtCore
+            then
+             QTINCDIR=$try
+             AC_MSG_RESULT("found in $QTINCDIR")
+             break 2
+             fi
+        done
+    done
+])
+
+AC_DEFUN([FIND_QT], [
     qt_available=1;
 
     AC_SUBST(QT)
 
-    FIND_MOC($with_qt_moc $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/share/qt3 ${prefix}/lib/qt /usr/share/qt3 /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
+    FIND_MOC($with_qt_moc $with_qt_dir $QTDIR ${prefix}/lib /usr/local/lib /usr/local /usr/lib /usr / /usr/X11R6)
     if test "X$QTMOCDIR" = "X"; then
         echo ""
         echo "Qt's moc not found! If you have installed Qt in an"
@@ -155,7 +140,7 @@ AC_DEFUN(FIND_QT, [
         echo "****************************************************************"
         echo "****************************************************************"
         echo "You don't have QT Library available in this system. Remember"
-        echo "you cannot compile 2Dreams"
+        echo "you cannot compile libagt, StripChartViewer and 2Dreams"
         echo "****************************************************************"
         echo "****************************************************************"
         echo ""
@@ -166,7 +151,7 @@ AC_DEFUN(FIND_QT, [
     dnl find uic
     dnl
 
-    FIND_UIC($with_qt_uic $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/share/qt3 ${prefix}/lib/qt /usr/share/qt3 /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/bin /bin /usr/local /usr/X11R6)
+    FIND_UIC($with_qt_uic $with_qt_dir $QTDIR ${prefix}/lib /usr/local/lib /usr/local /usr/lib /usr / /usr/X11R6)
     if test "X$QTUICDIR" = "X"; then
         echo ""
         echo "Qt's uic not found! If you have installed Qt in an"
@@ -175,7 +160,7 @@ AC_DEFUN(FIND_QT, [
         echo "****************************************************************"
         echo "****************************************************************"
         echo "You don't have QT Library available in this system. Remember"
-        echo "you cannot compile 2Dreams"
+        echo "you cannot compile libagt, StripChartViewer and 2Dreams"
         echo "****************************************************************"
         echo "****************************************************************"
         echo ""
@@ -186,7 +171,7 @@ AC_DEFUN(FIND_QT, [
     dnl find qt libraries
     dnl
 
-    FIND_QT_LIBS($with_qt_libs $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4/lib ${prefix}/share/qt3 ${prefix}/lib/qt /usr/share/qt3 /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/lib /usr/local/lib /usr/X11R6/lib)
+    FIND_QT_LIBS($with_qt_libs $with_qt_dir $QTDIR ${prefix} /usr/local /usr /usr/X11R6 /usr/lib/x86_64-linux-gnu/ /usr/lib/i386-linux-gnu/)
     if test "X$QTLIBDIR" = "X"
     then
         echo ""
@@ -196,7 +181,7 @@ AC_DEFUN(FIND_QT, [
         echo "****************************************************************"
         echo "****************************************************************"
         echo "You don't have QT Library available in this system. Remember"
-        echo "you cannot compile 2Dreams"
+        echo "you cannot compile libagt, StripChartViewer and 2Dreams"
         echo "****************************************************************"
         echo "****************************************************************"
         echo ""
@@ -210,7 +195,7 @@ AC_DEFUN(FIND_QT, [
     dnl find qt headers
     dnl
 
-    FIND_QT_INCLUDES($with_qt_includes $with_qt_dir $QTDIR /usr/intel/pkgs/libqt/3.3.4 ${prefix}/share/qt3 ${prefix}/lib/qt /usr/share/qt3 /usr/lib/qt3 /usr/local/qt /usr/lib/qt /usr/include /usr/include/qt3 /usr/include/qt /usr/local/include /usr/X11R6/include/qt3)
+    FIND_QT_INCLUDES($with_qt_includes $with_qt_dir $QTDIR ${prefix}/lib/qt /usr/lib/qt4 /usr/local/qt /usr/lib/qt /usr/include /usr/include/qt /usr/include/qt4 /usr/local/include /usr/X11R6/include/qt4)
     if test "X$QTINCDIR" = "X"
     then
         echo ""
@@ -220,17 +205,17 @@ AC_DEFUN(FIND_QT, [
         echo "****************************************************************"
         echo "****************************************************************"
         echo "You don't have QT Library available in this system. Remember"
-        echo "you cannot compile 2Dreams"
+        echo "you cannot compile libagt, StripChartViewer and 2Dreams"
         echo "****************************************************************"
         echo "****************************************************************"
         echo ""
         qt_available=0;
     else
-        QTINCDIR="-I$QTINCDIR"
+        QTINCDIR="-I$QTINCDIR -I$QTINCDIR/Qt -I$QTINCDIR/Qt3Support -I$QTINCDIR/QtGui -I$QTINCDIR/QtCore"
     fi    
 ])
 
-AC_DEFUN(FIND_GUI, [
+AC_DEFUN([FIND_GUI], [
 
     AC_PATH_XTRA
 
@@ -242,7 +227,9 @@ AC_DEFUN(FIND_GUI, [
         AC_SUBST(QTLIBDIR)
         AC_SUBST(QTLIBOBJ)
         AC_SUBST(QTUICDIR)
+        AC_SUBST(QTUICBIN)
         AC_SUBST(QTMOCDIR)
+        AC_SUBST(QTMOCBIN)
 
         dnl Configuring AGT defines
 
@@ -263,10 +250,10 @@ AC_DEFUN(FIND_GUI, [
 
 ])
 
-AC_DEFUN(FIND_ASIM_CORE_DIR,[
+AC_DEFUN([FIND_ASIM_CORE_DIR],[
     AC_MSG_CHECKING("for Asim core directory")
 
-    TLIBS="agt dral draldb"
+    TLIBS="dral"
 
     for i in $TLIBS
     do
@@ -296,34 +283,9 @@ dnl                    	AC_MSG_RESULT("lib$i.a not found will look in $prefix")
             done
         fi
     done
-
-    dnl
-    dnl draldb is only required by 2Dreams. By now Dreams has its own modifyed
-    dnl version of the library
-    dnl
-    TWODREAMSLIBS=""
-    i="draldb"
-    if test "X$1" = "X"
-    then
-        TWODREAMSLIBS="-l$i"
-        AC_MSG_RESULT("lib$i.a not found will look in $prefix")
-    else
-        for dir in $1
-        do
-            if test -f $dir/lib/lib$i/lib$i.a
-            then
-                LOCAL_2DREAMSINCS="-I$dir/lib/lib$i/include/"
-                LOCAL_2DREAMSLIBDIRS="$dir/lib/lib$i/lib$i.a"
-                AC_MSG_RESULT("lib$i.a found in $dir")
-            else
-                TWODREAMSLIBS="-l$i"
-                AC_MSG_RESULT("lib$i.a not found will look in $prefix")
-            fi
-        done
-    fi
 ])
 
-AC_DEFUN(FIND_ASIM_DIR,[
+AC_DEFUN([FIND_ASIM_DIR],[
     AC_MSG_CHECKING("for Asim directory")
 
     for dir in $1
@@ -417,7 +379,9 @@ fi
 AC_SUBST(OPTFLAGS)
 
 dnl pull all flags together
-AM_CXXFLAGS='$(WARNFLAGS) $(OPTFLAGS) $(COREFLAGS) $(COREINCS) $(ASIMCORE_CFLAGS)'
+AM_CXXFLAGS='$(WARNFLAGS) $(OPTFLAGS) $(COREFLAGS) $(COREINCS) $(ASIMCORE_CFLAGS) $(AGT_CFLAGS)'
+dnl libagt.a does not compile yet, so do not include it in the link flags
+dnl AM_LDFLAGS='$(CORELIBS) $(ASIMCORE_LFLAGS) $(AGT_LFLAGS)'
 AM_LDFLAGS='$(CORELIBS) $(ASIMCORE_LFLAGS)'
 AC_SUBST(AM_CXXFLAGS)
 AC_SUBST(AM_LDFLAGS)
@@ -534,11 +498,16 @@ ASIMCORE_LFLAGS="$LOCAL_ASIMCORELIBDIRS $GLOBAL_ASIMCORELIBDIRS $ASIMCORELIBS"
 TWODREAMS_CFLAGS="$LOCAL_2DREAMSINCS"
 TWODREAMS_LFLAGS="$LOCAL_2DREAMSLIBDIRS $TWODREAMSLIBS"
 TDREAMS_CFLAGS="-I./Loki-Lib/ -I/usr/include/libxml2/"
+AGT_CFLAGS="-I$ac_pwd/lib/libagt/include"
+AGT_LFLAGS="$ac_pwd/lib/libagt/libagt.a"
 AC_SUBST(TWODREAMS_CFLAGS)
 AC_SUBST(TWODREAMS_LFLAGS)
 AC_SUBST(ASIMCORE_CFLAGS)
 AC_SUBST(ASIMCORE_LFLAGS)
 AC_SUBST(TDREAMS_CFLAGS)
+AC_SUBST(AGT_CFLAGS)
+AC_SUBST(AGT_LFLAGS)
+
 
 dnl Define LINK... 
 
@@ -649,6 +618,13 @@ dnl support variables in the first argument of AC_DEFINE
   AC_SUBST(COREINCS)
 fi
 
+#
+# libtool on SUSE x86_64 installations does not look for -lpopt in the right place,
+# so we define this conditional, used in the makefiles for awb-resolver, amc, and dbtest,
+# which forces an explicit link command not using libtool
+#
+AM_CONDITIONAL(X86_64_LIBTOOL_HACK, test x$SYSTOKEN = xx86_64_linux26)
+
 dnl Checks for libraries.
 AC_CHECK_LIB(popt, poptGetContext)
 
@@ -670,8 +646,14 @@ dnl top level
 AC_CONFIG_FILES(Makefile)
 dnl tools
 AC_CONFIG_FILES(tools/Makefile)
+dnl lib
+AC_CONFIG_FILES(lib/Makefile)
 
 if test $qt_available = 1; then
+    dnl libagt
+    AC_CONFIG_FILES(lib/libagt/Makefile lib/libagt/include/Makefile)
+    dnl libdraldb
+    AC_CONFIG_FILES(lib/libdraldb/Makefile lib/libdraldb/include/Makefile)
     dnl 2Dreams
     AC_CONFIG_FILES(tools/Dreams/Makefile tools/Dreams/src/Makefile)
     dnl AC_CONFIG_FILES(tools/2Dreams/Makefile tools/2Dreams/src/Makefile)
@@ -682,6 +664,7 @@ if test $qt_available = 1; then
     AC_CONFIG_FILES(tools/stb2stc/Makefile tools/stb2stc/src/Makefile)
     AC_CONFIG_FILES(tools/dralTranslator/Makefile tools/dralTranslator/src/Makefile)
     AC_CONFIG_FILES(tools/dral2PTV/Makefile tools/dral2PTV/src/Makefile)
+    AC_CONFIG_FILES(tools/dbtest/Makefile tools/dbtest/src/Makefile)
 else
     echo ""
     echo "*******************************************************************"
@@ -692,6 +675,12 @@ else
     echo "*******************************************************************"
     echo ""
 fi
+
+dnl This is used in different Makefile.am files to not compile the applications that do not work yet with qt3 (or applications that do not compile for some other reason)
+dnl Once these applications get ported to qt4 and/or fixed, move them to before the TODO section in the Makefile.am line
+dnl Once everything works, the TODO variable should be completely removed
+TODO='#'
+AC_SUBST(TODO)
 
 
 dnl now generate all files

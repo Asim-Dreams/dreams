@@ -17,7 +17,7 @@
 #  
 #
 
-SUBDIRS = tools
+SUBDIRS = lib tools
 
 #
 # we also need to fix up the distribution to contain the whole source tree
