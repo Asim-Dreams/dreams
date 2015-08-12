@@ -346,8 +346,8 @@ tooldir = @tooldir@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-DIST_SUBDIRS = libagt
-SUBDIRS = libagt
+DIST_SUBDIRS = libagt libdraldb
+SUBDIRS = libagt libdraldb
 all: all-recursive
 
 .SUFFIXES:

@@ -266,7 +266,7 @@ AC_DEFUN([FIND_GUI], [
 AC_DEFUN([FIND_ASIM_CORE_DIR],[
     AC_MSG_CHECKING("for Asim core directory")
 
-    TLIBS="dral draldb"
+    TLIBS="dral"
 
     for i in $TLIBS
     do
@@ -296,31 +296,6 @@ dnl                    	AC_MSG_RESULT("lib$i.a not found will look in $prefix")
             done
         fi
     done
-
-    dnl
-    dnl draldb is only required by 2Dreams. By now Dreams has its own modifyed
-    dnl version of the library
-    dnl
-    TWODREAMSLIBS=""
-    i="draldb"
-    if test "X$1" = "X"
-    then
-        TWODREAMSLIBS="-l$i"
-        AC_MSG_RESULT("lib$i.a not found will look in $prefix")
-    else
-        for dir in $1
-        do
-            if test -f $dir/lib/lib$i/lib$i.a
-            then
-                LOCAL_2DREAMSINCS="-I$dir/lib/lib$i/include/"
-                LOCAL_2DREAMSLIBDIRS="$dir/lib/lib$i/lib$i.a"
-                AC_MSG_RESULT("lib$i.a found in $dir")
-            else
-                TWODREAMSLIBS="-l$i"
-                AC_MSG_RESULT("lib$i.a not found will look in $prefix")
-            fi
-        done
-    fi
 ])
 
 AC_DEFUN([FIND_ASIM_DIR],[
@@ -527,8 +502,8 @@ FIND_ASIM_CORE_DIR($with_asim_core_dir `dirname $PWD`/asim-simcore `dirname $PWD
 FIND_ASIM_DIR($with_asim_dir /usr /usr/local $prefix)
 ASIMCORE_CFLAGS="$LOCAL_ASIMCOREINCS $GLOBAL_ASIMCOREINCS"
 ASIMCORE_LFLAGS="$LOCAL_ASIMCORELIBDIRS $GLOBAL_ASIMCORELIBDIRS $ASIMCORELIBS"
-TWODREAMS_CFLAGS="$LOCAL_2DREAMSINCS"
-TWODREAMS_LFLAGS="$LOCAL_2DREAMSLIBDIRS $TWODREAMSLIBS"
+TWODREAMS_CFLAGS="-I$ac_pwd/lib/libdraldb/include"
+TWODREAMS_LFLAGS="$ac_pwd/lib/libdraldb/libdraldb.a"
 TDREAMS_CFLAGS="-I./Loki-Lib/ -I/usr/include/libxml2/"
 AGT_CFLAGS="-I$ac_pwd/lib/libagt/include"
 AGT_LFLAGS="$ac_pwd/lib/libagt/libagt.a"
@@ -641,6 +616,13 @@ dnl support variables in the first argument of AC_DEFINE
   AC_SUBST(COREINCS)
 fi
 
+#
+# libtool on SUSE x86_64 installations does not look for -lpopt in the right place,
+# so we define this conditional, used in the makefiles for awb-resolver, amc, and dbtest,
+# which forces an explicit link command not using libtool
+#
+AM_CONDITIONAL(X86_64_LIBTOOL_HACK, test x$SYSTOKEN = xx86_64_linux26)
+
 dnl Checks for libraries.
 AC_CHECK_LIB(popt, poptGetContext)
 
@@ -679,6 +661,8 @@ AC_CONFIG_FILES(lib/Makefile)
 if test $qt_available = 1; then
     dnl libagt
     AC_CONFIG_FILES(lib/libagt/Makefile lib/libagt/include/Makefile)
+    dnl libdraldb
+    AC_CONFIG_FILES(lib/libdraldb/Makefile lib/libdraldb/include/Makefile)
     dnl 2Dreams
     AC_CONFIG_FILES(tools/Dreams/Makefile tools/Dreams/src/Makefile)
     dnl AC_CONFIG_FILES(tools/2Dreams/Makefile tools/2Dreams/src/Makefile)
@@ -689,6 +673,7 @@ if test $qt_available = 1; then
     AC_CONFIG_FILES(tools/stb2stc/Makefile tools/stb2stc/src/Makefile)
     AC_CONFIG_FILES(tools/dralTranslator/Makefile tools/dralTranslator/src/Makefile)
     AC_CONFIG_FILES(tools/dral2PTV/Makefile tools/dral2PTV/src/Makefile)
+    AC_CONFIG_FILES(tools/dbtest/Makefile tools/dbtest/src/Makefile)
 else
     echo ""
     echo "*******************************************************************"

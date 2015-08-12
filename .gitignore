@@ -310,3 +310,22 @@
 /lib/libagt/src/AnnotationAutoBezierArrow_moc.cpp
 /lib/libagt/src/.dirstamp
 
+# /lib/libdraldb/
+/lib/libdraldb/Makefile
+/lib/libdraldb/libdraldb.a
+
+# /lib/libdraldb/include/
+/lib/libdraldb/include/Makefile
+
+# /lib/libdraldb/src/
+/lib/libdraldb/src/.deps
+/lib/libdraldb/src/.dirstamp
+
+# /tools/dbtest/
+/tools/dbtest/Makefile
+
+# /tools/dbtest/src/
+/tools/dbtest/src/.deps
+/tools/dbtest/src/Makefile
+/tools/dbtest/src/dbtest
+

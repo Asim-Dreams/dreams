@@ -17,5 +17,4 @@
 # 
 #
 
-DIST_SUBDIRS=libagt libdraldb
-SUBDIRS=libagt libdraldb
+SUBDIRS=src

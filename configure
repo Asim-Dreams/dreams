@@ -635,6 +635,8 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+X86_64_LIBTOOL_HACK_FALSE
+X86_64_LIBTOOL_HACK_TRUE
 COREINCS
 CORELIBS
 COREFLAGS
@@ -16681,7 +16683,7 @@ asimcore_dir=`awb-resolver admin/packages/asimcore | sed 's/admin\/packages\/asi
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking \"for Asim core directory\"" >&5
 $as_echo_n "checking \"for Asim core directory\"... " >&6; }
 
-    TLIBS="dral draldb"
+    TLIBS="dral"
 
     for i in $TLIBS
     do
@@ -16712,30 +16714,6 @@ $as_echo "\"lib$i.a found in local build $dir\"" >&6; }
         fi
     done
 
-                    TWODREAMSLIBS=""
-    i="draldb"
-    if test "X$with_asim_core_dir `dirname $PWD`/asim-simcore `dirname $PWD`/asimcore $asimcore_dir /usr" = "X"
-    then
-        TWODREAMSLIBS="-l$i"
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: \"lib$i.a not found will look in $prefix\"" >&5
-$as_echo "\"lib$i.a not found will look in $prefix\"" >&6; }
-    else
-        for dir in $with_asim_core_dir `dirname $PWD`/asim-simcore `dirname $PWD`/asimcore $asimcore_dir /usr
-        do
-            if test -f $dir/lib/lib$i/lib$i.a
-            then
-                LOCAL_2DREAMSINCS="-I$dir/lib/lib$i/include/"
-                LOCAL_2DREAMSLIBDIRS="$dir/lib/lib$i/lib$i.a"
-                { $as_echo "$as_me:${as_lineno-$LINENO}: result: \"lib$i.a found in $dir\"" >&5
-$as_echo "\"lib$i.a found in $dir\"" >&6; }
-            else
-                TWODREAMSLIBS="-l$i"
-                { $as_echo "$as_me:${as_lineno-$LINENO}: result: \"lib$i.a not found will look in $prefix\"" >&5
-$as_echo "\"lib$i.a not found will look in $prefix\"" >&6; }
-            fi
-        done
-    fi
-
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking \"for Asim directory\"" >&5
 $as_echo_n "checking \"for Asim directory\"... " >&6; }
@@ -16753,8 +16731,8 @@ $as_echo "\"found in $dir\"" >&6; }
 
 ASIMCORE_CFLAGS="$LOCAL_ASIMCOREINCS $GLOBAL_ASIMCOREINCS"
 ASIMCORE_LFLAGS="$LOCAL_ASIMCORELIBDIRS $GLOBAL_ASIMCORELIBDIRS $ASIMCORELIBS"
-TWODREAMS_CFLAGS="$LOCAL_2DREAMSINCS"
-TWODREAMS_LFLAGS="$LOCAL_2DREAMSLIBDIRS $TWODREAMSLIBS"
+TWODREAMS_CFLAGS="-I$ac_pwd/lib/libdraldb/include"
+TWODREAMS_LFLAGS="$ac_pwd/lib/libdraldb/libdraldb.a"
 TDREAMS_CFLAGS="-I./Loki-Lib/ -I/usr/include/libxml2/"
 AGT_CFLAGS="-I$ac_pwd/lib/libagt/include"
 AGT_LFLAGS="$ac_pwd/lib/libagt/libagt.a"
@@ -16911,6 +16889,20 @@ $as_echo "#define HOST_LINUX_IA64 1" >>confdefs.h
 
 
 fi
+
+#
+# libtool on SUSE x86_64 installations does not look for -lpopt in the right place,
+# so we define this conditional, used in the makefiles for awb-resolver, amc, and dbtest,
+# which forces an explicit link command not using libtool
+#
+ if test x$SYSTOKEN = xx86_64_linux26; then
+  X86_64_LIBTOOL_HACK_TRUE=
+  X86_64_LIBTOOL_HACK_FALSE='#'
+else
+  X86_64_LIBTOOL_HACK_TRUE='#'
+  X86_64_LIBTOOL_HACK_FALSE=
+fi
+
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for poptGetContext in -lpopt" >&5
 $as_echo_n "checking for poptGetContext in -lpopt... " >&6; }
@@ -17198,6 +17190,8 @@ ac_config_files="$ac_config_files lib/Makefile"
 if test $qt_available = 1; then
         ac_config_files="$ac_config_files lib/libagt/Makefile lib/libagt/include/Makefile"
 
+        ac_config_files="$ac_config_files lib/libdraldb/Makefile lib/libdraldb/include/Makefile"
+
         ac_config_files="$ac_config_files tools/Dreams/Makefile tools/Dreams/src/Makefile"
 
         ac_config_files="$ac_config_files tools/1Dream/Makefile tools/1Dream/src/Makefile"
@@ -17213,6 +17207,8 @@ if test $qt_available = 1; then
     ac_config_files="$ac_config_files tools/dralTranslator/Makefile tools/dralTranslator/src/Makefile"
 
     ac_config_files="$ac_config_files tools/dral2PTV/Makefile tools/dral2PTV/src/Makefile"
+
+    ac_config_files="$ac_config_files tools/dbtest/Makefile tools/dbtest/src/Makefile"
 
 else
     echo ""
@@ -17364,6 +17360,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCXX_TRUE}" && test -z "${am__fastdepCXX_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCXX\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${X86_64_LIBTOOL_HACK_TRUE}" && test -z "${X86_64_LIBTOOL_HACK_FALSE}"; then
+  as_fn_error $? "conditional \"X86_64_LIBTOOL_HACK\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 
@@ -18341,6 +18341,8 @@ do
     "lib/Makefile") CONFIG_FILES="$CONFIG_FILES lib/Makefile" ;;
     "lib/libagt/Makefile") CONFIG_FILES="$CONFIG_FILES lib/libagt/Makefile" ;;
     "lib/libagt/include/Makefile") CONFIG_FILES="$CONFIG_FILES lib/libagt/include/Makefile" ;;
+    "lib/libdraldb/Makefile") CONFIG_FILES="$CONFIG_FILES lib/libdraldb/Makefile" ;;
+    "lib/libdraldb/include/Makefile") CONFIG_FILES="$CONFIG_FILES lib/libdraldb/include/Makefile" ;;
     "tools/Dreams/Makefile") CONFIG_FILES="$CONFIG_FILES tools/Dreams/Makefile" ;;
     "tools/Dreams/src/Makefile") CONFIG_FILES="$CONFIG_FILES tools/Dreams/src/Makefile" ;;
     "tools/1Dream/Makefile") CONFIG_FILES="$CONFIG_FILES tools/1Dream/Makefile" ;;
@@ -18358,6 +18360,8 @@ do
     "tools/dralTranslator/src/Makefile") CONFIG_FILES="$CONFIG_FILES tools/dralTranslator/src/Makefile" ;;
     "tools/dral2PTV/Makefile") CONFIG_FILES="$CONFIG_FILES tools/dral2PTV/Makefile" ;;
     "tools/dral2PTV/src/Makefile") CONFIG_FILES="$CONFIG_FILES tools/dral2PTV/src/Makefile" ;;
+    "tools/dbtest/Makefile") CONFIG_FILES="$CONFIG_FILES tools/dbtest/Makefile" ;;
+    "tools/dbtest/src/Makefile") CONFIG_FILES="$CONFIG_FILES tools/dbtest/src/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

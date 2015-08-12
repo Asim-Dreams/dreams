@@ -17,5 +17,18 @@
 # 
 #
 
-DIST_SUBDIRS=libagt libdraldb
-SUBDIRS=libagt libdraldb
+bin_PROGRAMS= dbtest
+
+dbtest_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) -L../../../lib/libdraldb -ldraldb $(ASIMCORE_LFLAGS) -lm 
+
+dbtest_SOURCES =   dbtest.cpp 
+ 
+WARNFLAGS = -ansi -pedantic -W -Wall -Wcast-align -Wformat=2 -Wconversion -Winline -Wno-unused -Wno-parentheses -Wno-long-long
+AM_CXXFLAGS += $(QTINCDIR) -I../../../lib/libdraldb/include
+
+
+# maybe explicitly link this, avoiding use of broken libtool:
+if X86_64_LIBTOOL_HACK
+dbtest: $(dbtest_OBJECTS)
+	$(CXXLD) -o dbtest $(dbtest_OBJECTS) $(dbtest_LDFLAGS)
+endif

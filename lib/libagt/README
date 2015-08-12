@@ -1,3 +1,0 @@
-This is a copy of the lib/libagt directory of the asimcore repository using the latest revision before the beginning of the qt4 port (revision 6a3b53bb5a19d2601f62bd1c54d585ecb5f539b5)
-In the near future (if not already done), the libagt directory will be removed from the asimcore repository and will be added to a qt4port branch in this dreams repository
-
