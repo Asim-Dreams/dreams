@@ -4,7 +4,7 @@
 #include "qstring.h"
 #include "dDB/DralDBSyntax.h"
 #include "expressions/Expression.h"
-#include "parser.h"
+#include "parser.hh"
 
 YY_BUFFER_STATE curBuf;
 

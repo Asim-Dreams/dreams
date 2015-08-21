@@ -69,7 +69,7 @@
 # /tools/Dreams/src/adf/
 /tools/Dreams/src/adf/ADFMgr_moc.cpp
 /tools/Dreams/src/adf/parser.cc
-/tools/Dreams/src/adf/parser.h
+/tools/Dreams/src/adf/parser.hh
 /tools/Dreams/src/adf/lexer.cc
 /tools/Dreams/src/adf/.dirstamp
 /tools/Dreams/src/adf/.deps
@@ -276,3 +276,56 @@
 # /tools/vcgDreams/vcgen/src/
 /tools/vcgDreams/vcgen/src/.deps
 /tools/vcgDreams/vcgen/src/Makefile
+
+# /lib/
+/lib/Makefile
+
+# /lib/libagt/
+/lib/libagt/libagt.a
+/lib/libagt/Makefile
+
+# /lib/libagt/include/
+/lib/libagt/include/Makefile
+
+# /lib/libagt/src/
+/lib/libagt/src/snapDialogImpl_moc.cpp
+/lib/libagt/src/AnnotationText_moc.cpp
+/lib/libagt/src/Main_moc.cpp
+/lib/libagt/src/bookmarkImpl_moc.cpp
+/lib/libagt/src/AnnotationRect_moc.cpp
+/lib/libagt/src/.deps
+/lib/libagt/src/AnnotationCircle_moc.cpp
+/lib/libagt/src/AnnotationCtrl_moc.cpp
+/lib/libagt/src/AnnotationLine_moc.cpp
+/lib/libagt/src/AnnotationItem_moc.cpp
+/lib/libagt/src/AColorDialog_moc.cpp
+/lib/libagt/src/BookmarkMgr_moc.cpp
+/lib/libagt/src/AnnotationContainer_moc.cpp
+/lib/libagt/src/HelpWindow_moc.cpp
+/lib/libagt/src/snapDialog_moc.cpp
+/lib/libagt/src/AScrollView_moc.cpp
+/lib/libagt/src/Q2DMAction_moc.cpp
+/lib/libagt/src/MDIWindow_moc.cpp
+/lib/libagt/src/bookmark_moc.cpp
+/lib/libagt/src/AnnotationAutoBezierArrow_moc.cpp
+/lib/libagt/src/.dirstamp
+
+# /lib/libdraldb/
+/lib/libdraldb/Makefile
+/lib/libdraldb/libdraldb.a
+
+# /lib/libdraldb/include/
+/lib/libdraldb/include/Makefile
+
+# /lib/libdraldb/src/
+/lib/libdraldb/src/.deps
+/lib/libdraldb/src/.dirstamp
+
+# /tools/dbtest/
+/tools/dbtest/Makefile
+
+# /tools/dbtest/src/
+/tools/dbtest/src/.deps
+/tools/dbtest/src/Makefile
+/tools/dbtest/src/dbtest
+

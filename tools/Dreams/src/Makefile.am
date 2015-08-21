@@ -19,7 +19,7 @@
 
 bin_PROGRAMS= dreams
 
-dreams_LDFLAGS = $(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) $(ASIMCORE_LFLAGS) -lm -lpthread -lfl
+dreams_LDFLAGS = $(AGT_LFLAGS) $(QTLIBDIR) $(QTLIBOBJ) $(X_PRE_LIBS) $(X_LIBS) $(X_EXTRA_LIBS) $(ASIMCORE_LFLAGS) -lm -lpthread -lfl -lz
 
 AM_YFLAGS = -d
 
@@ -416,11 +416,11 @@ EXTRA_DIST =	help \
 # so we redefine the warning flags to an intermediate level:
 WARNFLAGS = -ansi -pedantic -W -Wcast-align -Wformat=2 -Wconversion -Wno-unused -Wno-parentheses -Wno-long-long
 
-AM_CXXFLAGS += $(QTINCDIR) -std=c++0x 
+AM_CXXFLAGS += $(QTINCDIR) -std=c++0x
 
 CLEANFILES = adf/parser.cc \
     adf/lexer.cc \
-    adf/parser.h \
+    adf/parser.hh \
     adf/lex.yy.c \
     *moc* 
 

@@ -17,5 +17,5 @@
 #  
 #
 
-DIST_SUBDIRS=@NO_GUI@ Dreams 1Dream TDreams dralTranslator stb2stc stc2stb
-SUBDIRS=@NO_GUI@ Dreams 1Dream TDreams dralTranslator stb2stc stc2stb
+DIST_SUBDIRS=@NO_GUI@ Dreams 1Dream TDreams dralTranslator stb2stc stc2stb dbtest
+SUBDIRS=@NO_GUI@ Dreams 1Dream TDreams dralTranslator stb2stc stc2stb dbtest
