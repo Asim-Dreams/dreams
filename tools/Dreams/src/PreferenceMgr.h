@@ -382,6 +382,8 @@ class PreferenceMgr : public QObject
         int highlightSize;
 
         // Docked windows
+        // Pushout window does not seem to be fully implented, so as of now
+        // we just make sure that the showPushoutWindow is properly initialized
         int  disassemblyWindowWidth;
         int  tagWindowWidth;
         int  relationshipWindowWidth;

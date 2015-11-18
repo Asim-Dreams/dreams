@@ -385,6 +385,14 @@ LayoutResource::getRowWithDralId(DRAL_ID dralId, RowType type) const
 bool
 LayoutResource::getRowIsGroup(UINT32 row, LayoutResourceCache * cache) const
 {
+    // if some groups are collapsed it may happen than row is bigger than
+    // numVirtualRows. In such case return false instead of trying the
+    // dunamic_cast (as it may abort)
+    if (row >= cache->numVirtualRows)
+    {
+        return false;
+    }
+
     LayoutResourceGroup * group;
 
     // Gets the group.

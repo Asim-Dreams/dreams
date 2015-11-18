@@ -254,6 +254,9 @@ PreferenceMgr::loadDockedWindowsPreferences()
         showLogWindow =
         settings->readBoolEntry(applicationPrefix+"DockedWindows/"+"showLogWindow",false);
 
+        showPushoutWindow =
+        settings->readBoolEntry(applicationPrefix+"DockedWindows/"+"showPushoutWindow",false);
+
         // --
 
         QString DisassemblyWindowDockPolicyString =
@@ -555,6 +558,7 @@ PreferenceMgr::saveDockedWindowsPreferences()
     settings->writeEntry(applicationPrefix+"DockedWindows/"+"showTagWindow",showTagWindow);
     settings->writeEntry(applicationPrefix+"DockedWindows/"+"showRelationshipWindow",showRelationshipWindow);
     settings->writeEntry(applicationPrefix+"DockedWindows/"+"showLogWindow",showLogWindow);
+    settings->writeEntry(applicationPrefix+"DockedWindows/"+"showPushoutWindow",showPushoutWindow);
 
     settings->writeEntry(applicationPrefix+"DockedWindows/"+"disassemblyWindowDockPolicy",dock2String(disassemblyWindowDockPolicy));
     settings->writeEntry(applicationPrefix+"DockedWindows/"+"tagWindowDockPolicy",dock2String(tagWindowDockPolicy));

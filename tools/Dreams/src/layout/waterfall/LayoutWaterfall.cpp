@@ -480,10 +480,14 @@ LayoutWaterfall::getColorShapeLetter(ItemHandler * hnd, ExpressionList * list)
     INT64 curCycle = hnd->getEventCycle().toLCMCycles();
 
     // Gets the actual state of the item inside.
-    while(hnd->isValidTagHandler() && (hnd->getTagCachedCycleLCM() <= curCycle))
+    while(hnd->isValidTagHandler() && (draldb->getTagBackPropagate() || (hnd->getTagCachedCycleLCM() <= curCycle)))
     {
-        env.itemTags.valids[hnd->getTagCachedId()] = hnd->getTagCachedDefined();
-        env.itemTags.values[hnd->getTagCachedId()] = hnd->getTagCachedValue();
+        if ((hnd->getTagCachedCycleLCM() <= curCycle) || (! env.itemTags.valids[hnd->getTagCachedId()]))
+        {
+            env.itemTags.valids[hnd->getTagCachedId()] = hnd->getTagCachedDefined();
+            env.itemTags.values[hnd->getTagCachedId()] = hnd->getTagCachedValue();
+        }
+
         if(hnd->nextTag())
         {
             hnd->cacheTag();

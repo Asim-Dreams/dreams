@@ -461,7 +461,6 @@ DisDockWin::DisDockWin(DreamsDB * _dreamsdb, QMainWindow * mdi, QMainWindow * mw
 
     progress = new QProgressDialog ("Creating Tabs...", "&Cancel",1, mdi,"lbl_progress", TRUE);
     Q_ASSERT(progress!=NULL);
-    progress->setMinimumDuration(250);
 
     max_width=0;
     tabs.clear();
@@ -812,6 +811,8 @@ DisDockWin::computeItemLists()
     delete [] values;
 
     //printf("disdock() sorting() completed... \n");fflush(stdout);
+
+    progress->reset();
 
     QApplication::restoreOverrideCursor();
     return;

@@ -142,14 +142,19 @@ TagFlipHandler::skipToNextCycleWithChange(CYCLE base_cycle, CYCLE * next_change_
     * next_change_cycle = slotFlip.getTagCycle();
 
     // Gets the actual state of the item inside.
-    while(hnd.isValidTagHandler() && (hnd.getTagCachedCycleLCM() <= lcm_cycle))
+    while(hnd.isValidTagHandler() && (draldb->getTagBackPropagate() || (hnd.getTagCachedCycleLCM() <= lcm_cycle)))
     {
-        // Something has changed...
-        changes = true;
-
         tagId = hnd.getTagCachedId();
-        itemTags.valids[tagId] = hnd.getTagCachedDefined();
-        itemTags.values[tagId] = hnd.getTagCachedValue();
+        // Do not overwrite the tag value with a future value if it was already set (this avoid that a future value with backprogation
+        // overwrittes the current value)
+        if ((hnd.getTagCachedCycleLCM() <= lcm_cycle) || (! itemTags.valids[tagId]))
+        {
+            itemTags.valids[tagId] = hnd.getTagCachedDefined();
+            itemTags.values[tagId] = hnd.getTagCachedValue();
+
+            // Something has changed...
+            changes = true;
+        }
 
         // Moves to the next tag and if exists...
         if(hnd.nextTag())

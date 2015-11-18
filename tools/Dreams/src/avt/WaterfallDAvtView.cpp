@@ -888,6 +888,10 @@ WaterfallDAvtView::showDistance(int pressed_mx, int released_mx)
 void
 WaterfallDAvtView::keyReleaseEvent(QKeyEvent* e)
 {
+    CYCLE initialCycle;
+    INT32 initialColumn;
+    int y_scroll;
+
     // check for some keys
     switch (e->key())
     {
@@ -900,7 +904,12 @@ WaterfallDAvtView::keyReleaseEvent(QKeyEvent* e)
              break;
 
         case Key_Home:
-             setContentsPos(0,contentsY());
+             // go to the initial cycle of the selected row
+             dreamsdb->layoutWaterfallComputeRangeForRow(selectedRow);
+             initialCycle = dreamsdb->layoutWaterfallGetCurrentRowMinCycle();
+             initialColumn = toCol(&initialCycle);
+             y_scroll = floorf(double(selectedRow*cube_side) * scf_y) - contentsY();
+             scrollBy(floorf(double(initialColumn) * scf_x) - contentsX(), y_scroll);
              break;
 
         case Key_End:

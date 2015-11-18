@@ -150,6 +150,7 @@ IOMgr::startLoading()
     {
         qpbar->show();
         progress->setTotalSteps(fileSize);
+        progress->setProgress(0);
     }
 
     // Start READ timer...
@@ -213,7 +214,6 @@ IOMgr::cancelRead()
     t->stop();
     progress->setProgress(draldb->getFileSize());
     progress->reset();
-    progress->hide();
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     qApp->processEvents();
@@ -234,7 +234,6 @@ IOMgr::stopRead()
     t->stop();
     progress->setProgress(draldb->getFileSize());
     progress->reset();
-    progress->hide();
 
     // Closes the file.
     QApplication::setOverrideCursor(Qt::WaitCursor);
